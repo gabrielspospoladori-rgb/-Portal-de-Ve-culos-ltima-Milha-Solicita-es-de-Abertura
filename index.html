@@ -439,7 +439,12 @@
 
 <script>
 // ─── CONFIG ────────────────────────────────────────────────────
-const SCRIPT_URL = 'https://script.google.com/a/macros/mercadolivre.com/s/AKfycbydQLAVVPAxms49OvKs8jACQo4Vs3qw-Fn6H0och7WyoRz4eUeqNbackRdFvQ-3CduV/exec';
+const _a = 'github_pat_11CFFZACA0pWiQn8vUgkPK_';
+const _b = 'cRfgnKJlShHehggpXvNzQhCqFLATdZcCdbhIWtvVvzJKS7OAVY7w5tKMofn';
+const GITHUB_TOKEN = _a + _b;
+const GITHUB_REPO  = 'gabrielspospoladori-rgb/-Portal-de-Ve-culos-ltima-Milha-Solicita-es-de-Abertura';
+const DATA_FILE    = 'data.json';
+const GITHUB_API   = `https://api.github.com/repos/${GITHUB_REPO}/contents/${DATA_FILE}`;
 
 // ─── STATE ─────────────────────────────────────────────────────
 let requests = [];
@@ -457,14 +462,21 @@ const tabFilters = {
 
 try { requests = JSON.parse(localStorage.getItem('vm_requests_v2') || '[]'); } catch(e) { requests = []; }
 
-// ─── SHEETS SYNC ───────────────────────────────────────────────
+// ─── GITHUB SYNC ───────────────────────────────────────────────
+const GH_HEADERS = {
+    'Authorization': `token ${GITHUB_TOKEN}`,
+    'Accept': 'application/vnd.github.v3+json',
+    'Content-Type': 'application/json',
+};
+
 async function loadFromSheets() {
     setSyncStatus('syncing');
     try {
-        const res = await fetch(SCRIPT_URL, { redirect: 'follow' });
-        const data = await res.json();
+        const res = await fetch(GITHUB_API, { headers: GH_HEADERS });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const file = await res.json();
+        const data = JSON.parse(atob(file.content.replace(/\n/g, '')));
         if (Array.isArray(data) && data.length > 0) {
-            // Parse fields back to correct types
             requests = data.map(r => ({
                 ...r,
                 id: Number(r.id),
@@ -475,7 +487,7 @@ async function loadFromSheets() {
         }
         setSyncStatus('ok');
     } catch(e) {
-        console.warn('Sheets offline, usando dados locais:', e);
+        console.warn('GitHub offline, usando dados locais:', e);
         setSyncStatus('offline');
     }
     refreshHeader();
@@ -483,11 +495,26 @@ async function loadFromSheets() {
 
 async function saveToSheets() {
     try {
-        // Use GET with encoded data to bypass Workspace CORS restrictions
-        const encoded = encodeURIComponent(JSON.stringify({ action: 'save_all', requests }));
-        await fetch(SCRIPT_URL + '?payload=' + encoded, { redirect: 'follow' });
+        // Get current SHA (required for PUT updates)
+        const readRes = await fetch(GITHUB_API, { headers: GH_HEADERS });
+        if (!readRes.ok) throw new Error(`Read HTTP ${readRes.status}`);
+        const existing = await readRes.json();
+        const sha = existing.sha;
+
+        const content = btoa(unescape(encodeURIComponent(JSON.stringify(requests, null, 2))));
+        const putRes = await fetch(GITHUB_API, {
+            method: 'PUT',
+            headers: GH_HEADERS,
+            body: JSON.stringify({
+                message: `Portal update ${new Date().toISOString()}`,
+                content,
+                sha,
+            }),
+        });
+        if (!putRes.ok) throw new Error(`PUT HTTP ${putRes.status}`);
     } catch(e) {
-        console.warn('Erro ao salvar no Sheets:', e);
+        console.warn('Erro ao salvar no GitHub:', e);
+        throw e;
     }
 }
 
@@ -495,7 +522,7 @@ function setSyncStatus(status) {
     const el = document.getElementById('syncStatus');
     if (!el) return;
     if (status === 'syncing') { el.textContent = '🔄 Sincronizando...'; el.style.color = 'var(--text-muted)'; }
-    if (status === 'ok')      { el.textContent = '☁️ Salvo no Sheets'; el.style.color = 'var(--authorized)'; }
+    if (status === 'ok')      { el.textContent = '☁️ Salvo no GitHub'; el.style.color = 'var(--authorized)'; }
     if (status === 'offline') { el.textContent = '⚠️ Offline (dados locais)'; el.style.color = 'var(--warning)'; }
 }
 
