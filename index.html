@@ -314,9 +314,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Nº da Rota / Link <span class="req">*</span></label>
-                    <input type="text" id="rota" placeholder="Número ou cole o link da rota" required>
-                    <span class="input-hint">Pode colar o link do adminml ou número da rota</span>
+                    <label>Link da Rota <span class="req">*</span></label>
+                    <input type="url" id="rota" placeholder="https://envios.adminml.com/..." required pattern="https?://.+">
+                    <span class="input-hint">Cole o link do adminml (ex: https://envios.adminml.com/...)</span>
                 </div>
 
                 <div class="form-group">
@@ -344,8 +344,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Quantidade <span class="req">*</span></label>
-                    <input type="number" id="quantidade" placeholder="Qtd de veículos" min="1" max="99" required>
+                    <label>Quantidade</label>
+                    <input type="text" id="quantidade" value="01" readonly style="background:var(--border);color:var(--text-muted);cursor:not-allowed;opacity:0.7">
                 </div>
 
                 <div class="form-group full">
@@ -1203,7 +1203,15 @@ function sendCard(id) {
     if (r) window.open('https://wa.me/?text=' + encodeURIComponent(buildMsg(r)), '_blank');
 }
 
+function checkManagerPassword() {
+    const senha = prompt('🔐 Digite a senha do gestor para continuar:');
+    if (senha === null) return false;
+    if (senha !== 'LB26') { toast('❌ Senha incorreta!', 'danger'); return false; }
+    return true;
+}
+
 function clearDone() {
+    if (!checkManagerPassword()) return;
     if (!confirm('Limpar todos os pedidos em FEITO? Esta ação não pode ser desfeita.')) return;
     requests = requests.filter(r => !r.feito);
     save();
@@ -1213,6 +1221,7 @@ function clearDone() {
 }
 
 function clearPending() {
+    if (!checkManagerPassword()) return;
     if (!confirm('Limpar todos os pedidos em AGUARDANDO? Esta ação não pode ser desfeita.')) return;
     requests = requests.filter(r => r.status !== 'pending');
     save();
@@ -1222,6 +1231,7 @@ function clearPending() {
 }
 
 function clearAll() {
+    if (!checkManagerPassword()) return;
     if (!confirm('Limpar TODOS os registros? Esta ação não pode ser desfeita.')) return;
     requests = [];
     allFilter = 'all';
