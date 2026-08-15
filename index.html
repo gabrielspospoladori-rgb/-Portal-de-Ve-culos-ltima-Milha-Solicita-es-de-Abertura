@@ -8,37 +8,39 @@
         :root {
             --primary: #FFE600;
             --primary-dark: #d4bf00;
-            --bg: #111827;
-            --card: #1f2937;
-            --text: #f3f4f6;
-            --text-muted: #9ca3af;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --border: #374151;
+            --bg: #f0f2f5;
+            --card: #ffffff;
+            --text: #1a1a2e;
+            --text-muted: #6b7280;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --border: #e5e7eb;
             --whatsapp: #25D366;
-            --pending: #f59e0b;
-            --authorized: #10b981;
+            --pending: #d97706;
+            --authorized: #059669;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
         /* HEADER */
         .header {
-            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            background: #ffffff;
             border-bottom: 3px solid var(--primary);
-            padding: 14px 20px;
+            padding: 12px 20px;
             display: flex; align-items: center; justify-content: space-between;
             position: sticky; top: 0; z-index: 100;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
         }
-        .header-left { display: flex; align-items: center; gap: 12px; }
-        .header-icon { font-size: 2rem; line-height: 1; }
-        .header-title { font-size: 1.15rem; font-weight: 800; color: var(--primary); }
-        .header-sub { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+        .header-left { display: flex; align-items: center; gap: 16px; }
+        .header-logo { height: 34px; width: auto; display: block; }
+        .header-divider { width: 1px; height: 32px; background: var(--border); }
+        .header-icon { font-size: 1.6rem; line-height: 1; }
+        .header-title { font-size: 1.05rem; font-weight: 800; color: #1a1a2e; }
+        .header-sub { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
         .header-right { text-align: right; }
         .header-date { font-size: 0.72rem; color: var(--text-muted); }
-        .header-count { font-size: 0.82rem; font-weight: 700; color: var(--primary); margin-top: 2px; }
+        .header-count { font-size: 0.82rem; font-weight: 700; color: #3483FA; margin-top: 2px; }
 
         /* TABS */
         .tabs { display: flex; background: var(--card); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
@@ -49,8 +51,8 @@
             border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; flex-shrink: 0;
             font-family: inherit; position: relative;
         }
-        .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
-        .tab-btn:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+        .tab-btn.active { color: #3483FA; border-bottom-color: #3483FA; }
+        .tab-btn:hover { color: var(--text); background: rgba(52,131,250,0.04); }
         .tab-badge {
             position: absolute; top: 8px; right: 8px;
             background: var(--pending); color: #111; border-radius: 10px;
@@ -72,12 +74,12 @@
         label { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.6px; }
         .req { color: var(--danger); }
         input, select, textarea {
-            background: var(--bg); border: 1.5px solid var(--border); border-radius: 9px;
+            background: #f9fafb; border: 1.5px solid var(--border); border-radius: 9px;
             padding: 10px 13px; color: var(--text); font-size: 0.93rem; width: 100%;
             transition: border-color 0.2s, box-shadow 0.2s; font-family: inherit;
         }
-        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(255,230,0,0.12); }
-        select option { background: #1f2937; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #3483FA; box-shadow: 0 0 0 3px rgba(52,131,250,0.12); }
+        select option { background: #ffffff; }
         textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
         .input-hint { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
 
@@ -243,6 +245,8 @@
 <!-- HEADER -->
 <div class="header">
     <div class="header-left">
+        <img class="header-logo" src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.19.1/mercadolibre/logo__large_plus.png" alt="Mercado Livre">
+        <div class="header-divider"></div>
         <div class="header-icon">🚑</div>
         <div>
             <div class="header-title">Portal de Veículos</div>
