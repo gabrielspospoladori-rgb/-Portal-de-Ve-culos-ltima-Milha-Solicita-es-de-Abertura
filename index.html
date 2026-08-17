@@ -258,7 +258,8 @@
         <div class="header-count" id="headerCount"></div>
         <div style="display:flex;align-items:center;gap:8px">
             <span id="syncStatus" style="font-size:0.68rem;color:var(--text-muted)">🔄 Carregando...</span>
-            <button onclick="loadFromSheets().then(()=>{const t=document.querySelector('.tab-btn.active');if(t)t.click()})" style="background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:6px;padding:2px 8px;font-size:0.68rem;cursor:pointer;font-family:inherit" title="Atualizar dados">↻ Sync</button>
+            <span id="autoSyncIndicator" style="font-size:0.65rem;color:#6366f1;font-weight:600"></span>
+            <button onclick="autoSyncCountdown=AUTO_SYNC_INTERVAL;doAutoSync()" style="background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:6px;padding:2px 8px;font-size:0.68rem;cursor:pointer;font-family:inherit" title="Atualizar agora">↻ Sync</button>
         </div>
     </div>
 </div>
@@ -544,8 +545,55 @@ function setSyncStatus(status) {
     const el = document.getElementById('syncStatus');
     if (!el) return;
     if (status === 'syncing') { el.textContent = '🔄 Sincronizando...'; el.style.color = 'var(--text-muted)'; }
-    if (status === 'ok')      { el.textContent = '☁️ Salvo no GitHub'; el.style.color = 'var(--authorized)'; }
+    if (status === 'ok')      { el.style.color = 'var(--authorized)'; }
     if (status === 'offline') { el.textContent = '⚠️ Offline (dados locais)'; el.style.color = 'var(--warning)'; }
+}
+
+// ─── AUTO-SYNC ─────────────────────────────────────────────────
+const AUTO_SYNC_INTERVAL = 60; // segundos
+let autoSyncCountdown = AUTO_SYNC_INTERVAL;
+let autoSyncTimer = null;
+let countdownTimer = null;
+
+function startAutoSync() {
+    if (autoSyncTimer) return; // já iniciado
+    autoSyncCountdown = AUTO_SYNC_INTERVAL;
+    updateCountdownDisplay();
+
+    countdownTimer = setInterval(() => {
+        autoSyncCountdown--;
+        if (autoSyncCountdown <= 0) {
+            autoSyncCountdown = AUTO_SYNC_INTERVAL;
+            doAutoSync();
+        }
+        updateCountdownDisplay();
+    }, 1000);
+}
+
+function updateCountdownDisplay() {
+    const el = document.getElementById('syncStatus');
+    if (!el) return;
+    const syncEl = document.getElementById('autoSyncIndicator');
+    if (syncEl) {
+        syncEl.textContent = `🔁 Auto-sync em ${autoSyncCountdown}s`;
+    }
+}
+
+async function doAutoSync() {
+    const el = document.getElementById('syncStatus');
+    if (el) { el.textContent = '🔄 Sincronizando...'; el.style.color = 'var(--text-muted)'; }
+    await loadFromSheets();
+    // Re-render active tab
+    const activeBtn = document.querySelector('.tab-btn.active');
+    if (activeBtn) {
+        const tabMap = { tabBtnPending:'pending', tabBtnAuthorized:'authorized', tabBtnDone:'done', tabBtnSummary:'summary', tabBtnAll:'all' };
+        const tab = tabMap[activeBtn.id];
+        if (tab === 'pending')    renderPending();
+        if (tab === 'authorized') renderAuthorized();
+        if (tab === 'done')       renderDone();
+        if (tab === 'summary')    renderSummary();
+        if (tab === 'all')        renderAll();
+    }
 }
 
 // ─── INIT ──────────────────────────────────────────────────────
@@ -554,7 +602,7 @@ function setSyncStatus(status) {
     document.getElementById('headerDate').textContent =
         new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
     refreshHeader();
-    loadFromSheets();
+    loadFromSheets().then(() => startAutoSync());
 })();
 
 function refreshHeader() {
