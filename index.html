@@ -279,6 +279,10 @@
         🏁 Feito
         <span class="tab-badge hidden" id="doneBadge" style="background:#6366f1">0</span>
     </button>
+    <button class="tab-btn" id="tabBtnCancelled" onclick="switchTab('cancelled')">
+        ❌ Cancelados
+        <span class="tab-badge hidden" id="cancelledBadge" style="background:var(--danger);color:#fff">0</span>
+    </button>
     <button class="tab-btn" id="tabBtnSummary" onclick="switchTab('summary')">📈 Resumo</button>
     <button class="tab-btn" id="tabBtnAll" onclick="switchTab('all')">📊 Todos os Pedidos</button>
 </div>
@@ -436,6 +440,21 @@
     <div id="summaryContent"></div>
 </div>
 
+<!-- ═══ TAB: CANCELADOS ═══ -->
+<div id="tabCancelled" class="container" style="display:none">
+    <div class="panel-header" style="border-color:rgba(220,38,38,0.3)">
+        <div class="panel-header-icon">❌</div>
+        <div>
+            <div class="panel-header-title" style="color:var(--danger)">Cancelados</div>
+            <div class="panel-header-sub">Pedidos não autorizados / cancelados</div>
+        </div>
+        <button class="clear-btn" style="margin-left:auto" onclick="clearCancelled()">🗑 Limpar cancelados</button>
+    </div>
+    <div class="stats-grid" id="cancelledStats"></div>
+    <div id="cancelledFilterBar"></div>
+    <div id="cancelledList"></div>
+</div>
+
 <!-- ═══ TAB: TODOS ═══ -->
 <div id="tabAll" class="container" style="display:none">
     <div class="stats-grid" id="allStats"></div>
@@ -466,6 +485,7 @@ const tabFilters = {
     pending:    { xpt: 'all', transp: 'all' },
     authorized: { xpt: 'all', transp: 'all' },
     done:       { xpt: 'all', transp: 'all' },
+    cancelled:  { xpt: 'all', transp: 'all' },
     all:        { xpt: 'all', transp: 'all' },
 };
 
@@ -616,11 +636,12 @@ async function doAutoSync() {
     // Re-render active tab
     const activeBtn = document.querySelector('.tab-btn.active');
     if (activeBtn) {
-        const tabMap = { tabBtnPending:'pending', tabBtnAuthorized:'authorized', tabBtnDone:'done', tabBtnSummary:'summary', tabBtnAll:'all' };
+        const tabMap = { tabBtnPending:'pending', tabBtnAuthorized:'authorized', tabBtnDone:'done', tabBtnCancelled:'cancelled', tabBtnSummary:'summary', tabBtnAll:'all' };
         const tab = tabMap[activeBtn.id];
         if (tab === 'pending')    renderPending();
         if (tab === 'authorized') renderAuthorized();
         if (tab === 'done')       renderDone();
+        if (tab === 'cancelled')  renderCancelled();
         if (tab === 'summary')    renderSummary();
         if (tab === 'all')        renderAll();
     }
@@ -644,6 +665,7 @@ function refreshHeader() {
     const pending = requests.filter(r => r.status === 'pending').length;
     const authorized = requests.filter(r => r.status === 'authorized' && !r.feito).length;
     const done = requests.filter(r => r.feito).length;
+    const cancelled = requests.filter(r => r.status === 'cancelled').length;
 
     const pb = document.getElementById('pendingBadge');
     pb.textContent = pending;
@@ -656,17 +678,21 @@ function refreshHeader() {
     const db = document.getElementById('doneBadge');
     db.textContent = done;
     db.classList.toggle('hidden', done === 0);
+
+    const cb = document.getElementById('cancelledBadge');
+    if (cb) { cb.textContent = cancelled; cb.classList.toggle('hidden', cancelled === 0); }
 }
 
 // ─── TAB SWITCH ────────────────────────────────────────────────
 function switchTab(tab) {
-    ['form','pending','authorized','done','summary','all'].forEach(t => {
+    ['form','pending','authorized','done','cancelled','summary','all'].forEach(t => {
         document.getElementById('tab' + cap(t)).style.display = t === tab ? 'block' : 'none';
         document.getElementById('tabBtn' + cap(t)).classList.toggle('active', t === tab);
     });
     if (tab === 'pending')    renderPending();
     if (tab === 'authorized') renderAuthorized();
     if (tab === 'done')       renderDone();
+    if (tab === 'cancelled')  renderCancelled();
     if (tab === 'summary')    renderSummary();
     if (tab === 'all')        renderAll();
 }
@@ -758,6 +784,29 @@ function unauthorize(id) {
     toast('↩️ Devolvido para aguardando', 'info');
 }
 
+function cancelRequest(id) {
+    if (!confirm('Cancelar este pedido?')) return;
+    const r = requests.find(x => x.id === id);
+    if (!r) return;
+    r.status = 'cancelled';
+    r.cancelledAt = new Date().toISOString();
+    save();
+    refreshHeader();
+    const active = document.querySelector('.tab-btn.active').id;
+    if (active === 'tabBtnPending') renderPending();
+    if (active === 'tabBtnCancelled') renderCancelled();
+    if (active === 'tabBtnAll') renderAll();
+    toast('❌ Pedido cancelado', 'danger');
+}
+
+function clearCancelled() {
+    if (!checkManagerPassword()) return;
+    if (!confirm('Limpar todos os cancelados?')) return;
+    requests = requests.filter(r => r.status !== 'cancelled');
+    save(); refreshHeader(); renderCancelled();
+    toast('🗑 Cancelados removidos', 'info');
+}
+
 // ─── FILTER HELPERS ────────────────────────────────────────────
 function applyTabFilters(list, tabKey) {
     const f = tabFilters[tabKey];
@@ -792,6 +841,7 @@ function setTabFilter(tabKey, field, value) {
     if (tabKey === 'pending')    renderPending();
     if (tabKey === 'authorized') renderAuthorized();
     if (tabKey === 'done')       renderDone();
+    if (tabKey === 'cancelled')  renderCancelled();
     if (tabKey === 'all')        renderAll();
 }
 
@@ -891,6 +941,87 @@ function renderDone() {
     document.getElementById('doneList').innerHTML = list.length === 0
         ? emptyHTML('🏁', 'Nenhum pedido concluído ainda', 'Marque como "PEDIDO FEITO" nos Autorizados')
         : renderGrouped(list, false, true);
+}
+
+// ─── RENDER CANCELLED ──────────────────────────────────────────
+function renderCancelled() {
+    const base = requests.filter(r => r.status === 'cancelled');
+    const list = applyTabFilters(base, 'cancelled');
+    const totalV = base.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
+    const xpts = [...new Set(base.map(r => r.xpt))].length;
+
+    document.getElementById('cancelledStats').innerHTML = `
+        <div class="stat-card" style="border-color:var(--danger)">
+            <div class="stat-val" style="color:var(--danger)">${base.length}</div>
+            <div class="stat-lbl">Cancelados</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val">${totalV}</div>
+            <div class="stat-lbl">Veículos</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val">${xpts}</div>
+            <div class="stat-lbl">XPTs</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val">${base.filter(r => r.data === isoToday()).length}</div>
+            <div class="stat-lbl">Hoje</div>
+        </div>
+    `;
+
+    renderSecondaryFilters('cancelledFilterBar', base, 'cancelled');
+    if (list.length === 0) {
+        document.getElementById('cancelledList').innerHTML = emptyHTML('✅', 'Nenhum pedido cancelado', 'Todos os pedidos foram processados normalmente');
+        return;
+    }
+
+    // Render cards simples para cancelados (sem botões de ação)
+    const grouped = {};
+    list.forEach(r => { if (!grouped[r.xpt]) grouped[r.xpt] = []; grouped[r.xpt].push(r); });
+    let html = '';
+    Object.keys(grouped).sort().forEach(xpt => {
+        const grp = grouped[xpt];
+        html += `<div class="xpt-group">
+            <div class="xpt-group-header">
+                <span class="xpt-inline-badge">${xpt}</span>
+                <span class="xpt-badge-tag">${grp.length} pedido${grp.length>1?'s':''}</span>
+                <span class="xpt-meta">${grp.length} cancelado${grp.length>1?'s':''}</span>
+            </div>`;
+        grp.forEach(r => {
+            const ts = r.cancelledAt ? new Date(r.cancelledAt).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) : '';
+            html += `<div class="req-card" style="border-left-color:var(--danger);opacity:0.85">
+                <div class="req-card-header">
+                    <div class="req-left">
+                        <span class="xpt-inline-badge">${r.xpt}</span>
+                        <span class="req-region">${r.regiao}</span>
+                        <span class="status-badge" style="background:rgba(220,38,38,0.12);color:var(--danger);border-color:var(--danger)">❌ Cancelado</span>
+                    </div>
+                    <span class="req-time">${ts}</span>
+                </div>
+                <div class="req-details">
+                    <div class="detail"><span class="detail-lbl">Transportadora</span><span class="detail-val">${r.transportadora}</span></div>
+                    <div class="detail"><span class="detail-lbl">Veículo</span><span class="detail-val">${r.veiculo}</span></div>
+                    <div class="detail"><span class="detail-lbl">Quantidade</span><span class="detail-val highlight">${r.quantidade}</span></div>
+                    <div class="detail"><span class="detail-lbl">Data</span><span class="detail-val">${r.dataFmt||r.data}</span></div>
+                </div>
+                ${r.motivo ? `<div class="req-motivo">↩ ${r.motivo}</div>` : ''}
+                <div class="req-footer">
+                    <button class="btn" style="font-size:0.75rem;padding:5px 12px;background:none;border:1px solid var(--authorized);color:var(--authorized)" onclick="restoreRequest(${r.id})">↩️ Restaurar</button>
+                </div>
+            </div>`;
+        });
+        html += '</div>';
+    });
+    document.getElementById('cancelledList').innerHTML = html;
+}
+
+function restoreRequest(id) {
+    const r = requests.find(x => x.id === id);
+    if (!r) return;
+    r.status = 'pending';
+    r.cancelledAt = null;
+    save(); refreshHeader(); renderCancelled();
+    toast('↩️ Pedido restaurado para aguardando', 'info');
 }
 
 // ─── SUMMARY FILTER STATE ──────────────────────────────────────
@@ -1243,7 +1374,8 @@ function cardHTML(r, showAuthorizeBtn, isDoneTab = false) {
                 <button class="btn btn-copy" style="font-size:0.75rem;padding:5px 10px" onclick="copyCard(${r.id})">📋</button>
                 <button class="btn btn-whatsapp" style="font-size:0.75rem;padding:5px 10px" onclick="sendCard(${r.id})">📱</button>
                 ${r.status === 'pending' && showAuthorizeBtn !== false
-                    ? `<button class="btn btn-authorize" style="font-size:0.8rem;padding:6px 14px" onclick="authorize(${r.id})">✅ Autorizar</button>`
+                    ? `<button class="btn" style="font-size:0.8rem;padding:6px 12px;background:var(--danger);color:#fff" onclick="cancelRequest(${r.id})">❌ Cancelar</button>
+                       <button class="btn btn-authorize" style="font-size:0.8rem;padding:6px 14px" onclick="authorize(${r.id})">✅ Autorizar</button>`
                     : ''}
                 ${r.status === 'authorized'
                     ? `<button class="btn btn-unauthorize" onclick="unauthorize(${r.id})">↩️ Devolver</button>`
