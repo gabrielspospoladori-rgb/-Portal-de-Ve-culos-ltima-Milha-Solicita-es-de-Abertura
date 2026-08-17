@@ -341,6 +341,7 @@
                         <option value="Van Frota Fixa - Equipe única">🚐 Van Frota Fixa - Equipe única</option>
                         <option value="Van Vamos 2026">🚐 Van Vamos 2026</option>
                         <option value="VUC">🚚 VUC</option>
+                        <option value="VUC H8">🚚 VUC H8</option>
                         <option value="VUC PP 10³">🚛 VUC PP 10³</option>
                         <option value="Vuc">🚚 Vuc</option>
                         <option value="Passeio">🚗 Passeio</option>
@@ -478,14 +479,26 @@ const GH_HEADERS = {
     'Content-Type': 'application/json',
 };
 
+// ─── UTF-8 SAFE BASE64 (TextEncoder/TextDecoder) ───────────────
+function toB64(str) {
+    const bytes = new TextEncoder().encode(str);
+    let bin = '';
+    bytes.forEach(b => bin += String.fromCharCode(b));
+    return btoa(bin);
+}
+function fromB64(b64) {
+    const bin = atob(b64.replace(/\n/g, ''));
+    const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+    return new TextDecoder().decode(bytes);
+}
+
 async function loadFromSheets() {
     setSyncStatus('syncing');
     try {
         const res = await fetch(GITHUB_API, { headers: GH_HEADERS });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const file = await res.json();
-        const raw = atob(file.content.replace(/\n/g, ''));
-        const data = JSON.parse(decodeURIComponent(escape(raw)));
+        const data = JSON.parse(fromB64(file.content));
         if (Array.isArray(data) && data.length > 0) {
             requests = data.map(r => ({
                 ...r,
@@ -494,6 +507,9 @@ async function loadFromSheets() {
                 quantidade: String(r.quantidade),
             }));
             localStorage.setItem('vm_requests_v2', JSON.stringify(requests));
+        } else {
+            requests = [];
+            localStorage.removeItem('vm_requests_v2');
         }
         setSyncStatus('ok');
     } catch(e) {
@@ -505,13 +521,11 @@ async function loadFromSheets() {
 
 async function saveToSheets() {
     try {
-        // Get current SHA (required for PUT updates)
         const readRes = await fetch(GITHUB_API, { headers: GH_HEADERS });
         if (!readRes.ok) throw new Error(`Read HTTP ${readRes.status}`);
         const existing = await readRes.json();
         const sha = existing.sha;
-
-        const content = btoa(unescape(encodeURIComponent(JSON.stringify(requests, null, 2))));
+        const content = toB64(JSON.stringify(requests, null, 2));
         const putRes = await fetch(GITHUB_API, {
             method: 'PUT',
             headers: GH_HEADERS,
