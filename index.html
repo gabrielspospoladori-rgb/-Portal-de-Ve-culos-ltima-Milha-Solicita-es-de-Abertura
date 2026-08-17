@@ -666,6 +666,7 @@ function authorize(id) {
 }
 
 function unauthorize(id) {
+    if (!checkManagerPassword()) return;
     const r = requests.find(x => x.id === id);
     if (!r) return;
     r.status = 'pending';
@@ -950,6 +951,7 @@ function renderSummary() {
 
 // ─── EXPORT SUMMARY CSV ────────────────────────────────────────
 function exportSummaryCSV() {
+    if (!checkManagerPassword()) return;
     if (requests.length === 0) { toast('Nenhum dado para exportar.', 'danger'); return; }
 
     const source = summaryFilter.regiao === 'all'
