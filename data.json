@@ -117,7 +117,7 @@
   {
     "id": 1786977160238,
     "ts": "2026-08-17T14:32:40.238Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -131,7 +131,8 @@
     "veiculo": "Passeio",
     "regiao": "alto rio novo",
     "quantidade": "01",
-    "motivo": "rota espaçada ,contendo tres cidades"
+    "motivo": "rota espaçada ,contendo tres cidades",
+    "cancelledAt": "2026-08-17T17:08:42.453Z"
   },
   {
     "id": 1786977157869,
@@ -174,7 +175,7 @@
   {
     "id": 1786976837578,
     "ts": "2026-08-17T14:27:17.578Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -188,7 +189,8 @@
     "veiculo": "Utilitário",
     "regiao": "barra de sao francisco",
     "quantidade": "01",
-    "motivo": "rota espaada ,contendo tres cidades"
+    "motivo": "rota espaada ,contendo tres cidades",
+    "cancelledAt": "2026-08-17T17:08:50.246Z"
   },
   {
     "id": 1786976834050,
@@ -231,7 +233,7 @@
   {
     "id": 1786976572249,
     "ts": "2026-08-17T14:22:52.249Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -245,7 +247,8 @@
     "veiculo": "Utilitário",
     "regiao": "vila verde",
     "quantidade": "01",
-    "motivo": "rota espaçada"
+    "motivo": "rota espaçada",
+    "cancelledAt": "2026-08-17T17:08:55.837Z"
   },
   {
     "id": 1786975837058,
