@@ -40,7 +40,7 @@
   {
     "id": 1786981657982,
     "ts": "2026-08-17T15:47:37.982Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -54,7 +54,8 @@
     "veiculo": "Utilitário",
     "regiao": "Posto da Mata",
     "quantidade": "01",
-    "motivo": "Insucessos de sábado e domingo"
+    "motivo": "Insucessos de sábado e domingo",
+    "cancelledAt": "2026-08-17T16:27:53.847Z"
   },
   {
     "id": 1786981261385,
