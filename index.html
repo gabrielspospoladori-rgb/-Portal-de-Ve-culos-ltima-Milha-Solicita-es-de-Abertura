@@ -1123,9 +1123,51 @@ function renderSummary() {
         return;
     }
 
-    // Per-XPT sections
+    // ── Mini tabela resumida por XPT ──────────────────────────────
     const xptOrder = ['EES2','EES3','EBA32','EES6','SVC'];
     const xptKeys = [...new Set([...xptOrder.filter(x => grouped[x]), ...Object.keys(grouped).filter(x => !xptOrder.includes(x))])];
+
+    html += `<div style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px 20px;margin-bottom:20px">
+        <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-muted);margin-bottom:12px">📊 Resumo por XPT</div>
+        <table style="width:100%;border-collapse:collapse;font-size:0.82rem">
+            <thead>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.1)">
+                    <th style="text-align:left;padding:6px 10px;color:var(--text-muted);font-weight:600">XPT</th>
+                    <th style="text-align:center;padding:6px 10px;color:var(--text-muted);font-weight:600">Pedidos</th>
+                    <th style="text-align:center;padding:6px 10px;color:var(--text-muted);font-weight:600">Veículos</th>
+                    <th style="text-align:center;padding:6px 10px;color:var(--pending);font-weight:600">⏳</th>
+                    <th style="text-align:center;padding:6px 10px;color:var(--authorized);font-weight:600">✅</th>
+                    <th style="text-align:center;padding:6px 10px;color:#818cf8;font-weight:600">🏁</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${xptKeys.map(xpt => {
+                    const regs = grouped[xpt];
+                    const xptVeic    = Object.values(regs).reduce((s,v) => s + v.total, 0);
+                    const xptPend    = Object.values(regs).reduce((s,v) => s + v.pending, 0);
+                    const xptAuthV   = Object.values(regs).reduce((s,v) => s + v.authorized, 0);
+                    const xptDoneV   = Object.values(regs).reduce((s,v) => s + v.feito, 0);
+                    const xptPedidos = filtered.filter(r => r.xpt === xpt).length;
+                    return `<tr style="border-bottom:1px solid rgba(255,255,255,0.05)">
+                        <td style="padding:7px 10px;font-weight:700;color:var(--accent)">${xpt}</td>
+                        <td style="text-align:center;padding:7px 10px;font-weight:600">${xptPedidos}</td>
+                        <td style="text-align:center;padding:7px 10px;font-weight:700;color:#a5b4fc">${xptVeic}</td>
+                        <td style="text-align:center;padding:7px 10px;color:var(--pending)">${xptPend || '—'}</td>
+                        <td style="text-align:center;padding:7px 10px;color:var(--authorized)">${xptAuthV || '—'}</td>
+                        <td style="text-align:center;padding:7px 10px;color:#818cf8;font-weight:600">${xptDoneV || '—'}</td>
+                    </tr>`;
+                }).join('')}
+                <tr style="border-top:2px solid rgba(255,255,255,0.15);font-weight:700">
+                    <td style="padding:8px 10px;color:var(--text)">Total</td>
+                    <td style="text-align:center;padding:8px 10px">${filtered.length}</td>
+                    <td style="text-align:center;padding:8px 10px;color:#a5b4fc">${grandTotal}</td>
+                    <td style="text-align:center;padding:8px 10px;color:var(--pending)">${grandPending || '—'}</td>
+                    <td style="text-align:center;padding:8px 10px;color:var(--authorized)">${grandAuth || '—'}</td>
+                    <td style="text-align:center;padding:8px 10px;color:#818cf8">${grandDone || '—'}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>`;
 
     xptKeys.forEach(xpt => {
         const regs = grouped[xpt];
