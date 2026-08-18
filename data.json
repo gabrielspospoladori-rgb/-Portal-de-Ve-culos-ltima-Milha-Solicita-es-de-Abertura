@@ -136,7 +136,7 @@
   {
     "id": 1787055758264,
     "ts": "2026-08-18T12:22:38.264Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -151,7 +151,7 @@
     "regiao": "SAO MATEUS E GURIRI",
     "quantidade": "01",
     "motivo": "ROTA EM GURIRI E SAO MATEUS, VOLUMOSOS NAO COUBERAM NO VEICULO 149 PCTS",
-    "cancelledAt": null
+    "cancelledAt": "2026-08-18T14:00:36.918Z"
   },
   {
     "id": 1787055702407,
