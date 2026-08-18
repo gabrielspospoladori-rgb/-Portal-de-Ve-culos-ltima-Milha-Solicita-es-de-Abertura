@@ -117,7 +117,7 @@
   {
     "id": 1787055702407,
     "ts": "2026-08-18T12:21:42.407Z",
-    "status": "cancelled",
+    "status": "pending",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -132,7 +132,7 @@
     "regiao": "SAO MATEUS E GURIRI",
     "quantidade": "01",
     "motivo": "ROTA EM GURIRI E SAO MATEUS, VOLUMOSOS NAO COUBERAM NO VEICULO 149 PCTS ROTA DE VUC",
-    "cancelledAt": "2026-08-18T12:51:24.639Z"
+    "cancelledAt": null
   },
   {
     "id": 1787053904131,
@@ -486,7 +486,7 @@
   {
     "id": 1786965985755,
     "ts": "2026-08-17T11:26:25.755Z",
-    "status": "cancelled",
+    "status": "pending",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -501,7 +501,7 @@
     "regiao": "SAO MATEUS E GURIRI",
     "quantidade": "01",
     "motivo": "ROTA COM 421 PCTS IMPOSSIVEL CABER EM UM UNICO CARRO. IREMOS PRECISAR DE 02 APOIOS NESSA ROTA",
-    "cancelledAt": "2026-08-18T12:27:11.648Z"
+    "cancelledAt": null
   },
   {
     "id": 1786965853269,
@@ -528,8 +528,8 @@
     "status": "authorized",
     "authorizedBy": null,
     "authorizedAt": "2026-08-18T13:19:38.149Z",
-    "feito": true,
-    "feitoAt": "2026-08-18T13:19:48.087Z",
+    "feito": false,
+    "feitoAt": null,
     "transportadora": "Parceiro Spot",
     "xpt": "EES3",
     "data": "2026-08-17",
