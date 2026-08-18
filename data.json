@@ -427,7 +427,7 @@
   {
     "id": 1786965985755,
     "ts": "2026-08-17T11:26:25.755Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -441,7 +441,8 @@
     "veiculo": "Vuc",
     "regiao": "SAO MATEUS E GURIRI",
     "quantidade": "01",
-    "motivo": "ROTA COM 421 PCTS IMPOSSIVEL CABER EM UM UNICO CARRO. IREMOS PRECISAR DE 02 APOIOS NESSA ROTA"
+    "motivo": "ROTA COM 421 PCTS IMPOSSIVEL CABER EM UM UNICO CARRO. IREMOS PRECISAR DE 02 APOIOS NESSA ROTA",
+    "cancelledAt": "2026-08-18T12:27:11.648Z"
   },
   {
     "id": 1786965853269,
