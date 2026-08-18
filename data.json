@@ -368,7 +368,7 @@
   {
     "id": 1786977157869,
     "ts": "2026-08-17T14:32:37.870Z",
-    "status": "cancelled",
+    "status": "pending",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -383,7 +383,7 @@
     "regiao": "alto rio novo",
     "quantidade": "01",
     "motivo": "rota espaçada ,contendo tres cidades",
-    "cancelledAt": "2026-08-18T12:26:53.380Z"
+    "cancelledAt": null
   },
   {
     "id": 1786976969336,
