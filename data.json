@@ -231,7 +231,7 @@
   {
     "id": 1786977372443,
     "ts": "2026-08-17T14:36:12.443Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -245,7 +245,8 @@
     "veiculo": "Utilitário",
     "regiao": "barra de sao francico",
     "quantidade": "01",
-    "motivo": "rota contendo 86 paradas ,159 pacotes"
+    "motivo": "rota contendo 86 paradas ,159 pacotes",
+    "cancelledAt": "2026-08-18T12:26:50.200Z"
   },
   {
     "id": 1786977160238,
