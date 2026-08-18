@@ -1040,7 +1040,10 @@ function renderSummary() {
     const fb = document.getElementById('summaryFilterBar');
     if (!el) return;
 
-    if (requests.length === 0) {
+    // Exclude cancelled from summary
+    const activeReqs = requests.filter(r => r.status !== 'cancelled');
+
+    if (activeReqs.length === 0) {
         if (fb) fb.innerHTML = '';
         el.innerHTML = `<div style="text-align:center;padding:60px 20px;color:var(--text-muted)">
             <div style="font-size:3rem;margin-bottom:12px">📈</div>
@@ -1051,7 +1054,7 @@ function renderSummary() {
     }
 
     // Build dynamic region list from actual requests
-    const allRegioes = [...new Set(requests.map(r => r.regiao).filter(Boolean))].sort();
+    const allRegioes = [...new Set(activeReqs.map(r => r.regiao).filter(Boolean))].sort();
 
     // Render dynamic region filter chips
     if (fb) {
@@ -1066,10 +1069,10 @@ function renderSummary() {
         fb.innerHTML = chips;
     }
 
-    // Filter requests by selected region
+    // Filter requests by selected region (excluding cancelled)
     const filtered = summaryFilter.regiao === 'all'
-        ? requests
-        : requests.filter(r => r.regiao === summaryFilter.regiao);
+        ? activeReqs
+        : activeReqs.filter(r => r.regiao === summaryFilter.regiao);
 
     // Group by XPT then by regiao
     const grouped = {};
@@ -1252,13 +1255,15 @@ function kpiCard(label, value, color) {
 
 // ─── RENDER ALL ────────────────────────────────────────────────
 function renderAll() {
-    const pending = requests.filter(r => r.status === 'pending').length;
-    const authorized = requests.filter(r => r.status === 'authorized').length;
-    const totalV = requests.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
+    // Exclude cancelled from totals
+    const nonCancelled = requests.filter(r => r.status !== 'cancelled');
+    const pending = nonCancelled.filter(r => r.status === 'pending').length;
+    const authorized = nonCancelled.filter(r => r.status === 'authorized').length;
+    const totalV = nonCancelled.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
 
     document.getElementById('allStats').innerHTML = `
         <div class="stat-card">
-            <div class="stat-val">${requests.length}</div>
+            <div class="stat-val">${nonCancelled.length}</div>
             <div class="stat-lbl">Total</div>
         </div>
         <div class="stat-card pending-card">
@@ -1276,14 +1281,14 @@ function renderAll() {
     `;
 
     document.getElementById('allFilterBar').innerHTML = `
-        <button class="filter-chip ${allFilter==='all'?'active':''}" onclick="setAllFilter('all')">Todos (${requests.length})</button>
+        <button class="filter-chip ${allFilter==='all'?'active':''}" onclick="setAllFilter('all')">Todos (${nonCancelled.length})</button>
         <button class="filter-chip ${allFilter==='pending'?'active':''}" onclick="setAllFilter('pending')">⏳ Aguardando (${pending})</button>
         <button class="filter-chip ${allFilter==='authorized'?'active':''}" onclick="setAllFilter('authorized')">✅ Autorizados (${authorized})</button>
         <button class="clear-btn" onclick="clearAll()">🗑 Limpar tudo</button>
     `;
 
-    const byStatus = allFilter === 'all' ? requests
-        : requests.filter(r => r.status === allFilter);
+    const byStatus = allFilter === 'all' ? nonCancelled
+        : nonCancelled.filter(r => r.status === allFilter);
 
     renderSecondaryFilters('allSecondaryFilterBar', byStatus, 'all');
     const filtered = applyTabFilters(byStatus, 'all');
