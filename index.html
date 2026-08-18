@@ -856,13 +856,14 @@ function escQ(s) { return s.replace(/'/g, "\\'"); }
 // ─── RENDER PENDING ────────────────────────────────────────────
 function renderPending() {
     const base = requests.filter(r => r.status === 'pending');
-    const list = applyTabFilters(base, 'pending');
-    const totalV = base.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
-    const xpts = [...new Set(base.map(r => r.xpt))].length;
+    renderSecondaryFilters('pendingFilterBar', base, 'pending');
+    const list   = applyTabFilters(base, 'pending');
+    const totalV = list.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
+    const xpts   = [...new Set(list.map(r => r.xpt))].length;
 
     document.getElementById('pendingStats').innerHTML = `
         <div class="stat-card pending-card">
-            <div class="stat-val pending-val">${base.length}</div>
+            <div class="stat-val pending-val">${list.length}</div>
             <div class="stat-lbl">Aguardando</div>
         </div>
         <div class="stat-card">
@@ -874,12 +875,11 @@ function renderPending() {
             <div class="stat-lbl">XPTs</div>
         </div>
         <div class="stat-card">
-            <div class="stat-val">${base.filter(r => r.data === isoToday()).length}</div>
+            <div class="stat-val">${list.filter(r => r.data === isoToday()).length}</div>
             <div class="stat-lbl">Hoje</div>
         </div>
     `;
 
-    renderSecondaryFilters('pendingFilterBar', base, 'pending');
     document.getElementById('pendingList').innerHTML = list.length === 0
         ? emptyHTML('⏳', 'Nenhuma solicitação aguardando', 'Tudo autorizado! 🎉')
         : renderGrouped(list, true);
@@ -888,13 +888,14 @@ function renderPending() {
 // ─── RENDER AUTHORIZED ─────────────────────────────────────────
 function renderAuthorized() {
     const base = requests.filter(r => r.status === 'authorized' && !r.feito);
-    const list = applyTabFilters(base, 'authorized');
-    const totalV = base.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
-    const xpts = [...new Set(base.map(r => r.xpt))].length;
+    renderSecondaryFilters('authorizedFilterBar', base, 'authorized');
+    const list   = applyTabFilters(base, 'authorized');
+    const totalV = list.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
+    const xpts   = [...new Set(list.map(r => r.xpt))].length;
 
     document.getElementById('authorizedStats').innerHTML = `
         <div class="stat-card auth-card">
-            <div class="stat-val auth-val">${base.length}</div>
+            <div class="stat-val auth-val">${list.length}</div>
             <div class="stat-lbl">Autorizados</div>
         </div>
         <div class="stat-card">
@@ -906,12 +907,11 @@ function renderAuthorized() {
             <div class="stat-lbl">XPTs</div>
         </div>
         <div class="stat-card">
-            <div class="stat-val">${base.filter(r => r.data === isoToday()).length}</div>
+            <div class="stat-val">${list.filter(r => r.data === isoToday()).length}</div>
             <div class="stat-lbl">Hoje</div>
         </div>
     `;
 
-    renderSecondaryFilters('authorizedFilterBar', base, 'authorized');
     document.getElementById('authorizedList').innerHTML = list.length === 0
         ? emptyHTML('✅', 'Nenhum veículo aguardando execução', 'Todos os pedidos foram marcados como Feito 🏁')
         : renderGrouped(list, false);
@@ -920,13 +920,15 @@ function renderAuthorized() {
 // ─── RENDER DONE ───────────────────────────────────────────────
 function renderDone() {
     const base = requests.filter(r => r.feito);
+    renderSecondaryFilters('doneFilterBar', base, 'done');
     const list = applyTabFilters(base, 'done');
-    const totalV = base.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
-    const xpts = [...new Set(base.map(r => r.xpt))].length;
+    // Stats reflect the currently filtered list
+    const totalV = list.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
+    const xpts   = [...new Set(list.map(r => r.xpt))].length;
 
     document.getElementById('doneStats').innerHTML = `
         <div class="stat-card" style="border-color:#6366f1">
-            <div class="stat-val" style="color:#818cf8">${base.length}</div>
+            <div class="stat-val" style="color:#818cf8">${list.length}</div>
             <div class="stat-lbl">Concluídos</div>
         </div>
         <div class="stat-card">
@@ -938,12 +940,11 @@ function renderDone() {
             <div class="stat-lbl">XPTs</div>
         </div>
         <div class="stat-card">
-            <div class="stat-val">${base.filter(r => r.data === isoToday()).length}</div>
+            <div class="stat-val">${list.filter(r => r.data === isoToday()).length}</div>
             <div class="stat-lbl">Hoje</div>
         </div>
     `;
 
-    renderSecondaryFilters('doneFilterBar', base, 'done');
     document.getElementById('doneList').innerHTML = list.length === 0
         ? emptyHTML('🏁', 'Nenhum pedido concluído ainda', 'Marque como "PEDIDO FEITO" nos Autorizados')
         : renderGrouped(list, false, true);
@@ -952,13 +953,14 @@ function renderDone() {
 // ─── RENDER CANCELLED ──────────────────────────────────────────
 function renderCancelled() {
     const base = requests.filter(r => r.status === 'cancelled');
-    const list = applyTabFilters(base, 'cancelled');
-    const totalV = base.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
-    const xpts = [...new Set(base.map(r => r.xpt))].length;
+    renderSecondaryFilters('cancelledFilterBar', base, 'cancelled');
+    const list   = applyTabFilters(base, 'cancelled');
+    const totalV = list.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
+    const xpts   = [...new Set(list.map(r => r.xpt))].length;
 
     document.getElementById('cancelledStats').innerHTML = `
         <div class="stat-card" style="border-color:var(--danger)">
-            <div class="stat-val" style="color:var(--danger)">${base.length}</div>
+            <div class="stat-val" style="color:var(--danger)">${list.length}</div>
             <div class="stat-lbl">Cancelados</div>
         </div>
         <div class="stat-card">
@@ -970,12 +972,11 @@ function renderCancelled() {
             <div class="stat-lbl">XPTs</div>
         </div>
         <div class="stat-card">
-            <div class="stat-val">${base.filter(r => r.data === isoToday()).length}</div>
+            <div class="stat-val">${list.filter(r => r.data === isoToday()).length}</div>
             <div class="stat-lbl">Hoje</div>
         </div>
     `;
 
-    renderSecondaryFilters('cancelledFilterBar', base, 'cancelled');
     if (list.length === 0) {
         document.getElementById('cancelledList').innerHTML = emptyHTML('✅', 'Nenhum pedido cancelado', 'Todos os pedidos foram processados normalmente');
         return;
