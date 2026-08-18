@@ -546,33 +546,88 @@ async function loadFromSheets() {
 }
 
 async function saveToSheets() {
-    try {
-        const readRes = await fetch(GITHUB_API, { headers: GH_HEADERS });
-        if (!readRes.ok) throw new Error(`Read HTTP ${readRes.status}`);
-        const existing = await readRes.json();
-        const sha = existing.sha;
-        const content = toB64(JSON.stringify(requests, null, 2));
-        const putRes = await fetch(GITHUB_API, {
-            method: 'PUT',
-            headers: GH_HEADERS,
-            body: JSON.stringify({
-                message: `Portal update ${new Date().toISOString()}`,
-                content,
-                sha,
-            }),
-        });
-        if (!putRes.ok) throw new Error(`PUT HTTP ${putRes.status}`);
-    } catch(e) {
-        console.warn('Erro ao salvar no GitHub:', e);
-        throw e;
+    const MAX_RETRIES = 4;
+    const RETRY_DELAY_MS = [1500, 3000, 5000, 8000]; // progressive delays
+
+    for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+        try {
+            // Always fetch fresh SHA to avoid 409 conflicts from concurrent writes
+            const readRes = await fetch(GITHUB_API, { headers: GH_HEADERS });
+            if (!readRes.ok) throw new Error(`Read HTTP ${readRes.status}`);
+            const existing = await readRes.json();
+            const sha = existing.sha;
+
+            // If GitHub has newer data, merge before overwriting
+            let base = requests;
+            try {
+                const ghData = JSON.parse(fromB64(existing.content));
+                if (Array.isArray(ghData) && ghData.length > 0) {
+                    const localIds = new Set(requests.map(r => Number(r.id)));
+                    // Add any GitHub entries that aren't in our local state
+                    const ghOnly = ghData.filter(r => !localIds.has(Number(r.id)));
+                    if (ghOnly.length > 0) {
+                        base = [...requests, ...ghOnly];
+                        base.sort((a, b) => Number(b.id) - Number(a.id));
+                        requests = base;
+                        localStorage.setItem('vm_requests_v2', JSON.stringify(requests));
+                    }
+                }
+            } catch(_) { /* merge failed, save what we have */ }
+
+            const content = toB64(JSON.stringify(base, null, 2));
+            const putRes = await fetch(GITHUB_API, {
+                method: 'PUT',
+                headers: GH_HEADERS,
+                body: JSON.stringify({
+                    message: `Portal update ${new Date().toISOString()}`,
+                    content,
+                    sha,
+                }),
+            });
+
+            if (putRes.ok) return; // success
+
+            const status = putRes.status;
+            // 409 = SHA conflict (another save happened concurrently) → retry immediately
+            // 5xx = GitHub transient error → retry with delay
+            if (status !== 409 && status < 500) throw new Error(`PUT HTTP ${status}`); // fatal, don't retry
+            console.warn(`saveToSheets: tentativa ${attempt + 1} falhou (HTTP ${status}), retentando...`);
+
+        } catch(e) {
+            if (attempt === MAX_RETRIES - 1) {
+                console.error('saveToSheets: todas as tentativas falharam', e);
+                // Show persistent banner so the submitting user knows
+                showSaveBanner('⚠️ Não foi possível sincronizar. Seus dados estão salvos localmente. Verifique sua conexão.');
+                throw e;
+            }
+            console.warn(`saveToSheets: tentativa ${attempt + 1} falhou, aguardando ${RETRY_DELAY_MS[attempt]}ms...`);
+        }
+
+        // Wait before retrying
+        await new Promise(res => setTimeout(res, RETRY_DELAY_MS[attempt]));
     }
+}
+
+let _saveBannerTimer = null;
+function showSaveBanner(msg) {
+    let banner = document.getElementById('saveBanner');
+    if (!banner) {
+        banner = document.createElement('div');
+        banner.id = 'saveBanner';
+        banner.style.cssText = 'position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#b45309;color:#fff;padding:10px 20px;border-radius:10px;font-size:0.82rem;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.4);max-width:90vw;text-align:center;cursor:pointer';
+        banner.onclick = () => { banner.remove(); clearTimeout(_saveBannerTimer); };
+        document.body.appendChild(banner);
+    }
+    banner.textContent = msg;
+    clearTimeout(_saveBannerTimer);
+    _saveBannerTimer = setTimeout(() => banner?.remove(), 15000);
 }
 
 function setSyncStatus(status) {
     const el = document.getElementById('syncStatus');
     if (!el) return;
     if (status === 'syncing') { el.textContent = '🔄 Sincronizando...'; el.style.color = 'var(--text-muted)'; }
-    if (status === 'ok')      { el.style.color = 'var(--authorized)'; }
+    if (status === 'ok')      { el.textContent = '✅ Sincronizado'; el.style.color = 'var(--authorized)'; }
     if (status === 'offline') { el.textContent = '⚠️ Offline (dados locais)'; el.style.color = 'var(--warning)'; }
 }
 
@@ -721,9 +776,14 @@ function handleSubmit(e) {
         const dup = requests.find(r => r.rota && r.rota.trim() === rotaVal.trim() && r.status !== 'cancelled');
         if (dup) {
             const dupInfo = `${dup.xpt} – ${dup.regiao} (${dup.dataFmt})`;
-            toast(`⚠️ Esta rota já foi solicitada: ${dupInfo}`, 'danger');
+            // Se o pedido duplicado foi criado há menos de 3 min pode ser retentativa de envio falho
+            const ageMs = Date.now() - Number(dup.id);
+            const hint = ageMs < 3 * 60 * 1000
+                ? ' Aguarde a sincronização completar antes de reenviar.'
+                : '';
+            toast(`⚠️ Rota já cadastrada: ${dupInfo}.${hint}`, 'danger');
             document.getElementById('rota').style.borderColor = 'var(--danger)';
-            setTimeout(() => document.getElementById('rota').style.borderColor = '', 3000);
+            setTimeout(() => document.getElementById('rota').style.borderColor = '', 4000);
             return;
         }
     }
@@ -750,13 +810,20 @@ function handleSubmit(e) {
     };
 
     requests.unshift(req);
+    lastKnownIds.add(req.id); // prevent auto-sync from triggering sound for own request
     save();
     refreshHeader();
+    toast('✅ Pedido enviado! Sincronizando...', 'success');
 
+    // Show success message and switch to Aguardando after 1.2s
     currentMsg = buildMsg(req);
     document.getElementById('outputMsg').textContent = currentMsg;
     const box = document.getElementById('outputBox');
     box.classList.add('visible');
+    setTimeout(() => {
+        box.classList.remove('visible');
+        switchTab('pending');
+    }, 2500);
     box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
