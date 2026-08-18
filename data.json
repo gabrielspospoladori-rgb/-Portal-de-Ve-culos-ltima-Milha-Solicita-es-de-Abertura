@@ -347,7 +347,7 @@
   {
     "id": 1786976584060,
     "ts": "2026-08-17T14:23:04.060Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -361,7 +361,8 @@
     "veiculo": "Utilitário",
     "regiao": "vila verde",
     "quantidade": "01",
-    "motivo": "rota espaçada"
+    "motivo": "rota espaçada",
+    "cancelledAt": "2026-08-18T12:26:48.277Z"
   },
   {
     "id": 1786976572249,
