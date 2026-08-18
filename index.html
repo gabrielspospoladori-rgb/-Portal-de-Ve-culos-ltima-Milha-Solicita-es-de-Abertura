@@ -436,6 +436,7 @@
         </div>
         <button class="btn btn-secondary" style="margin-left:auto;font-size:0.78rem;padding:7px 14px" onclick="exportSummaryCSV()">⬇️ Exportar CSV</button>
     </div>
+    <div id="summaryDateFilterBar"></div>
     <div id="summaryFilterBar" style="margin-bottom:4px"></div>
     <div id="summaryContent"></div>
 </div>
@@ -457,6 +458,7 @@
 
 <!-- ═══ TAB: TODOS ═══ -->
 <div id="tabAll" class="container" style="display:none">
+    <div id="allDateFilterBar"></div>
     <div class="stats-grid" id="allStats"></div>
     <div class="status-bar" id="allFilterBar"></div>
     <div id="allSecondaryFilterBar"></div>
@@ -477,6 +479,8 @@ const GITHUB_API   = `https://api.github.com/repos/${GITHUB_REPO}/contents/${DAT
 // ─── STATE ─────────────────────────────────────────────────────
 let requests = [];
 let allFilter = 'all';
+let globalDateFilter = 'all';   // 'all' | 'today' | 'yesterday' | 'custom'
+let globalDateCustom  = '';     // YYYY-MM-DD when custom
 let currentMsg = '';
 let isSyncing = false;
 
@@ -1040,8 +1044,10 @@ function renderSummary() {
     const fb = document.getElementById('summaryFilterBar');
     if (!el) return;
 
-    // Exclude cancelled from summary
-    const activeReqs = requests.filter(r => r.status !== 'cancelled');
+    renderDateFilterBar('summaryDateFilterBar');
+
+    // Exclude cancelled from summary, then apply date filter
+    const activeReqs = applyDateFilter(requests.filter(r => r.status !== 'cancelled'));
 
     if (activeReqs.length === 0) {
         if (fb) fb.innerHTML = '';
@@ -1253,13 +1259,72 @@ function kpiCard(label, value, color) {
     </div>`;
 }
 
+// ─── DATE FILTER HELPERS ───────────────────────────────────────
+function isoYesterday() {
+    const d = new Date(); d.setDate(d.getDate() - 1);
+    return d.toISOString().slice(0, 10);
+}
+
+function applyDateFilter(list) {
+    if (globalDateFilter === 'all') return list;
+    const target = globalDateFilter === 'today'     ? isoToday()
+                 : globalDateFilter === 'yesterday'  ? isoYesterday()
+                 : globalDateCustom;
+    if (!target) return list;
+    return list.filter(r => (r.data || '').slice(0, 10) === target);
+}
+
+function setGlobalDateFilter(val) {
+    globalDateFilter = val;
+    if (val !== 'custom') globalDateCustom = '';
+    // Re-render whichever tab is active
+    const activeBtn = document.querySelector('.tab-btn.active');
+    if (activeBtn) {
+        const id = activeBtn.id;
+        if (id === 'tabBtnAll')     renderAll();
+        if (id === 'tabBtnSummary') renderSummary();
+        if (id === 'tabBtnPending')    renderPending();
+        if (id === 'tabBtnAuthorized') renderAuthorized();
+        if (id === 'tabBtnDone')       renderDone();
+        if (id === 'tabBtnCancelled')  renderCancelled();
+    }
+}
+
+function setCustomDate(val) {
+    globalDateCustom = val;
+    globalDateFilter = val ? 'custom' : 'all';
+    setGlobalDateFilter(globalDateFilter);
+}
+
+function renderDateFilterBar(containerId) {
+    const today     = isoToday();
+    const yesterday = isoYesterday();
+    const isToday   = globalDateFilter === 'today';
+    const isYest    = globalDateFilter === 'yesterday';
+    const isAll     = globalDateFilter === 'all';
+    const isCust    = globalDateFilter === 'custom';
+    document.getElementById(containerId).innerHTML = `
+        <div class="status-bar" style="margin-bottom:14px;gap:8px;flex-wrap:wrap;align-items:center">
+            <span style="font-size:0.72rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap">📅 Data:</span>
+            <button class="filter-chip ${isAll?'active':''}" onclick="setGlobalDateFilter('all')">Todos</button>
+            <button class="filter-chip ${isToday?'active':''}" onclick="setGlobalDateFilter('today')">Hoje (${today.slice(8)+'/'+ today.slice(5,7)})</button>
+            <button class="filter-chip ${isYest?'active':''}" onclick="setGlobalDateFilter('yesterday')">Ontem (${yesterday.slice(8)+'/'+yesterday.slice(5,7)})</button>
+            <input type="date" value="${globalDateCustom}" max="${today}"
+                style="background:var(--bg-card);color:var(--text);border:1px solid ${isCust?'var(--accent)':'rgba(255,255,255,0.15)'};border-radius:8px;padding:5px 10px;font-size:0.8rem;cursor:pointer;outline:none"
+                onchange="setCustomDate(this.value)"
+                title="Escolher data específica">
+        </div>`;
+}
+
 // ─── RENDER ALL ────────────────────────────────────────────────
 function renderAll() {
-    // Exclude cancelled from totals
-    const nonCancelled = requests.filter(r => r.status !== 'cancelled');
-    const pending = nonCancelled.filter(r => r.status === 'pending').length;
+    renderDateFilterBar('allDateFilterBar');
+
+    // Exclude cancelled, then apply date filter
+    const nonCancelled = applyDateFilter(requests.filter(r => r.status !== 'cancelled'));
+    const pending    = nonCancelled.filter(r => r.status === 'pending').length;
     const authorized = nonCancelled.filter(r => r.status === 'authorized').length;
-    const totalV = nonCancelled.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
+    const totalV     = nonCancelled.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
 
     document.getElementById('allStats').innerHTML = `
         <div class="stat-card">
