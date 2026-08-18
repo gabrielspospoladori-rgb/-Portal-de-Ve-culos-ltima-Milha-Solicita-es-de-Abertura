@@ -545,7 +545,7 @@
   {
     "id": 1786965677398,
     "ts": "2026-08-17T11:21:17.398Z",
-    "status": "cancelled",
+    "status": "pending",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -560,12 +560,12 @@
     "regiao": "SAO MATEUS E GURIRI",
     "quantidade": "01",
     "motivo": "INSUCESSOS DE SABADO E DOMINGO SERAO 04  APOIOS",
-    "cancelledAt": "2026-08-18T12:27:01.363Z"
+    "cancelledAt": null
   },
   {
     "id": 1786965216562,
     "ts": "2026-08-17T11:13:36.562Z",
-    "status": "cancelled",
+    "status": "pending",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -580,6 +580,6 @@
     "regiao": "SAO MATEUS",
     "quantidade": "01",
     "motivo": "INSUCESSOS",
-    "cancelledAt": "2026-08-18T12:26:57.472Z"
+    "cancelledAt": null
   }
 ]
