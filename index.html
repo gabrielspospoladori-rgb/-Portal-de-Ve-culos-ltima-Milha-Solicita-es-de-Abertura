@@ -518,17 +518,19 @@ async function loadFromSheets() {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const file = await res.json();
         const data = JSON.parse(fromB64(file.content));
-        if (Array.isArray(data) && data.length > 0) {
-            requests = data.map(r => ({
+        if (Array.isArray(data)) {
+            // Merge: preserva pedidos locais que ainda não foram ao GitHub
+            const ghIds = new Set(data.map(r => Number(r.id)));
+            const localOnly = requests.filter(r => !ghIds.has(Number(r.id)));
+            const merged = [...data, ...localOnly].map(r => ({
                 ...r,
                 id: Number(r.id),
                 feito: r.feito === true || r.feito === 'true' || r.feito === 'TRUE',
                 quantidade: String(r.quantidade),
             }));
+            merged.sort((a, b) => b.id - a.id);
+            requests = merged;
             localStorage.setItem('vm_requests_v2', JSON.stringify(requests));
-        } else {
-            requests = [];
-            localStorage.removeItem('vm_requests_v2');
         }
         setSyncStatus('ok');
     } catch(e) {
