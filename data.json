@@ -503,7 +503,7 @@
   {
     "id": 1786965216562,
     "ts": "2026-08-17T11:13:36.562Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -517,6 +517,7 @@
     "veiculo": "Van",
     "regiao": "SAO MATEUS",
     "quantidade": "01",
-    "motivo": "INSUCESSOS"
+    "motivo": "INSUCESSOS",
+    "cancelledAt": "2026-08-18T12:26:57.472Z"
   }
 ]
