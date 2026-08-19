@@ -153,6 +153,25 @@
     "motivo": "Essa rota esta com Ponto Belo, Montanha, Mucurici, Vinhatico, Pinheiros"
   },
   {
+    "id": 1787145029423,
+    "ts": "2026-08-19T13:10:29.423Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-08-19",
+    "dataFmt": "19/08/2026",
+    "rota": "https://envios.adminml.com/logistics/travel-requests/last-mile?date_lteq=2026-08-19T03%3A00%3A00.000Z&date_gteq=2026-08-19T03%3A00%3A00.000Z",
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Carlos Chagas",
+    "quantidade": "01",
+    "motivo": "Pacotes de Carlos Chagas atrelados as rotas de Nanuque"
+  },
+  {
     "id": 1787144908848,
     "ts": "2026-08-19T13:08:28.848Z",
     "status": "authorized",
