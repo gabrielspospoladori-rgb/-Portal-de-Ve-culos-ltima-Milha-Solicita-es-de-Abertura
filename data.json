@@ -135,7 +135,7 @@
   {
     "id": 1787146780826,
     "ts": "2026-08-19T13:39:40.826Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -149,7 +149,8 @@
     "veiculo": "Utilitário",
     "regiao": "Jaguaré",
     "quantidade": "01",
-    "motivo": "Rota volumosa, 93 paradas, 122 volumes. precisamos de um apoio para que as entregas sejam feitas dentro do prazo previsto."
+    "motivo": "Rota volumosa, 93 paradas, 122 volumes. precisamos de um apoio para que as entregas sejam feitas dentro do prazo previsto.",
+    "cancelledAt": "2026-08-19T18:55:22.894Z"
   },
   {
     "id": 1787146187350,
