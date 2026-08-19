@@ -135,7 +135,7 @@
   {
     "id": 1787146187350,
     "ts": "2026-08-19T13:29:47.350Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -149,7 +149,8 @@
     "veiculo": "Utilitário",
     "regiao": "bboa esperanca e nova venecia",
     "quantidade": "01",
-    "motivo": "Boa esperança não faz nenhum sentido estar junto com Nova Venecia"
+    "motivo": "Boa esperança não faz nenhum sentido estar junto com Nova Venecia",
+    "cancelledAt": "2026-08-19T15:37:26.118Z"
   },
   {
     "id": 1787145432698,
