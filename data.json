@@ -1271,7 +1271,7 @@
   {
     "id": 1786965741191,
     "ts": "2026-08-17T11:22:21.191Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": true,
@@ -1286,7 +1286,7 @@
     "regiao": "SAO MATEUS E GURIRI",
     "quantidade": "01",
     "motivo": "INSUCESSOS DE SABADO E DOMINGO SERAO 04  APOIOS",
-    "cancelledAt": null
+    "cancelledAt": "2026-08-19T15:44:22.280Z"
   },
   {
     "id": 1786965677398,
