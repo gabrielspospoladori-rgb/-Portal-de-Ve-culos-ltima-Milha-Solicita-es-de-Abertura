@@ -158,8 +158,8 @@
     "status": "authorized",
     "authorizedBy": null,
     "authorizedAt": "2026-08-19T15:39:35.339Z",
-    "feito": false,
-    "feitoAt": null,
+    "feito": true,
+    "feitoAt": "2026-08-19T15:46:44.344Z",
     "transportadora": "Parceiro Spot",
     "xpt": "EES3",
     "data": "2026-08-19",
@@ -1137,9 +1137,9 @@
   {
     "id": 1786970457856,
     "ts": "2026-08-17T12:40:57.856Z",
-    "status": "cancelled",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-08-17T12:41:04.878Z",
     "feito": true,
     "feitoAt": "2026-08-17T12:41:31.454Z",
     "transportadora": "Parceiro Spot",
@@ -1151,8 +1151,7 @@
     "veiculo": "Van",
     "regiao": "SAO MATEUS",
     "quantidade": "01",
-    "motivo": "INSUCESSOS",
-    "cancelledAt": "2026-08-19T15:46:37.095Z"
+    "motivo": "INSUCESSOS"
   },
   {
     "id": 1786970440072,
