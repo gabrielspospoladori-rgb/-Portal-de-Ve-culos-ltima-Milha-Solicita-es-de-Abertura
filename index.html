@@ -483,7 +483,7 @@ let allFilter = 'all';
 let globalDateFilter = 'all';   // 'all' | 'today' | 'yesterday' | 'custom'
 let globalDateCustom  = '';     // YYYY-MM-DD when custom
 let currentMsg = '';
-let isSyncing = false;
+let isSaving  = false;          // concurrent save guard
 
 // Shared secondary filters (XPT and Transportadora) per tab
 const tabFilters = {
@@ -695,6 +695,7 @@ function updateCountdownDisplay() {
 }
 
 async function doAutoSync() {
+    if (isSaving) return; // aguarda o save terminar antes de recarregar
     const el = document.getElementById('syncStatus');
     if (el) { el.textContent = '🔄 Sincronizando...'; el.style.color = 'var(--text-muted)'; }
     const prevIds = new Set(lastKnownIds);
@@ -727,6 +728,11 @@ async function doAutoSync() {
         new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
     refreshHeader();
     loadFromSheets().then(() => startAutoSync());
+
+    // Sync imediato ao voltar para a aba do portal (ex: usuário estava no WhatsApp)
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') doAutoSync();
+    });
 })();
 
 function refreshHeader() {
@@ -826,16 +832,13 @@ function handleSubmit(e) {
     refreshHeader();
     toast('✅ Pedido enviado! Sincronizando...', 'success');
 
-    // Show success message and switch to Aguardando after 1.2s
-    currentMsg = buildMsg(req);
-    document.getElementById('outputMsg').textContent = currentMsg;
-    const box = document.getElementById('outputBox');
-    box.classList.add('visible');
-    setTimeout(() => {
-        box.classList.remove('visible');
-        switchTab('pending');
-    }, 2500);
-    box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Reset form immediately so next submission starts clean
+    e.target.reset();
+    document.getElementById('data').valueAsDate = new Date();
+    document.getElementById('outputBox').classList.remove('visible');
+
+    // Navigate to Aguardando after brief delay
+    setTimeout(() => switchTab('pending'), 1200);
 }
 
 function v(id) { return document.getElementById(id).value.trim(); }
@@ -1688,8 +1691,13 @@ function emptyHTML(icon, title, sub) {
 
 function save() {
     try { localStorage.setItem('vm_requests_v2', JSON.stringify(requests)); } catch(e) {}
+    if (isSaving) return; // já tem um save em andamento — localStorage já foi atualizado, GitHub pega na próxima
+    isSaving = true;
     setSyncStatus('syncing');
-    saveToSheets().then(() => setSyncStatus('ok')).catch(() => setSyncStatus('offline'));
+    saveToSheets()
+        .then(() => { setSyncStatus('ok'); })
+        .catch(() => { setSyncStatus('offline'); })
+        .finally(() => { isSaving = false; });
 }
 
 function isoToday() { return new Date().toISOString().split('T')[0]; }
