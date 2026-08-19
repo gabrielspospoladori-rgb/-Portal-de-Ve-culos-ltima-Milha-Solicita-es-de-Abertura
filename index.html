@@ -536,6 +536,17 @@ async function loadFromSheets() {
             merged.sort((a, b) => b.id - a.id);
             requests = merged;
             localStorage.setItem('vm_requests_v2', JSON.stringify(requests));
+
+            // Auto-recovery: se há pedidos locais não no GitHub, reenvia agora
+            if (localOnly.length > 0) {
+                console.log(`🔄 Recuperando ${localOnly.length} pedido(s) não sincronizado(s)...`);
+                setTimeout(() => {
+                    setSyncStatus('syncing');
+                    saveToSheets()
+                        .then(() => { setSyncStatus('ok'); refreshHeader(); })
+                        .catch(() => setSyncStatus('offline'));
+                }, 800);
+            }
         }
         setSyncStatus('ok');
     } catch(e) {
