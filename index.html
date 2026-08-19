@@ -1313,9 +1313,11 @@ function exportSummaryCSV() {
     if (!checkManagerPassword()) return;
     if (requests.length === 0) { toast('Nenhum dado para exportar.', 'danger'); return; }
 
+    // Respect active date filter and exclude cancelled (same as renderSummary)
+    const activeDateFiltered = applyDateFilter(requests.filter(r => r.status !== 'cancelled'));
     const source = summaryFilter.regiao === 'all'
-        ? requests
-        : requests.filter(r => r.regiao === summaryFilter.regiao);
+        ? activeDateFiltered
+        : activeDateFiltered.filter(r => r.regiao === summaryFilter.regiao);
 
     // Build rows: one per request (full detail)
     const rows = [
@@ -1462,7 +1464,8 @@ function renderAll() {
     // Exclude cancelled, then apply date filter
     const nonCancelled = applyDateFilter(requests.filter(r => r.status !== 'cancelled'));
     const pending    = nonCancelled.filter(r => r.status === 'pending').length;
-    const authorized = nonCancelled.filter(r => r.status === 'authorized').length;
+    const done       = nonCancelled.filter(r => r.feito).length;
+    const authorized = nonCancelled.filter(r => r.status === 'authorized' && !r.feito).length;
     const totalV     = nonCancelled.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
 
     document.getElementById('allStats').innerHTML = `
@@ -1478,6 +1481,10 @@ function renderAll() {
             <div class="stat-val auth-val">${authorized}</div>
             <div class="stat-lbl">Autorizados</div>
         </div>
+        <div class="stat-card" style="border-color:#6366f1">
+            <div class="stat-val" style="color:#818cf8">${done}</div>
+            <div class="stat-lbl">Feitos</div>
+        </div>
         <div class="stat-card">
             <div class="stat-val">${totalV}</div>
             <div class="stat-lbl">Veículos</div>
@@ -1488,10 +1495,13 @@ function renderAll() {
         <button class="filter-chip ${allFilter==='all'?'active':''}" onclick="setAllFilter('all')">Todos (${nonCancelled.length})</button>
         <button class="filter-chip ${allFilter==='pending'?'active':''}" onclick="setAllFilter('pending')">⏳ Aguardando (${pending})</button>
         <button class="filter-chip ${allFilter==='authorized'?'active':''}" onclick="setAllFilter('authorized')">✅ Autorizados (${authorized})</button>
+        <button class="filter-chip ${allFilter==='feito'?'active':''}" style="${allFilter==='feito'?'background:#6366f1;border-color:#6366f1':''}" onclick="setAllFilter('feito')">🏁 Feitos (${done})</button>
         <button class="clear-btn" onclick="clearAll()">🗑 Limpar tudo</button>
     `;
 
-    const byStatus = allFilter === 'all' ? nonCancelled
+    const byStatus = allFilter === 'all'        ? nonCancelled
+        : allFilter === 'feito'                  ? nonCancelled.filter(r => r.feito)
+        : allFilter === 'authorized'             ? nonCancelled.filter(r => r.status === allFilter && !r.feito)
         : nonCancelled.filter(r => r.status === allFilter);
 
     renderSecondaryFilters('allSecondaryFilterBar', byStatus, 'all');
@@ -1545,8 +1555,9 @@ function cardHTML(r, showAuthorizeBtn, isDoneTab = false) {
                 <div class="req-left">
                     <span class="xpt-inline-badge">${r.xpt}</span>
                     <span class="req-region">${r.regiao}</span>
-                    <span class="status-badge ${r.status === 'authorized' ? 'authorized' : 'pending'}">
-                        ${r.status === 'authorized' ? '✅ Autorizado' : '⏳ Aguardando'}
+                    <span class="status-badge ${r.feito ? 'done-badge' : r.status === 'authorized' ? 'authorized' : 'pending'}"
+                          style="${r.feito ? 'background:rgba(99,102,241,0.12);color:#818cf8;border-color:#6366f1' : ''}">
+                        ${r.feito ? '🏁 Feito' : r.status === 'authorized' ? '✅ Autorizado' : '⏳ Aguardando'}
                     </span>
                 </div>
                 <span class="req-time">${time}</span>
