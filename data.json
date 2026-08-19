@@ -1137,7 +1137,7 @@
   {
     "id": 1786972887270,
     "ts": "2026-08-17T13:21:27.270Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -1151,7 +1151,8 @@
     "veiculo": "Utilitário",
     "regiao": "Teixeira de Freitas",
     "quantidade": "01",
-    "motivo": "insucessos de sábado e domingo Melli extra"
+    "motivo": "insucessos de sábado e domingo Melli extra",
+    "cancelledAt": "2026-08-19T17:25:48.797Z"
   },
   {
     "id": 1786970457856,
