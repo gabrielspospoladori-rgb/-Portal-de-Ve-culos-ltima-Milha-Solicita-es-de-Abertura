@@ -117,7 +117,7 @@
   {
     "id": 1787063351732,
     "ts": "2026-08-18T14:29:11.732Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -131,7 +131,8 @@
     "veiculo": "Utilitário",
     "regiao": "alto rio novo",
     "quantidade": "01",
-    "motivo": "rota espaçada"
+    "motivo": "rota espaçada",
+    "cancelledAt": "2026-08-19T10:28:18.138Z"
   },
   {
     "id": 1787063204398,
