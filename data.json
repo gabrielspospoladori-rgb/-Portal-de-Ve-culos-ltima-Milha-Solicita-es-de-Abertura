@@ -1194,7 +1194,7 @@
   {
     "id": 1786970412119,
     "ts": "2026-08-17T12:40:12.119Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": true,
@@ -1208,7 +1208,8 @@
     "veiculo": "Utilitário",
     "regiao": "SAO MATEUS E GURIRI",
     "quantidade": "01",
-    "motivo": "INSUCESSOS DE SABADO E DOMINGO SERAO 04  APOIOS"
+    "motivo": "INSUCESSOS DE SABADO E DOMINGO SERAO 04  APOIOS",
+    "cancelledAt": "2026-08-19T17:23:51.864Z"
   },
   {
     "id": 1786970385397,
