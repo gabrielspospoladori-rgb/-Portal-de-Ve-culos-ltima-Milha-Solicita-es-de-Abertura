@@ -471,6 +471,7 @@
         </div>
         <button class="clear-btn" style="margin-left:auto" onclick="clearCancelled()">🗑 Limpar cancelados</button>
     </div>
+    <div id="cancelledDateFilterBar"></div>
     <div class="stats-grid" id="cancelledStats"></div>
     <div id="cancelledFilterBar"></div>
     <div id="cancelledList"></div>
@@ -1129,8 +1130,19 @@ function renderDone() {
 }
 
 // ─── RENDER CANCELLED ──────────────────────────────────────────
+// Filtra pela data em que o pedido foi CANCELADO (cancelledAt), não pela data de entrega
+function applyCancelledDateFilter(list) {
+    if (globalDateFilter === 'all') return list;
+    const target = globalDateFilter === 'today'    ? isoToday()
+                 : globalDateFilter === 'yesterday' ? isoYesterday()
+                 : globalDateCustom;
+    if (!target) return list;
+    return list.filter(r => (r.cancelledAt || '').slice(0, 10) === target);
+}
+
 function renderCancelled() {
-    const base = requests.filter(r => r.status === 'cancelled');
+    renderDateFilterBar('cancelledDateFilterBar');
+    const base = applyCancelledDateFilter(requests.filter(r => r.status === 'cancelled'));
     renderSecondaryFilters('cancelledFilterBar', base, 'cancelled');
     const list   = applyTabFilters(base, 'cancelled');
     const totalV = list.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
@@ -1150,8 +1162,8 @@ function renderCancelled() {
             <div class="stat-lbl">XPTs</div>
         </div>
         <div class="stat-card">
-            <div class="stat-val">${list.filter(r => r.data === isoToday()).length}</div>
-            <div class="stat-lbl">Hoje</div>
+            <div class="stat-val">${list.filter(r => (r.cancelledAt || '').slice(0, 10) === isoToday()).length}</div>
+            <div class="stat-lbl">Cancelados hoje</div>
         </div>
     `;
 
