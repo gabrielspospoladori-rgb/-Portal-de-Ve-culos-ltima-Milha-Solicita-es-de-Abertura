@@ -1,5 +1,24 @@
 [
   {
+    "id": 1787231362855,
+    "ts": "2026-08-20T13:09:22.855Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES3",
+    "data": "2026-08-20",
+    "dataFmt": "20/08/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/427381011?site=MLB",
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "SAO MATEUS",
+    "quantidade": "01",
+    "motivo": "ROTA COM 157 PCTS"
+  },
+  {
     "id": 1787231226148,
     "ts": "2026-08-20T13:07:06.148Z",
     "status": "pending",
@@ -40,9 +59,9 @@
   {
     "id": 1787230894868,
     "ts": "2026-08-20T13:01:34.868Z",
-    "status": "authorized",
+    "status": "pending",
     "authorizedBy": null,
-    "authorizedAt": "2026-08-20T13:08:42.292Z",
+    "authorizedAt": null,
     "feito": false,
     "feitoAt": null,
     "transportadora": "Parceiro Spot",
@@ -557,7 +576,7 @@
   {
     "id": 1787145029423,
     "ts": "2026-08-19T13:10:29.423Z",
-    "status": "cancelled",
+    "status": "pending",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -571,8 +590,7 @@
     "veiculo": "Utilitário",
     "regiao": "Carlos Chagas",
     "quantidade": "01",
-    "motivo": "Pacotes de Carlos Chagas atrelados as rotas de Nanuque",
-    "cancelledAt": "2026-08-20T13:09:07.317Z"
+    "motivo": "Pacotes de Carlos Chagas atrelados as rotas de Nanuque"
   },
   {
     "id": 1787144908848,
