@@ -1,5 +1,24 @@
 [
   {
+    "id": 1787228077910,
+    "ts": "2026-08-20T12:14:37.910Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Hawk",
+    "xpt": "EES2",
+    "data": "2026-08-20",
+    "dataFmt": "20/08/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/427159909?site=MLB",
+    "orh": "6hras",
+    "veiculo": "Utilitário",
+    "regiao": "Itaguaçu",
+    "quantidade": "01",
+    "motivo": "1 pedido de ambulância \n\nhttps://envios.adminml.com/logistics/monitoring-distribution/detail/427159909?site=MLB\n\nObs : resplendor / baixo Guandú / Itaguaçu \n@⁨Lucas mercado Livre⁩"
+  },
+  {
     "id": 1787228029626,
     "ts": "2026-08-20T12:13:49.626Z",
     "status": "authorized",
@@ -329,7 +348,7 @@
   {
     "id": 1787145029423,
     "ts": "2026-08-19T13:10:29.423Z",
-    "status": "cancelled",
+    "status": "pending",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -343,8 +362,7 @@
     "veiculo": "Utilitário",
     "regiao": "Carlos Chagas",
     "quantidade": "01",
-    "motivo": "Pacotes de Carlos Chagas atrelados as rotas de Nanuque",
-    "cancelledAt": "2026-08-20T12:14:24.028Z"
+    "motivo": "Pacotes de Carlos Chagas atrelados as rotas de Nanuque"
   },
   {
     "id": 1787144908848,
