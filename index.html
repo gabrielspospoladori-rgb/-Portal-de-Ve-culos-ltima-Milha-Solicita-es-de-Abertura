@@ -19,6 +19,8 @@
             --whatsapp: #25D366;
             --pending: #d97706;
             --authorized: #059669;
+            --bg-card: #ffffff;
+            --accent: #3483FA;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
@@ -161,6 +163,23 @@
         .req-motivo { margin-top: 10px; padding: 8px 10px; background: var(--bg); border-radius: 7px; font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
         .req-footer { display: flex; justify-content: flex-end; margin-top: 10px; gap: 8px; flex-wrap: wrap; align-items: center; }
         .authorized-by { font-size: 0.72rem; color: var(--authorized); margin-right: auto; }
+        .btn-edit { background: transparent; color: #3483FA; border: 1.5px solid #3483FA; }
+        .btn-edit:hover { background: rgba(52,131,250,0.08); }
+
+        /* EDIT HISTORY */
+        .edit-history { margin-top: 10px; padding: 8px 10px; background: rgba(52,131,250,0.06); border: 1px dashed rgba(52,131,250,0.3); border-radius: 7px; font-size: 0.75rem; color: var(--text-muted); }
+        .edit-history-title { font-weight: 700; color: #3483FA; margin-bottom: 4px; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.4px; }
+        .edit-history-item { padding: 2px 0; }
+        .edit-history-item b { color: var(--text); }
+
+        /* EDIT MODAL */
+        .edit-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1000; align-items: center; justify-content: center; padding: 16px; }
+        .edit-modal-overlay.visible { display: flex; }
+        .edit-modal { background: var(--card); border-radius: 16px; padding: 22px; max-width: 480px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+        .edit-modal h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; color: #1a1a2e; }
+        .edit-modal .form-group { margin-bottom: 12px; }
+        .edit-modal-actions { display: flex; gap: 10px; margin-top: 8px; }
+        .edit-modal-actions .btn { flex: 1; justify-content: center; }
 
         /* PEDIDO FEITO */
         .pedido-feito-wrap {
@@ -467,6 +486,69 @@
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- ═══ MODAL: EDITAR PEDIDO ═══ -->
+<div class="edit-modal-overlay" id="editModalOverlay" onclick="if(event.target===this) closeEditModal()">
+    <div class="edit-modal">
+        <h3>✏️ Editar Pedido</h3>
+        <input type="hidden" id="editId">
+        <div class="form-group">
+            <label>Veículo Solicitado</label>
+            <select id="editVeiculo">
+                <option value="Utilitário">🚐 Utilitário</option>
+                <option value="Van">🚐 Van</option>
+                <option value="Large Van">🚐 Large Van</option>
+                <option value="Van Elétrica">⚡ Van Elétrica</option>
+                <option value="Van Frota Fixa - Equipe dupla">🚐 Van Frota Fixa - Equipe dupla</option>
+                <option value="Van Frota Fixa - Equipe única">🚐 Van Frota Fixa - Equipe única</option>
+                <option value="Van Vamos 2026">🚐 Van Vamos 2026</option>
+                <option value="VUC">🚚 VUC</option>
+                <option value="VUC H8">🚚 VUC H8</option>
+                <option value="VUC PP 10³">🚛 VUC PP 10³</option>
+                <option value="Passeio">🚗 Passeio</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Transportadora</label>
+            <select id="editTransportadora">
+                <option value="Parceiro Spot">Parceiro Spot</option>
+                <option value="Hawk">Hawk</option>
+                <option value="Deluna">Deluna</option>
+                <option value="On Time">On Time</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>XPT / SVC</label>
+            <select id="editXpt">
+                <option value="EES2">EES2</option>
+                <option value="EES3">EES3</option>
+                <option value="EBA32">EBA32</option>
+                <option value="EES6">EES6</option>
+                <option value="SVC">SVC</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Região de Entrega</label>
+            <input type="text" id="editRegiao">
+        </div>
+        <div class="form-group">
+            <label>Quantidade</label>
+            <input type="text" id="editQuantidade">
+        </div>
+        <div class="form-group">
+            <label>ORH</label>
+            <input type="text" id="editOrh">
+        </div>
+        <div class="form-group">
+            <label>Motivo</label>
+            <textarea id="editMotivo"></textarea>
+        </div>
+        <div class="edit-modal-actions">
+            <button class="btn btn-secondary" onclick="closeEditModal()">Cancelar</button>
+            <button class="btn btn-primary" style="margin-top:0" onclick="submitEdit()">💾 Salvar edição</button>
+        </div>
+    </div>
+</div>
 
 <script>
 // ─── CONFIG ────────────────────────────────────────────────────
@@ -1108,6 +1190,7 @@ function renderCancelled() {
                     <div class="detail"><span class="detail-lbl">Data</span><span class="detail-val">${r.dataFmt||r.data}</span></div>
                 </div>
                 ${r.motivo ? `<div class="req-motivo">↩ ${r.motivo}</div>` : ''}
+                ${editHistoryHTML(r)}
                 <div class="req-footer">
                     <button class="btn" style="font-size:0.75rem;padding:5px 12px;background:none;border:1px solid var(--authorized);color:var(--authorized)" onclick="restoreRequest(${r.id})">↩️ Restaurar</button>
                 </div>
@@ -1589,12 +1672,14 @@ function cardHTML(r, showAuthorizeBtn, isDoneTab = false) {
                 </div>
             </div>
             ${r.motivo !== '—' ? `<div class="req-motivo">💬 ${r.motivo}</div>` : ''}
+            ${editHistoryHTML(r)}
             ${r.status === 'authorized' && !isDoneTab ? checklistHTML(r.id) : ''}
             ${isDoneTab ? `<div style="margin-top:10px;padding:8px 14px;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.3);border-radius:8px;font-size:0.82rem;font-weight:700;color:#818cf8">🏁 Pedido concluído pela equipe</div>` : ''}
             <div class="req-footer">
                 ${r.status === 'authorized' && authTime ? `<span class="authorized-by">✅ Autorizado em ${authTime}</span>` : ''}
                 <button class="btn btn-copy" style="font-size:0.75rem;padding:5px 10px" onclick="copyCard(${r.id})">📋</button>
                 <button class="btn btn-whatsapp" style="font-size:0.75rem;padding:5px 10px" onclick="sendCard(${r.id})">📱</button>
+                <button class="btn btn-edit" style="font-size:0.75rem;padding:5px 10px" onclick="openEditModal(${r.id})">✏️ Editar</button>
                 ${r.status === 'pending' && showAuthorizeBtn !== false
                     ? `<button class="btn" style="font-size:0.8rem;padding:6px 12px;background:var(--danger);color:#fff" onclick="cancelRequest(${r.id})">❌ Cancelar</button>
                        <button class="btn btn-authorize" style="font-size:0.8rem;padding:6px 14px" onclick="authorize(${r.id})">✅ Autorizar</button>`
@@ -1604,6 +1689,19 @@ function cardHTML(r, showAuthorizeBtn, isDoneTab = false) {
                     : ''}
             </div>
         </div>`;
+}
+
+// ─── EDIT HISTORY DISPLAY ───────────────────────────────────────
+function editHistoryHTML(r) {
+    if (!r.editHistory || r.editHistory.length === 0) return '';
+    const items = r.editHistory.slice().reverse().map(h => {
+        const when = new Date(h.at).toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+        return `<div class="edit-history-item">• <b>${h.fieldLabel}</b>: "${h.from}" → "${h.to}" <span style="opacity:0.7">(${when})</span></div>`;
+    }).join('');
+    return `<div class="edit-history">
+        <div class="edit-history-title">✏️ Histórico de edições (${r.editHistory.length})</div>
+        ${items}
+    </div>`;
 }
 
 // ─── PEDIDO FEITO ──────────────────────────────────────────
@@ -1631,6 +1729,92 @@ function togglePedidoFeito(reqId) {
         setTimeout(() => switchTab('done'), 600);
     } else {
         renderAuthorized();
+    }
+}
+
+// ─── EDITAR PEDIDO (com senha do gestor) ───────────────────────
+function openEditModal(id) {
+    if (!checkManagerPassword()) return;
+    const r = requests.find(x => x.id === id);
+    if (!r) { toast('Pedido não encontrado.', 'danger'); return; }
+
+    document.getElementById('editId').value = r.id;
+    document.getElementById('editVeiculo').value = r.veiculo;
+    document.getElementById('editTransportadora').value = r.transportadora;
+    document.getElementById('editXpt').value = r.xpt;
+    document.getElementById('editRegiao').value = r.regiao;
+    document.getElementById('editQuantidade').value = r.quantidade;
+    document.getElementById('editOrh').value = r.orh === '—' ? '' : r.orh;
+    document.getElementById('editMotivo').value = r.motivo === '—' ? '' : r.motivo;
+
+    document.getElementById('editModalOverlay').classList.add('visible');
+}
+
+function closeEditModal() {
+    document.getElementById('editModalOverlay').classList.remove('visible');
+}
+
+// Campos editáveis e seus rótulos legíveis para o histórico
+const EDIT_FIELDS = [
+    { id: 'editVeiculo',        key: 'veiculo',        label: 'Veículo' },
+    { id: 'editTransportadora', key: 'transportadora', label: 'Transportadora' },
+    { id: 'editXpt',            key: 'xpt',            label: 'XPT/SVC' },
+    { id: 'editRegiao',         key: 'regiao',          label: 'Região' },
+    { id: 'editQuantidade',     key: 'quantidade',      label: 'Quantidade' },
+    { id: 'editOrh',            key: 'orh',             label: 'ORH' },
+    { id: 'editMotivo',         key: 'motivo',          label: 'Motivo' },
+];
+
+function submitEdit() {
+    const id = Number(document.getElementById('editId').value);
+    const r = requests.find(x => x.id === id);
+    if (!r) { toast('Pedido não encontrado.', 'danger'); closeEditModal(); return; }
+
+    if (!r.editHistory) r.editHistory = [];
+    const nowIso = new Date().toISOString();
+    let changedCount = 0;
+
+    EDIT_FIELDS.forEach(f => {
+        let newVal = document.getElementById(f.id).value.trim();
+        if (f.key === 'xpt') newVal = newVal.toUpperCase();
+        if (f.key === 'orh' || f.key === 'motivo') newVal = newVal || '—';
+
+        const oldVal = r[f.key] ?? '—';
+        if (String(oldVal) !== String(newVal)) {
+            r.editHistory.push({
+                field: f.key,
+                fieldLabel: f.label,
+                from: oldVal,
+                to: newVal,
+                at: nowIso,
+            });
+            r[f.key] = newVal;
+            changedCount++;
+        }
+    });
+
+    if (changedCount === 0) {
+        toast('Nenhuma alteração feita.', 'info');
+        closeEditModal();
+        return;
+    }
+
+    save();
+    refreshHeader();
+    closeEditModal();
+    toast(`✏️ Pedido editado (${changedCount} campo${changedCount > 1 ? 's' : ''})`, 'success');
+
+    // Re-render whichever tab is active
+    const activeBtn = document.querySelector('.tab-btn.active');
+    if (activeBtn) {
+        const tabMap = { tabBtnPending:'pending', tabBtnAuthorized:'authorized', tabBtnDone:'done', tabBtnCancelled:'cancelled', tabBtnSummary:'summary', tabBtnAll:'all' };
+        const tab = tabMap[activeBtn.id];
+        if (tab === 'pending')    renderPending();
+        if (tab === 'authorized') renderAuthorized();
+        if (tab === 'done')       renderDone();
+        if (tab === 'cancelled')  renderCancelled();
+        if (tab === 'summary')    renderSummary();
+        if (tab === 'all')        renderAll();
     }
 }
 
