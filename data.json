@@ -174,7 +174,7 @@
   {
     "id": 1787148932300,
     "ts": "2026-08-19T14:15:32.300Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -188,7 +188,8 @@
     "veiculo": "Utilitário",
     "regiao": "b.s.f/nova belem/ecoporanga",
     "quantidade": "01",
-    "motivo": "rota espaçada,contendo 3 cidades distantes"
+    "motivo": "rota espaçada,contendo 3 cidades distantes",
+    "cancelledAt": "2026-08-20T11:55:11.475Z"
   },
   {
     "id": 1787148804629,
