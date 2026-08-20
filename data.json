@@ -135,7 +135,7 @@
   {
     "id": 1787230774441,
     "ts": "2026-08-20T12:59:34.441Z",
-    "status": "cancelled",
+    "status": "pending",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -150,7 +150,7 @@
     "regiao": "INTERIOR, NOVA VENECIA, BOA ESPERANÇA, CARAGA DE VUC",
     "quantidade": "01",
     "motivo": "INTERIOR, NOVA VENECIA, BOA ESPERANÇA, CARAGA DE VUC COM 137 PARADAS E 104 PCTS",
-    "cancelledAt": "2026-08-20T13:31:45.486Z"
+    "cancelledAt": null
   },
   {
     "id": 1787230653143,
