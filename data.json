@@ -40,9 +40,9 @@
   {
     "id": 1787230894868,
     "ts": "2026-08-20T13:01:34.868Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-08-20T13:08:42.292Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "Parceiro Spot",
@@ -62,8 +62,8 @@
     "status": "authorized",
     "authorizedBy": null,
     "authorizedAt": "2026-08-20T13:05:48.116Z",
-    "feito": true,
-    "feitoAt": "2026-08-20T13:08:34.786Z",
+    "feito": false,
+    "feitoAt": null,
     "transportadora": "Parceiro Spot",
     "xpt": "EBA32",
     "data": "2026-08-20",
@@ -100,8 +100,8 @@
     "status": "authorized",
     "authorizedBy": null,
     "authorizedAt": "2026-08-20T13:06:49.399Z",
-    "feito": true,
-    "feitoAt": "2026-08-20T13:08:59.823Z",
+    "feito": false,
+    "feitoAt": null,
     "transportadora": "Parceiro Spot",
     "xpt": "EES3",
     "data": "2026-08-20",
@@ -557,7 +557,7 @@
   {
     "id": 1787145029423,
     "ts": "2026-08-19T13:10:29.423Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -571,7 +571,8 @@
     "veiculo": "Utilitário",
     "regiao": "Carlos Chagas",
     "quantidade": "01",
-    "motivo": "Pacotes de Carlos Chagas atrelados as rotas de Nanuque"
+    "motivo": "Pacotes de Carlos Chagas atrelados as rotas de Nanuque",
+    "cancelledAt": "2026-08-20T13:09:07.317Z"
   },
   {
     "id": 1787144908848,
