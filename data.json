@@ -108,10 +108,19 @@
     "dataFmt": "20/08/2026",
     "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/427362419?site=MLB",
     "orh": "—",
-    "veiculo": "Passeio",
+    "veiculo": "Utilitário",
     "regiao": "VINHATICO, MONTANHA, PONTO BELO,MUCURICI",
     "quantidade": "01",
-    "motivo": "ROTA TODA MISTURADA"
+    "motivo": "ROTA TODA MISTURADA",
+    "editHistory": [
+      {
+        "field": "veiculo",
+        "fieldLabel": "Veículo",
+        "from": "Passeio",
+        "to": "Utilitário",
+        "at": "2026-08-20T13:48:58.019Z"
+      }
+    ]
   },
   {
     "id": 1787231060833,
