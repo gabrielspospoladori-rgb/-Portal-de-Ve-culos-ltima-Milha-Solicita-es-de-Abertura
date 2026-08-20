@@ -13,10 +13,19 @@
     "dataFmt": "20/08/2026",
     "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/427441274?site=MLB",
     "orh": "—",
-    "veiculo": "Utilitário",
+    "veiculo": "VUC",
     "regiao": "Linhares",
     "quantidade": "01",
-    "motivo": "Ambulância para ME"
+    "motivo": "Ambulância para ME",
+    "editHistory": [
+      {
+        "field": "veiculo",
+        "fieldLabel": "Veículo",
+        "from": "Utilitário",
+        "to": "VUC",
+        "at": "2026-08-20T18:31:46.249Z"
+      }
+    ]
   },
   {
     "id": 1787248937069,
