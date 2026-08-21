@@ -21,7 +21,7 @@
   {
     "id": 1787328893843,
     "ts": "2026-08-21T16:14:53.843Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -35,7 +35,8 @@
     "veiculo": "Utilitário",
     "regiao": "Itanhem",
     "quantidade": "01",
-    "motivo": "60 pacotes de itanhem atrelados na rota de Vereda e Medeiros neto\nhttps://envios.adminml.com/logistics/monitoring-distribution/detail/427809859?site=MLB"
+    "motivo": "60 pacotes de itanhem atrelados na rota de Vereda e Medeiros neto\nhttps://envios.adminml.com/logistics/monitoring-distribution/detail/427809859?site=MLB",
+    "cancelledAt": "2026-08-21T17:12:58.404Z"
   },
   {
     "id": 1787328389041,
