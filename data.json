@@ -38,6 +38,25 @@
     "motivo": "Rotas de Teixeira com alta quantidade de pacotes com cubagem acima de um vuc, volumos no galpão"
   },
   {
+    "id": 1787398175196,
+    "ts": "2026-08-22T11:29:35.196Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Hawk",
+    "xpt": "SVC",
+    "data": "2026-08-22",
+    "dataFmt": "22/08/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/428563647?site=MLB",
+    "orh": "00:24",
+    "veiculo": "Van",
+    "regiao": "Pontal",
+    "quantidade": "01",
+    "motivo": "Rota veio com Pontal, Farias, Guaxe e Povoação"
+  },
+  {
     "id": 1787397664375,
     "ts": "2026-08-22T11:21:04.375Z",
     "status": "authorized",
