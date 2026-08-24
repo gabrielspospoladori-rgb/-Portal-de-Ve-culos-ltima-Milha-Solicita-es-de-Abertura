@@ -78,7 +78,7 @@
   {
     "id": 1787571280037,
     "ts": "2026-08-24T11:34:40.037Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -92,7 +92,8 @@
     "veiculo": "Utilitário",
     "regiao": "jaguaré",
     "quantidade": "01",
-    "motivo": "sps alto vuc saiu até o teto de pacotes"
+    "motivo": "sps alto vuc saiu até o teto de pacotes",
+    "cancelledAt": "2026-08-24T12:04:16.530Z"
   },
   {
     "id": 1787571223971,
