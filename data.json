@@ -135,7 +135,7 @@
   {
     "id": 1787573014256,
     "ts": "2026-08-24T12:03:34.256Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -149,7 +149,8 @@
     "veiculo": "Utilitário",
     "regiao": "linhares",
     "quantidade": "01",
-    "motivo": "pegar pacotes restante de saca"
+    "motivo": "pegar pacotes restante de saca",
+    "cancelledAt": "2026-08-24T14:22:28.874Z"
   },
   {
     "id": 1787572714221,
