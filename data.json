@@ -2,7 +2,7 @@
   {
     "id": 1787661035331,
     "ts": "2026-08-25T12:30:35.331Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -16,7 +16,8 @@
     "veiculo": "VUC",
     "regiao": "Prado",
     "quantidade": "01",
-    "motivo": "Pacotes do Prado atrelados em 3 rotas, Alcobaça e Cumuruxatiba.\nAlta quantidade de pacotes de alta cubagem"
+    "motivo": "Pacotes do Prado atrelados em 3 rotas, Alcobaça e Cumuruxatiba.\nAlta quantidade de pacotes de alta cubagem",
+    "cancelledAt": "2026-08-25T12:30:43.921Z"
   },
   {
     "id": 1787659465964,
