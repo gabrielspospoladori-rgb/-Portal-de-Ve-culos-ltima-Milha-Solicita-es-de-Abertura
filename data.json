@@ -2,7 +2,7 @@
   {
     "id": 1787657773239,
     "ts": "2026-08-25T11:36:13.239Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -16,7 +16,8 @@
     "veiculo": "Van",
     "regiao": "linhares",
     "quantidade": "01",
-    "motivo": "pegar pacotes do svc que não coube nos veículos  van tks 2025"
+    "motivo": "pegar pacotes do svc que não coube nos veículos  van tks 2025",
+    "cancelledAt": "2026-08-25T11:44:55.444Z"
   },
   {
     "id": 1787657551936,
