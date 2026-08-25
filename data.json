@@ -40,7 +40,7 @@
   {
     "id": 1787659292538,
     "ts": "2026-08-25T12:01:32.538Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -54,7 +54,8 @@
     "veiculo": "Utilitário",
     "regiao": "Itamaraju",
     "quantidade": "01",
-    "motivo": "Pacotes de Itamaraju atrelados em DUAS rotas do Prado \nhttps://envios.adminml.com/logistics/monitoring-distribution/detail/429601908\n\nhttps://envios.adminml.com/logistics/monitoring-distribution/detail/429607312"
+    "motivo": "Pacotes de Itamaraju atrelados em DUAS rotas do Prado \nhttps://envios.adminml.com/logistics/monitoring-distribution/detail/429601908\n\nhttps://envios.adminml.com/logistics/monitoring-distribution/detail/429607312",
+    "cancelledAt": "2026-08-25T12:18:35.898Z"
   },
   {
     "id": 1787659183891,
