@@ -250,7 +250,7 @@
   {
     "id": 1787648193478,
     "ts": "2026-08-25T08:56:33.478Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -264,7 +264,8 @@
     "veiculo": "VUC",
     "regiao": "Itamaraju",
     "quantidade": "01",
-    "motivo": "Insucessos volumosos comerciais de sábado e domingo"
+    "motivo": "Insucessos volumosos comerciais de sábado e domingo",
+    "cancelledAt": "2026-08-25T12:16:31.091Z"
   },
   {
     "id": 1787599719282,
