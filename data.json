@@ -70,10 +70,19 @@
     "dataFmt": "26/08/2026",
     "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/430356102",
     "orh": "—",
-    "veiculo": "Van",
+    "veiculo": "FF Van TKS",
     "regiao": "Governador",
     "quantidade": "01",
-    "motivo": "Rota espaçada"
+    "motivo": "Rota espaçada",
+    "editHistory": [
+      {
+        "field": "veiculo",
+        "fieldLabel": "Veículo",
+        "from": "Van",
+        "to": "FF Van TKS",
+        "at": "2026-08-26T11:34:50.940Z"
+      }
+    ]
   },
   {
     "id": 1787741643852,
