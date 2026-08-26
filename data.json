@@ -59,7 +59,7 @@
   {
     "id": 1787685553847,
     "ts": "2026-08-25T19:19:13.847Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -73,7 +73,8 @@
     "veiculo": "Utilitário",
     "regiao": "Guaratiba",
     "quantidade": "01",
-    "motivo": "Veículo quebrou em rota de distrito"
+    "motivo": "Veículo quebrou em rota de distrito",
+    "cancelledAt": "2026-08-26T09:20:59.751Z"
   },
   {
     "id": 1787675471517,
