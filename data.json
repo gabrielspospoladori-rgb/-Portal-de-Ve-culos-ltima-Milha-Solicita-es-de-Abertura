@@ -315,7 +315,7 @@
   {
     "id": 1787740963398,
     "ts": "2026-08-26T10:42:43.398Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -329,7 +329,8 @@
     "veiculo": "Utilitário",
     "regiao": "SAO MATEUS E GURIRI",
     "quantidade": "01",
-    "motivo": "ROTA COM 225 PCTS NAO COUBE NO VEICULO"
+    "motivo": "ROTA COM 225 PCTS NAO COUBE NO VEICULO",
+    "cancelledAt": "2026-08-27T11:28:32.551Z"
   },
   {
     "id": 1787737344813,
