@@ -758,17 +758,41 @@ function playNewRequestSound() {
     } catch(e) { /* sem áudio disponível */ }
 }
 
+function playAuthorizedSound() {
+    try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        // Sequência: 2 bipes tipo "confirmação" (tom mais grave/robusto que o de pedido novo)
+        const notes = [660, 880]; // Mi, Lá
+        notes.forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'triangle';
+            osc.frequency.value = freq;
+            const t = ctx.currentTime + i * 0.14;
+            gain.gain.setValueAtTime(0, t);
+            gain.gain.linearRampToValueAtTime(0.35, t + 0.03);
+            gain.gain.linearRampToValueAtTime(0, t + 0.16);
+            osc.start(t);
+            osc.stop(t + 0.16);
+        });
+    } catch(e) { /* sem áudio disponível */ }
+}
+
 // ─── AUTO-SYNC ─────────────────────────────────────────────────
 const AUTO_SYNC_INTERVAL = 60; // segundos
 let autoSyncCountdown = AUTO_SYNC_INTERVAL;
 let autoSyncTimer = null;
 let countdownTimer = null;
 let lastKnownIds = new Set();
+let lastAuthorizedIds = new Set();
 
 function startAutoSync() {
     if (autoSyncTimer) return;
     // Registra IDs já existentes (sem tocar som na primeira carga)
     lastKnownIds = new Set(requests.map(r => r.id));
+    lastAuthorizedIds = new Set(requests.filter(r => r.status === 'authorized').map(r => r.id));
     autoSyncCountdown = AUTO_SYNC_INTERVAL;
     updateCountdownDisplay();
 
@@ -792,6 +816,7 @@ async function doAutoSync() {
     const el = document.getElementById('syncStatus');
     if (el) { el.textContent = '🔄 Sincronizando...'; el.style.color = 'var(--text-muted)'; }
     const prevIds = new Set(lastKnownIds);
+    const prevAuthorizedIds = new Set(lastAuthorizedIds);
     await loadFromSheets();
     // Detecta novos pedidos
     const newOnes = requests.filter(r => !prevIds.has(r.id));
@@ -799,7 +824,14 @@ async function doAutoSync() {
         playNewRequestSound();
         toast(`🚨 ${newOnes.length} novo${newOnes.length > 1 ? 's pedidos' : ' pedido'}!`, 'info');
     }
+    // Detecta pedidos recém autorizados (por outro usuário)
+    const newlyAuthorized = requests.filter(r => r.status === 'authorized' && !prevAuthorizedIds.has(r.id));
+    if (newlyAuthorized.length > 0) {
+        playAuthorizedSound();
+        toast(`✅ ${newlyAuthorized.length} pedido${newlyAuthorized.length > 1 ? 's autorizados' : ' autorizado'}!`, 'success');
+    }
     lastKnownIds = new Set(requests.map(r => r.id));
+    lastAuthorizedIds = new Set(requests.filter(r => r.status === 'authorized').map(r => r.id));
     // Re-render active tab
     const activeBtn = document.querySelector('.tab-btn.active');
     if (activeBtn) {
@@ -953,8 +985,10 @@ function authorize(id) {
     if (!r) return;
     r.status = 'authorized';
     r.authorizedAt = new Date().toISOString();
+    lastAuthorizedIds.add(id); // evita tocar o som de novo no próprio auto-sync
     save();
     refreshHeader();
+    playAuthorizedSound();
     // Re-render current tab
     const active = document.querySelector('.tab-btn.active').id;
     if (active === 'tabBtnPending') renderPending();
@@ -969,6 +1003,7 @@ function unauthorize(id) {
     if (!r) return;
     r.status = 'pending';
     r.authorizedAt = null;
+    lastAuthorizedIds.delete(id);
     save();
     refreshHeader();
     const active = document.querySelector('.tab-btn.active').id;
