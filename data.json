@@ -40,7 +40,7 @@
   {
     "id": 1788005033188,
     "ts": "2026-08-29T12:03:53.188Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -54,7 +54,8 @@
     "veiculo": "Utilitário",
     "regiao": "nova venecia e boa esperança",
     "quantidade": "01",
-    "motivo": "nova venecia e boa esperança"
+    "motivo": "nova venecia e boa esperança",
+    "cancelledAt": "2026-08-29T12:21:46.138Z"
   },
   {
     "id": 1788004916163,
