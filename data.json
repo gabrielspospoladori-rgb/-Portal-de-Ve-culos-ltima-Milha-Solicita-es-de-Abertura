@@ -21,9 +21,9 @@
   {
     "id": 1788005203759,
     "ts": "2026-08-29T12:06:43.759Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-08-29T12:15:40.475Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "On Time",
