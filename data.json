@@ -59,7 +59,7 @@
   {
     "id": 1788004916163,
     "ts": "2026-08-29T12:01:56.163Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -73,7 +73,8 @@
     "veiculo": "Utilitário",
     "regiao": "pedro canario, braço do rio, sayonara e nova lima",
     "quantidade": "01",
-    "motivo": "pedro canario, braço do rio, sayonara e nova lima"
+    "motivo": "pedro canario, braço do rio, sayonara e nova lima",
+    "cancelledAt": "2026-08-29T12:20:51.791Z"
   },
   {
     "id": 1788004793293,
