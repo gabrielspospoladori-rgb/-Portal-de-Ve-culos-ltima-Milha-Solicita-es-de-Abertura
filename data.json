@@ -2,7 +2,7 @@
   {
     "id": 1788088400409,
     "ts": "2026-08-30T11:13:20.409Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -16,7 +16,8 @@
     "veiculo": "Passeio",
     "regiao": "Itabirinha",
     "quantidade": "01",
-    "motivo": "Bom dia! rota misturada com 3 cidades sendo elas Itabirinha, Água doce do Norte e Linopolis (teste)"
+    "motivo": "Bom dia! rota misturada com 3 cidades sendo elas Itabirinha, Água doce do Norte e Linopolis (teste)",
+    "cancelledAt": "2026-08-30T11:15:11.162Z"
   },
   {
     "id": 1788088254547,
