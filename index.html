@@ -957,13 +957,16 @@ function handleSubmit(e) {
     refreshHeader();
     toast('✅ Pedido enviado! Sincronizando...', 'success');
 
-    // Reset form immediately so next submission starts clean
+    // Monta a mensagem para copiar/enviar no WhatsApp e exibe a caixa de confirmação
+    currentMsg = buildMsg(req);
+    document.getElementById('outputMsg').textContent = currentMsg;
+    document.getElementById('outputBox').classList.add('visible');
+    document.getElementById('outputBox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // Reset dos campos do formulário (dado já foi capturado em req); a caixa de
+    // confirmação permanece visível até o usuário clicar em "Nova solicitação"
     e.target.reset();
     document.getElementById('data').valueAsDate = new Date();
-    document.getElementById('outputBox').classList.remove('visible');
-
-    // Navigate to Aguardando after brief delay
-    setTimeout(() => switchTab('pending'), 1200);
 }
 
 function v(id) { return document.getElementById(id).value.trim(); }
