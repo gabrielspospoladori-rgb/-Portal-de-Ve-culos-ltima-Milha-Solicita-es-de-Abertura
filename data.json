@@ -2,7 +2,7 @@
   {
     "id": 1788088954313,
     "ts": "2026-08-30T11:22:34.313Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -16,7 +16,8 @@
     "veiculo": "Passeio",
     "regiao": "Itabirinha",
     "quantidade": "01",
-    "motivo": "TESTE"
+    "motivo": "TESTE",
+    "cancelledAt": "2026-08-30T11:23:16.849Z"
   },
   {
     "id": 1788088681061,
