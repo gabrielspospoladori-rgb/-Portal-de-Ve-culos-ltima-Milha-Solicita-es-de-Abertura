@@ -78,7 +78,7 @@
   {
     "id": 1788268315074,
     "ts": "2026-09-01T13:11:55.074Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -92,7 +92,8 @@
     "veiculo": "Utilitário",
     "regiao": "Vila Valerio",
     "quantidade": "01",
-    "motivo": "Rota com muitas paradas \nVou usar a frota que ficou parada"
+    "motivo": "Rota com muitas paradas \nVou usar a frota que ficou parada",
+    "cancelledAt": "2026-09-01T13:27:57.951Z"
   },
   {
     "id": 1788268167650,
