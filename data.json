@@ -40,9 +40,9 @@
   {
     "id": 1788353793751,
     "ts": "2026-09-02T12:56:33.751Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-09-02T13:05:10.307Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "Parceiro Spot",
@@ -59,9 +59,9 @@
   {
     "id": 1788353212966,
     "ts": "2026-09-02T12:46:52.966Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-09-02T13:05:14.089Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "Parceiro Spot",
