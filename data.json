@@ -1,5 +1,24 @@
 [
   {
+    "id": 1788353893498,
+    "ts": "2026-09-02T12:58:13.498Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-09-02",
+    "dataFmt": "02/09/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/433029192?site=MLB",
+    "orh": "—",
+    "veiculo": "VUC",
+    "regiao": "Teixeira de Freitas",
+    "quantidade": "01",
+    "motivo": "Insucessos Melli extra + pacotes de alta cubagem atrelados a rota de Medeiros neto + volumosos no galpão"
+  },
+  {
     "id": 1788353793751,
     "ts": "2026-09-02T12:56:33.751Z",
     "status": "pending",
@@ -40,9 +59,9 @@
   {
     "id": 1788353033169,
     "ts": "2026-09-02T12:43:53.169Z",
-    "status": "authorized",
+    "status": "pending",
     "authorizedBy": null,
-    "authorizedAt": "2026-09-02T12:57:33.448Z",
+    "authorizedAt": null,
     "feito": false,
     "feitoAt": null,
     "transportadora": "Parceiro Spot",
