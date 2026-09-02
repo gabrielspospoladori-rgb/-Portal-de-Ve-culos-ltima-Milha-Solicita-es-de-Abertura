@@ -40,9 +40,9 @@
   {
     "id": 1788353033169,
     "ts": "2026-09-02T12:43:53.169Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-09-02T12:57:33.448Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "Parceiro Spot",
