@@ -173,9 +173,9 @@
   {
     "id": 1788349919693,
     "ts": "2026-09-02T11:51:59.693Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-09-02T13:19:40.028Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "On Time",
