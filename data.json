@@ -21,7 +21,7 @@
   {
     "id": 1788362370623,
     "ts": "2026-09-02T15:19:30.623Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -35,7 +35,8 @@
     "veiculo": "Utilitário",
     "regiao": "Teixeira de Freitas",
     "quantidade": "01",
-    "motivo": "Apoio para rota Melli extra S1, veículo quebrou em rota"
+    "motivo": "Apoio para rota Melli extra S1, veículo quebrou em rota",
+    "cancelledAt": "2026-09-03T10:21:00.106Z"
   },
   {
     "id": 1788354020276,
