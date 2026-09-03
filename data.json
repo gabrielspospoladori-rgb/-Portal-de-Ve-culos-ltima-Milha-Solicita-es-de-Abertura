@@ -193,7 +193,7 @@
   {
     "id": 1788349965030,
     "ts": "2026-09-02T11:52:45.030Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -207,7 +207,8 @@
     "veiculo": "Utilitário",
     "regiao": "mendes pimentel ,são felix,linopolis",
     "quantidade": "01",
-    "motivo": "rota com volumetria baixa ,porém está com trés cidades"
+    "motivo": "rota com volumetria baixa ,porém está com trés cidades",
+    "cancelledAt": "2026-09-03T10:21:02.012Z"
   },
   {
     "id": 1788349919693,
@@ -326,7 +327,7 @@
   {
     "id": 1788346105871,
     "ts": "2026-09-02T10:48:25.871Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -340,7 +341,8 @@
     "veiculo": "Utilitário",
     "regiao": "Central de Minas",
     "quantidade": "01",
-    "motivo": "Bom dia!\nrota espaçada contendo 3 cidades sendo elas\nDivino Laranjeiras, Ferruginha e Central de minas."
+    "motivo": "Bom dia!\nrota espaçada contendo 3 cidades sendo elas\nDivino Laranjeiras, Ferruginha e Central de minas.",
+    "cancelledAt": "2026-09-03T10:21:04.043Z"
   },
   {
     "id": 1788345903842,
