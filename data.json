@@ -32,10 +32,19 @@
     "dataFmt": "04/09/2026",
     "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/435101038",
     "orh": "—",
-    "veiculo": "Utilitário",
+    "veiculo": "VUC",
     "regiao": "SÃO MATEUS",
     "quantidade": "01",
-    "motivo": "SOLICITO UM APOIO PARA MELHOR DISTRIBUIÇÃO DA ROTA, E DESEMPENHO NAS ENTREGAS, TENDO EM VISTA QUE A ROTA POSSUÍ DIVERSOS PONTOS COMERCIAIS E VOLUMOSOS, PARA UM PEDIDO DE UTÁLITÁRIO!!\nA ROTAS ESTÁ ESPAÇADA NOS DOIS LADOS DA BR EM SÃO MATEUS!!"
+    "motivo": "SOLICITO UM APOIO PARA MELHOR DISTRIBUIÇÃO DA ROTA, E DESEMPENHO NAS ENTREGAS, TENDO EM VISTA QUE A ROTA POSSUÍ DIVERSOS PONTOS COMERCIAIS E VOLUMOSOS, PARA UM PEDIDO DE UTÁLITÁRIO!!\nA ROTAS ESTÁ ESPAÇADA NOS DOIS LADOS DA BR EM SÃO MATEUS!!",
+    "editHistory": [
+      {
+        "field": "veiculo",
+        "fieldLabel": "Veículo",
+        "from": "Utilitário",
+        "to": "VUC",
+        "at": "2026-09-04T14:56:08.997Z"
+      }
+    ]
   },
   {
     "id": 1788528193870,
