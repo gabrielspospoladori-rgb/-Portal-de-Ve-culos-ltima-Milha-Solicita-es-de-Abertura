@@ -108,10 +108,19 @@
     "dataFmt": "05/09/2026",
     "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/435685398",
     "orh": "—",
-    "veiculo": "VUC",
+    "veiculo": "HR 8hs",
     "regiao": "São Rafael",
     "quantidade": "01",
-    "motivo": "Rota de São Rafael/interior veio pulverizada, em várias rotas. precisamos de apoio."
+    "motivo": "Rota de São Rafael/interior veio pulverizada, em várias rotas. precisamos de apoio.",
+    "editHistory": [
+      {
+        "field": "veiculo",
+        "fieldLabel": "Veículo",
+        "from": "VUC",
+        "to": "HR 8hs",
+        "at": "2026-09-05T11:54:47.414Z"
+      }
+    ]
   },
   {
     "id": 1788606522945,
