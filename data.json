@@ -53,7 +53,7 @@
     "dataFmt": "06/09/2026",
     "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/435930559",
     "orh": "—",
-    "veiculo": "Van",
+    "veiculo": "Utilitário",
     "regiao": "Itabata",
     "quantidade": "01",
     "motivo": "Pacotes de Itabata na rota de Posto da Mata",
@@ -64,6 +64,13 @@
         "from": "Utilitário",
         "to": "Van",
         "at": "2026-09-06T12:15:29.292Z"
+      },
+      {
+        "field": "veiculo",
+        "fieldLabel": "Veículo",
+        "from": "Van",
+        "to": "Utilitário",
+        "at": "2026-09-06T12:16:42.514Z"
       }
     ]
   },
