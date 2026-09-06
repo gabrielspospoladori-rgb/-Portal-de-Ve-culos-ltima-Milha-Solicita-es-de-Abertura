@@ -1441,19 +1441,21 @@ function renderSummary() {
         const reg = r.regiao || 'N/A';
         const qty = parseInt(r.quantidade) || 0;
         if (!grouped[xpt]) grouped[xpt] = {};
-        if (!grouped[xpt][reg]) grouped[xpt][reg] = { total: 0, pending: 0, authorized: 0, feito: 0 };
+        if (!grouped[xpt][reg]) grouped[xpt][reg] = { total: 0, pending: 0, authorized: 0, feito: 0, insucesso: 0 };
         grouped[xpt][reg].total += qty;
         if (r.feito)                        grouped[xpt][reg].feito += qty;
         else if (r.status === 'authorized') grouped[xpt][reg].authorized += qty;
         else                               grouped[xpt][reg].pending += qty;
+        if (r.insucesso) grouped[xpt][reg].insucesso += qty;
     });
 
     // Grand totals
-    let grandTotal = 0, grandPending = 0, grandAuth = 0, grandDone = 0;
+    let grandTotal = 0, grandPending = 0, grandAuth = 0, grandDone = 0, grandInsucesso = 0;
     Object.values(grouped).forEach(regs => {
         Object.values(regs).forEach(v => {
             grandTotal += v.total; grandPending += v.pending;
             grandAuth += v.authorized; grandDone += v.feito;
+            grandInsucesso += v.insucesso;
         });
     });
 
@@ -1465,6 +1467,7 @@ function renderSummary() {
         ${kpiCard('⏳ Aguardando', grandPending, 'var(--pending)')}
         ${kpiCard('✅ Autorizados', grandAuth, 'var(--authorized)')}
         ${kpiCard('🏁 Feitos', grandDone, '#818cf8')}
+        ${kpiCard('🚫 Insucesso', grandInsucesso, '#92400e')}
     </div>`;
 
     if (Object.keys(grouped).length === 0) {
@@ -1491,6 +1494,7 @@ function renderSummary() {
                     <th style="text-align:center;padding:6px 10px;color:var(--pending);font-weight:600">⏳</th>
                     <th style="text-align:center;padding:6px 10px;color:var(--authorized);font-weight:600">✅</th>
                     <th style="text-align:center;padding:6px 10px;color:#818cf8;font-weight:600">🏁</th>
+                    <th style="text-align:center;padding:6px 10px;color:#92400e;font-weight:600">🚫</th>
                 </tr>
             </thead>
             <tbody>
@@ -1500,6 +1504,7 @@ function renderSummary() {
                     const xptPend    = Object.values(regs).reduce((s,v) => s + v.pending, 0);
                     const xptAuthV   = Object.values(regs).reduce((s,v) => s + v.authorized, 0);
                     const xptDoneV   = Object.values(regs).reduce((s,v) => s + v.feito, 0);
+                    const xptInsuc   = Object.values(regs).reduce((s,v) => s + v.insucesso, 0);
                     const xptPedidos = filtered.filter(r => r.xpt === xpt).length;
                     return `<tr style="border-bottom:1px solid rgba(255,255,255,0.05)">
                         <td style="padding:7px 10px;font-weight:700;color:var(--accent)">${xpt}</td>
@@ -1508,6 +1513,7 @@ function renderSummary() {
                         <td style="text-align:center;padding:7px 10px;color:var(--pending)">${xptPend || '—'}</td>
                         <td style="text-align:center;padding:7px 10px;color:var(--authorized)">${xptAuthV || '—'}</td>
                         <td style="text-align:center;padding:7px 10px;color:#818cf8;font-weight:600">${xptDoneV || '—'}</td>
+                        <td style="text-align:center;padding:7px 10px;color:#92400e;font-weight:600">${xptInsuc || '—'}</td>
                     </tr>`;
                 }).join('')}
                 <tr style="border-top:2px solid rgba(255,255,255,0.15);font-weight:700">
@@ -1517,6 +1523,7 @@ function renderSummary() {
                     <td style="text-align:center;padding:8px 10px;color:var(--pending)">${grandPending || '—'}</td>
                     <td style="text-align:center;padding:8px 10px;color:var(--authorized)">${grandAuth || '—'}</td>
                     <td style="text-align:center;padding:8px 10px;color:#818cf8">${grandDone || '—'}</td>
+                    <td style="text-align:center;padding:8px 10px;color:#92400e">${grandInsucesso || '—'}</td>
                 </tr>
             </tbody>
         </table>
@@ -1528,12 +1535,13 @@ function renderSummary() {
         const xptPending = Object.values(regs).reduce((s, v) => s + v.pending, 0);
         const xptAuth = Object.values(regs).reduce((s, v) => s + v.authorized, 0);
         const xptDone = Object.values(regs).reduce((s, v) => s + v.feito, 0);
+        const xptInsuc = Object.values(regs).reduce((s, v) => s + v.insucesso, 0);
 
         html += `<div class="summary-section">
             <div class="summary-section-header">
                 <span class="summary-section-xpt">📍 ${xpt}</span>
                 <span style="color:var(--text-muted);font-size:0.78rem">
-                    ⏳ ${xptPending} &nbsp;|&nbsp; ✅ ${xptAuth} &nbsp;|&nbsp; 🏁 ${xptDone}
+                    ⏳ ${xptPending} &nbsp;|&nbsp; ✅ ${xptAuth} &nbsp;|&nbsp; 🏁 ${xptDone} &nbsp;|&nbsp; 🚫 ${xptInsuc}
                 </span>
                 <span class="summary-section-total">${xptTotal} veículo${xptTotal !== 1 ? 's' : ''}</span>
             </div>
@@ -1545,6 +1553,7 @@ function renderSummary() {
                         <th style="text-align:center">⏳ Aguardando</th>
                         <th style="text-align:center">✅ Autorizado</th>
                         <th style="text-align:center">🏁 Feito</th>
+                        <th style="text-align:center">🚫 Insucesso</th>
                     </tr>
                 </thead>
                 <tbody>`;
@@ -1556,6 +1565,7 @@ function renderSummary() {
                 <td style="text-align:center"><span class="summary-pending">${v.pending || '—'}</span></td>
                 <td style="text-align:center"><span class="summary-auth">${v.authorized || '—'}</span></td>
                 <td style="text-align:center"><span class="summary-done">${v.feito || '—'}</span></td>
+                <td style="text-align:center"><span class="summary-done" style="color:#92400e">${v.insucesso || '—'}</span></td>
             </tr>`;
         });
 
@@ -1578,7 +1588,7 @@ function exportSummaryCSV() {
 
     // Build rows: one per request (full detail)
     const rows = [
-        ['XPT/SVC', 'Região de Entrega', 'Transportadora', 'Veículo', 'Quantidade', 'Data', 'Rota', 'ORH', 'Status', 'Feito', 'Autorizado em', 'Motivo']
+        ['XPT/SVC', 'Região de Entrega', 'Transportadora', 'Veículo', 'Quantidade', 'Data', 'Rota', 'ORH', 'Status', 'Feito', 'Insucesso', 'Autorizado em', 'Motivo']
     ];
 
     source.forEach(r => {
@@ -1597,6 +1607,7 @@ function exportSummaryCSV() {
             r.orh,
             status,
             r.feito ? 'Sim' : 'Não',
+            r.insucesso ? 'Sim' : 'Não',
             authAt,
             r.motivo
         ]);
@@ -1605,7 +1616,7 @@ function exportSummaryCSV() {
     // Blank line then summary section
     rows.push([]);
     rows.push(['=== RESUMO AGRUPADO ===']);
-    rows.push(['XPT/SVC', 'Região de Entrega', 'Total Veículos', 'Aguardando', 'Autorizados', 'Feitos']);
+    rows.push(['XPT/SVC', 'Região de Entrega', 'Total Veículos', 'Aguardando', 'Autorizados', 'Feitos', 'Insucesso']);
 
     const grouped = {};
     source.forEach(r => {
@@ -1613,18 +1624,19 @@ function exportSummaryCSV() {
         const reg = r.regiao || 'N/A';
         const qty = parseInt(r.quantidade) || 0;
         if (!grouped[xpt]) grouped[xpt] = {};
-        if (!grouped[xpt][reg]) grouped[xpt][reg] = { total: 0, pending: 0, authorized: 0, feito: 0 };
+        if (!grouped[xpt][reg]) grouped[xpt][reg] = { total: 0, pending: 0, authorized: 0, feito: 0, insucesso: 0 };
         grouped[xpt][reg].total += qty;
         if (r.feito)                        grouped[xpt][reg].feito += qty;
         else if (r.status === 'authorized') grouped[xpt][reg].authorized += qty;
         else                               grouped[xpt][reg].pending += qty;
+        if (r.insucesso) grouped[xpt][reg].insucesso += qty;
     });
 
     const xptOrder = ['EES2','EES3','EBA32','EES6','SVC'];
     const xptKeys = [...new Set([...xptOrder.filter(x => grouped[x]), ...Object.keys(grouped).filter(x => !xptOrder.includes(x))])];
     xptKeys.forEach(xpt => {
         Object.entries(grouped[xpt]).sort((a, b) => b[1].total - a[1].total).forEach(([reg, v]) => {
-            rows.push([xpt, reg, v.total, v.pending, v.authorized, v.feito]);
+            rows.push([xpt, reg, v.total, v.pending, v.authorized, v.feito, v.insucesso]);
         });
     });
 
@@ -1724,6 +1736,7 @@ function renderAll() {
     const pending    = nonCancelled.filter(r => r.status === 'pending').length;
     const done       = nonCancelled.filter(r => r.feito).length;
     const authorized = nonCancelled.filter(r => r.status === 'authorized' && !r.feito).length;
+    const insucesso  = nonCancelled.filter(r => r.insucesso).length;
     const totalV     = nonCancelled.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
 
     document.getElementById('allStats').innerHTML = `
@@ -1743,6 +1756,10 @@ function renderAll() {
             <div class="stat-val" style="color:#818cf8">${done}</div>
             <div class="stat-lbl">Feitos</div>
         </div>
+        <div class="stat-card" style="border-color:#92400e">
+            <div class="stat-val" style="color:#92400e">${insucesso}</div>
+            <div class="stat-lbl">Insucesso</div>
+        </div>
         <div class="stat-card">
             <div class="stat-val">${totalV}</div>
             <div class="stat-lbl">Veículos</div>
@@ -1754,11 +1771,13 @@ function renderAll() {
         <button class="filter-chip ${allFilter==='pending'?'active':''}" onclick="setAllFilter('pending')">⏳ Aguardando (${pending})</button>
         <button class="filter-chip ${allFilter==='authorized'?'active':''}" onclick="setAllFilter('authorized')">✅ Autorizados (${authorized})</button>
         <button class="filter-chip ${allFilter==='feito'?'active':''}" style="${allFilter==='feito'?'background:#6366f1;border-color:#6366f1':''}" onclick="setAllFilter('feito')">🏁 Feitos (${done})</button>
+        <button class="filter-chip ${allFilter==='insucesso'?'active':''}" style="${allFilter==='insucesso'?'background:#92400e;border-color:#92400e;color:#fff':''}" onclick="setAllFilter('insucesso')">🚫 Insucesso (${insucesso})</button>
         <button class="clear-btn" onclick="clearAll()">🗑 Limpar tudo</button>
     `;
 
     const byStatus = allFilter === 'all'        ? nonCancelled
         : allFilter === 'feito'                  ? nonCancelled.filter(r => r.feito)
+        : allFilter === 'insucesso'               ? nonCancelled.filter(r => r.insucesso)
         : allFilter === 'authorized'             ? nonCancelled.filter(r => r.status === allFilter && !r.feito)
         : nonCancelled.filter(r => r.status === allFilter);
 
