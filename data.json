@@ -220,7 +220,7 @@
   {
     "id": 1788606522945,
     "ts": "2026-09-05T11:08:42.945Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -234,7 +234,8 @@
     "veiculo": "Utilitário",
     "regiao": "Mantena",
     "quantidade": "01",
-    "motivo": "rota espaçada contendo 3 cidades distantes uma da outra\nMantena. Barra de São Francisco e Governador Lacerda."
+    "motivo": "rota espaçada contendo 3 cidades distantes uma da outra\nMantena. Barra de São Francisco e Governador Lacerda.",
+    "cancelledAt": "2026-09-06T11:15:34.276Z"
   },
   {
     "id": 1788606318041,
