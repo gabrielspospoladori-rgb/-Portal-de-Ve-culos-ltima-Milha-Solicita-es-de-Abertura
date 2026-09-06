@@ -21,9 +21,9 @@
   {
     "id": 1788693609032,
     "ts": "2026-09-06T11:20:09.032Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-09-06T11:21:46.279Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "Hawk",
