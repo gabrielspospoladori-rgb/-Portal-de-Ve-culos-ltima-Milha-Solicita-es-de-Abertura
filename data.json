@@ -2,7 +2,7 @@
   {
     "id": 1788695083292,
     "ts": "2026-09-06T11:44:43.292Z",
-    "status": "cancelled",
+    "status": "pending",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -17,7 +17,7 @@
     "regiao": "Barra São Francisco",
     "quantidade": "01",
     "motivo": "rota espaçada contendo 3 cidades distantes\nBarra S.Fco, Àgua doce do norte e Governador Larcerda.",
-    "cancelledAt": "2026-09-06T11:45:27.164Z"
+    "cancelledAt": null
   },
   {
     "id": 1788695053481,
