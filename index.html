@@ -613,7 +613,11 @@ const tabFilters = {
     all:        { xpt: 'all', transp: 'all' },
 };
 
-try { requests = JSON.parse(localStorage.getItem('vm_requests_v2') || '[]'); } catch(e) { requests = []; }
+try {
+    requests = JSON.parse(localStorage.getItem('vm_requests_v2') || '[]');
+    // Migração: status legado "insucesso" (versão antiga) vira pending + flag
+    requests.forEach(r => { if (r.status === 'insucesso') { r.status = 'pending'; r.insucesso = true; } });
+} catch(e) { requests = []; }
 
 // ─── GITHUB SYNC ───────────────────────────────────────────────
 const GH_HEADERS = {
@@ -651,6 +655,8 @@ async function loadFromSheets() {
                 id: Number(r.id),
                 feito: r.feito === true || r.feito === 'true' || r.feito === 'TRUE',
                 quantidade: String(r.quantidade),
+                // Migração: status legado "insucesso" (versão antiga) vira pending + flag
+                ...(r.status === 'insucesso' ? { status: 'pending', insucesso: true } : {}),
             }));
             merged.sort((a, b) => b.id - a.id);
             requests = merged;
