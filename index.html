@@ -302,6 +302,10 @@
         ❌ Cancelados
         <span class="tab-badge hidden" id="cancelledBadge" style="background:var(--danger);color:#fff">0</span>
     </button>
+    <button class="tab-btn" id="tabBtnInsucesso" onclick="switchTab('insucesso')">
+        🚫 Insucesso
+        <span class="tab-badge hidden" id="insucessoBadge" style="background:#92400e;color:#fff">0</span>
+    </button>
     <button class="tab-btn" id="tabBtnSummary" onclick="switchTab('summary')">📈 Resumo</button>
     <button class="tab-btn" id="tabBtnAll" onclick="switchTab('all')">📊 Todos os Pedidos</button>
 </div>
@@ -341,10 +345,15 @@
                     <input type="date" id="data" required>
                 </div>
 
+                <div class="form-group full" style="flex-direction:row;align-items:center;gap:8px;background:#fff7e6;border:1px solid #f5c542;border-radius:9px;padding:10px 14px">
+                    <input type="checkbox" id="insucesso" onchange="toggleInsucesso()" style="width:auto;flex-shrink:0">
+                    <label for="insucesso" style="text-transform:none;font-size:0.85rem;font-weight:700;color:#92400e;cursor:pointer">🚫 Marcar como Insucesso (permite enviar sem link da rota)</label>
+                </div>
+
                 <div class="form-group">
-                    <label>Link da Rota <span class="req">*</span></label>
+                    <label>Link da Rota <span class="req" id="rotaReqMark">*</span></label>
                     <input type="url" id="rota" placeholder="https://envios.adminml.com/..." required pattern="https?://.+">
-                    <span class="input-hint">Cole o link da rota (deve começar com https://)</span>
+                    <span class="input-hint" id="rotaHint">Cole o link da rota (deve começar com https://)</span>
                 </div>
 
                 <div class="form-group">
@@ -482,6 +491,22 @@
     <div id="cancelledList"></div>
 </div>
 
+<!-- ═══ TAB: INSUCESSO ═══ -->
+<div id="tabInsucesso" class="container" style="display:none">
+    <div class="panel-header" style="border-color:rgba(146,64,14,0.3)">
+        <div class="panel-header-icon">🚫</div>
+        <div>
+            <div class="panel-header-title" style="color:#92400e">Insucesso</div>
+            <div class="panel-header-sub">Tentativas sem sucesso — enviadas sem link da rota</div>
+        </div>
+        <button class="clear-btn" style="margin-left:auto" onclick="clearInsucesso()">🗑 Limpar insucessos</button>
+    </div>
+    <div id="insucessoDateFilterBar"></div>
+    <div class="stats-grid" id="insucessoStats"></div>
+    <div id="insucessoFilterBar"></div>
+    <div id="insucessoList"></div>
+</div>
+
 <!-- ═══ TAB: TODOS ═══ -->
 <div id="tabAll" class="container" style="display:none">
     <div id="allDateFilterBar"></div>
@@ -584,6 +609,7 @@ const tabFilters = {
     authorized: { xpt: 'all', transp: 'all' },
     done:       { xpt: 'all', transp: 'all' },
     cancelled:  { xpt: 'all', transp: 'all' },
+    insucesso:  { xpt: 'all', transp: 'all' },
     all:        { xpt: 'all', transp: 'all' },
 };
 
@@ -835,12 +861,13 @@ async function doAutoSync() {
     // Re-render active tab
     const activeBtn = document.querySelector('.tab-btn.active');
     if (activeBtn) {
-        const tabMap = { tabBtnPending:'pending', tabBtnAuthorized:'authorized', tabBtnDone:'done', tabBtnCancelled:'cancelled', tabBtnSummary:'summary', tabBtnAll:'all' };
+        const tabMap = { tabBtnPending:'pending', tabBtnAuthorized:'authorized', tabBtnDone:'done', tabBtnCancelled:'cancelled', tabBtnInsucesso:'insucesso', tabBtnSummary:'summary', tabBtnAll:'all' };
         const tab = tabMap[activeBtn.id];
         if (tab === 'pending')    renderPending();
         if (tab === 'authorized') renderAuthorized();
         if (tab === 'done')       renderDone();
         if (tab === 'cancelled')  renderCancelled();
+        if (tab === 'insucesso')  renderInsucesso();
         if (tab === 'summary')    renderSummary();
         if (tab === 'all')        renderAll();
     }
@@ -870,6 +897,7 @@ function refreshHeader() {
     const authorized = requests.filter(r => r.status === 'authorized' && !r.feito).length;
     const done = requests.filter(r => r.feito).length;
     const cancelled = requests.filter(r => r.status === 'cancelled').length;
+    const insucesso = requests.filter(r => r.status === 'insucesso').length;
 
     const pb = document.getElementById('pendingBadge');
     pb.textContent = pending;
@@ -885,11 +913,14 @@ function refreshHeader() {
 
     const cb = document.getElementById('cancelledBadge');
     if (cb) { cb.textContent = cancelled; cb.classList.toggle('hidden', cancelled === 0); }
+
+    const ib = document.getElementById('insucessoBadge');
+    if (ib) { ib.textContent = insucesso; ib.classList.toggle('hidden', insucesso === 0); }
 }
 
 // ─── TAB SWITCH ────────────────────────────────────────────────
 function switchTab(tab) {
-    ['form','pending','authorized','done','cancelled','summary','all'].forEach(t => {
+    ['form','pending','authorized','done','cancelled','insucesso','summary','all'].forEach(t => {
         document.getElementById('tab' + cap(t)).style.display = t === tab ? 'block' : 'none';
         document.getElementById('tabBtn' + cap(t)).classList.toggle('active', t === tab);
     });
@@ -897,6 +928,7 @@ function switchTab(tab) {
     if (tab === 'authorized') renderAuthorized();
     if (tab === 'done')       renderDone();
     if (tab === 'cancelled')  renderCancelled();
+    if (tab === 'insucesso')  renderInsucesso();
     if (tab === 'summary')    renderSummary();
     if (tab === 'all')        renderAll();
 }
@@ -912,8 +944,9 @@ function handleSubmit(e) {
     const [y, m, d] = dataRaw.split('-');
     const dataFmt = `${d}/${m}/${y}`;
     const rotaVal = v('rota');
+    const isInsucesso = document.getElementById('insucesso').checked;
 
-    // ── Trava de duplicidade: link da rota já cadastrado? ──
+    // ── Trava de duplicidade: link da rota já cadastrado? (só aplica se houver rota) ──
     if (rotaVal) {
         const dup = requests.find(r => r.rota && r.rota.trim() === rotaVal.trim() && r.status !== 'cancelled');
         if (dup) {
@@ -934,7 +967,7 @@ function handleSubmit(e) {
     const req = {
         id: Date.now(),
         ts: new Date().toISOString(),
-        status: 'pending',
+        status: isInsucesso ? 'insucesso' : 'pending',
         authorizedBy: null,
         authorizedAt: null,
         feito: false,
@@ -943,7 +976,8 @@ function handleSubmit(e) {
         xpt: v('xpt').toUpperCase(),
         data: dataRaw,
         dataFmt,
-        rota: rotaVal,
+        rota: rotaVal || '—',
+        insucesso: isInsucesso,
         orh: v('orh') || '—',
         veiculo: v('veiculo'),
         regiao: v('regiao'),
@@ -955,7 +989,7 @@ function handleSubmit(e) {
     lastKnownIds.add(req.id); // prevent auto-sync from triggering sound for own request
     save();
     refreshHeader();
-    toast('✅ Pedido enviado! Sincronizando...', 'success');
+    toast(isInsucesso ? '🚫 Insucesso registrado! Sincronizando...' : '✅ Pedido enviado! Sincronizando...', 'success');
 
     // Monta a mensagem para copiar/enviar no WhatsApp e exibe a caixa de confirmação
     currentMsg = buildMsg(req);
@@ -967,6 +1001,23 @@ function handleSubmit(e) {
     // confirmação permanece visível até o usuário clicar em "Nova solicitação"
     e.target.reset();
     document.getElementById('data').valueAsDate = new Date();
+    toggleInsucesso(); // volta o campo Link da Rota ao estado obrigatório padrão
+}
+
+// Ativa/desativa a obrigatoriedade do link da rota conforme o checkbox "Insucesso"
+function toggleInsucesso() {
+    const checked = document.getElementById('insucesso').checked;
+    const rota = document.getElementById('rota');
+    rota.required = !checked;
+    const hint = document.getElementById('rotaHint');
+    const mark = document.getElementById('rotaReqMark');
+    if (checked) {
+        hint.textContent = '🚫 Insucesso ativo: link da rota não é obrigatório.';
+        if (mark) mark.style.visibility = 'hidden';
+    } else {
+        hint.textContent = 'Cole o link da rota (deve começar com https://)';
+        if (mark) mark.style.visibility = 'visible';
+    }
 }
 
 function v(id) { return document.getElementById(id).value.trim(); }
@@ -976,6 +1027,7 @@ function newRequest() {
     document.getElementById('mainForm').reset();
     document.getElementById('data').valueAsDate = new Date();
     document.getElementById('outputBox').classList.remove('visible');
+    toggleInsucesso(); // volta o campo Link da Rota ao estado obrigatório padrão
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -1074,6 +1126,7 @@ function setTabFilter(tabKey, field, value) {
     if (tabKey === 'authorized') renderAuthorized();
     if (tabKey === 'done')       renderDone();
     if (tabKey === 'cancelled')  renderCancelled();
+    if (tabKey === 'insucesso')  renderInsucesso();
     if (tabKey === 'all')        renderAll();
 }
 
@@ -1270,6 +1323,89 @@ function restoreRequest(id) {
     toast('↩️ Pedido restaurado para aguardando', 'info');
 }
 
+// ─── RENDER INSUCESSO ──────────────────────────────────────────
+function renderInsucesso() {
+    renderDateFilterBar('insucessoDateFilterBar');
+    const base = applyDateFilter(requests.filter(r => r.status === 'insucesso'));
+    renderSecondaryFilters('insucessoFilterBar', base, 'insucesso');
+    const list   = applyTabFilters(base, 'insucesso');
+    const totalV = list.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
+    const xpts   = [...new Set(list.map(r => r.xpt))].length;
+
+    document.getElementById('insucessoStats').innerHTML = `
+        <div class="stat-card" style="border-color:#92400e">
+            <div class="stat-val" style="color:#92400e">${list.length}</div>
+            <div class="stat-lbl">Insucessos</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val">${totalV}</div>
+            <div class="stat-lbl">Veículos</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val">${xpts}</div>
+            <div class="stat-lbl">XPTs</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val">${list.filter(r => r.data === isoToday()).length}</div>
+            <div class="stat-lbl">Hoje</div>
+        </div>
+    `;
+
+    if (list.length === 0) {
+        document.getElementById('insucessoList').innerHTML = emptyHTML('🚫', 'Nenhum insucesso registrado', 'Registros sem link da rota aparecem aqui');
+        return;
+    }
+
+    // Cards simples para insucesso (sem link de rota, sem ações de autorização)
+    const grouped = {};
+    list.forEach(r => { if (!grouped[r.xpt]) grouped[r.xpt] = []; grouped[r.xpt].push(r); });
+    let html = '';
+    Object.keys(grouped).sort().forEach(xpt => {
+        const grp = grouped[xpt];
+        html += `<div class="xpt-group">
+            <div class="xpt-group-header">
+                <span class="xpt-inline-badge" style="background:#f5c542">${xpt}</span>
+                <span class="xpt-badge-tag" style="background:#f5c542">${grp.length} pedido${grp.length>1?'s':''}</span>
+                <span class="xpt-meta">${grp.length} insucesso${grp.length>1?'s':''}</span>
+            </div>`;
+        grp.forEach(r => {
+            const ts = new Date(r.ts).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+            html += `<div class="req-card" style="border-left-color:#92400e;opacity:0.9">
+                <div class="req-card-header">
+                    <div class="req-left">
+                        <span class="xpt-inline-badge" style="background:#f5c542">${r.xpt}</span>
+                        <span class="req-region">${r.regiao}</span>
+                        <span class="status-badge" style="background:rgba(146,64,14,0.12);color:#92400e;border-color:#92400e">🚫 Insucesso</span>
+                    </div>
+                    <span class="req-time">${ts}</span>
+                </div>
+                <div class="req-details">
+                    <div class="detail"><span class="detail-lbl">Transportadora</span><span class="detail-val">${r.transportadora}</span></div>
+                    <div class="detail"><span class="detail-lbl">Veículo</span><span class="detail-val">${r.veiculo}</span></div>
+                    <div class="detail"><span class="detail-lbl">Quantidade</span><span class="detail-val highlight">${r.quantidade}</span></div>
+                    <div class="detail"><span class="detail-lbl">Data</span><span class="detail-val">${r.dataFmt||r.data}</span></div>
+                    <div class="detail"><span class="detail-lbl">ORH</span><span class="detail-val">${r.orh}</span></div>
+                </div>
+                ${r.motivo && r.motivo !== '—' ? `<div class="req-motivo">💬 ${r.motivo}</div>` : ''}
+                ${editHistoryHTML(r)}
+                <div class="req-footer">
+                    <button class="btn btn-edit" style="font-size:0.75rem;padding:5px 10px" onclick="openEditModal(${r.id})">✏️ Editar</button>
+                </div>
+            </div>`;
+        });
+        html += '</div>';
+    });
+    document.getElementById('insucessoList').innerHTML = html;
+}
+
+function clearInsucesso() {
+    if (!checkManagerPassword()) return;
+    if (!confirm('Limpar todos os registros de Insucesso?')) return;
+    requests = requests.filter(r => r.status !== 'insucesso');
+    save(); refreshHeader(); renderInsucesso();
+    toast('🗑 Insucessos removidos', 'info');
+}
+
 // ─── SUMMARY FILTER STATE ──────────────────────────────────────
 const summaryFilter = { regiao: 'all' };
 
@@ -1286,8 +1422,8 @@ function renderSummary() {
 
     renderDateFilterBar('summaryDateFilterBar');
 
-    // Exclude cancelled from summary, then apply date filter
-    const activeReqs = applyDateFilter(requests.filter(r => r.status !== 'cancelled'));
+    // Exclude cancelled and insucesso from summary, then apply date filter
+    const activeReqs = applyDateFilter(requests.filter(r => r.status !== 'cancelled' && r.status !== 'insucesso'));
 
     if (activeReqs.length === 0) {
         if (fb) fb.innerHTML = '';
@@ -1456,8 +1592,8 @@ function exportSummaryCSV() {
     if (!checkManagerPassword()) return;
     if (requests.length === 0) { toast('Nenhum dado para exportar.', 'danger'); return; }
 
-    // Respect active date filter and exclude cancelled (same as renderSummary)
-    const activeDateFiltered = applyDateFilter(requests.filter(r => r.status !== 'cancelled'));
+    // Respect active date filter and exclude cancelled/insucesso (same as renderSummary)
+    const activeDateFiltered = applyDateFilter(requests.filter(r => r.status !== 'cancelled' && r.status !== 'insucesso'));
     const source = summaryFilter.regiao === 'all'
         ? activeDateFiltered
         : activeDateFiltered.filter(r => r.regiao === summaryFilter.regiao);
@@ -1571,6 +1707,7 @@ function setGlobalDateFilter(val) {
         if (id === 'tabBtnAuthorized') renderAuthorized();
         if (id === 'tabBtnDone')       renderDone();
         if (id === 'tabBtnCancelled')  renderCancelled();
+        if (id === 'tabBtnInsucesso')  renderInsucesso();
     }
 }
 
@@ -1604,8 +1741,8 @@ function renderDateFilterBar(containerId) {
 function renderAll() {
     renderDateFilterBar('allDateFilterBar');
 
-    // Exclude cancelled, then apply date filter
-    const nonCancelled = applyDateFilter(requests.filter(r => r.status !== 'cancelled'));
+    // Exclude cancelled e insucesso (aba separada), então aplica filtro de data
+    const nonCancelled = applyDateFilter(requests.filter(r => r.status !== 'cancelled' && r.status !== 'insucesso'));
     const pending    = nonCancelled.filter(r => r.status === 'pending').length;
     const done       = nonCancelled.filter(r => r.feito).length;
     const authorized = nonCancelled.filter(r => r.status === 'authorized' && !r.feito).length;
@@ -1867,12 +2004,13 @@ function submitEdit() {
     // Re-render whichever tab is active
     const activeBtn = document.querySelector('.tab-btn.active');
     if (activeBtn) {
-        const tabMap = { tabBtnPending:'pending', tabBtnAuthorized:'authorized', tabBtnDone:'done', tabBtnCancelled:'cancelled', tabBtnSummary:'summary', tabBtnAll:'all' };
+        const tabMap = { tabBtnPending:'pending', tabBtnAuthorized:'authorized', tabBtnDone:'done', tabBtnCancelled:'cancelled', tabBtnInsucesso:'insucesso', tabBtnSummary:'summary', tabBtnAll:'all' };
         const tab = tabMap[activeBtn.id];
         if (tab === 'pending')    renderPending();
         if (tab === 'authorized') renderAuthorized();
         if (tab === 'done')       renderDone();
         if (tab === 'cancelled')  renderCancelled();
+        if (tab === 'insucesso')  renderInsucesso();
         if (tab === 'summary')    renderSummary();
         if (tab === 'all')        renderAll();
     }
