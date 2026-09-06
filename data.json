@@ -41,7 +41,7 @@
   {
     "id": 1788694901262,
     "ts": "2026-09-06T11:41:41.262Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -55,7 +55,8 @@
     "veiculo": "Van",
     "regiao": "Teixeira de Freitas",
     "quantidade": "01",
-    "motivo": "Insucessos Teixeira + insucessos Meli extra"
+    "motivo": "Insucessos Teixeira + insucessos Meli extra",
+    "cancelledAt": "2026-09-06T11:47:04.707Z"
   },
   {
     "id": 1788694566750,
