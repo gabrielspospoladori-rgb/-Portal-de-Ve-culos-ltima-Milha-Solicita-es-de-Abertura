@@ -206,7 +206,7 @@
   {
     "id": 1788693340445,
     "ts": "2026-09-06T11:15:40.445Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -220,7 +220,8 @@
     "veiculo": "Utilitário",
     "regiao": "Tiradentes",
     "quantidade": "01",
-    "motivo": "Rota espaçada."
+    "motivo": "Rota espaçada.",
+    "cancelledAt": "2026-09-06T12:07:31.835Z"
   },
   {
     "id": 1788692677529,
