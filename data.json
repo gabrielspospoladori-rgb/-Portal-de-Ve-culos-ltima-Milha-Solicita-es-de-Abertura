@@ -32,10 +32,19 @@
     "dataFmt": "06/09/2026",
     "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/436092728",
     "orh": "07.19",
-    "veiculo": "Van Frota Fixa - Equipe única",
+    "veiculo": "FF Van TKS",
     "regiao": "Linhares",
     "quantidade": "01",
-    "motivo": "Rota com 88 paradas em Linhares, precisamos de um apoio para diminuir o impacto por ser Domingo."
+    "motivo": "Rota com 88 paradas em Linhares, precisamos de um apoio para diminuir o impacto por ser Domingo.",
+    "editHistory": [
+      {
+        "field": "veiculo",
+        "fieldLabel": "Veículo",
+        "from": "Van Frota Fixa - Equipe única",
+        "to": "FF Van TKS",
+        "at": "2026-09-06T11:27:02.323Z"
+      }
+    ]
   },
   {
     "id": 1788693609032,
