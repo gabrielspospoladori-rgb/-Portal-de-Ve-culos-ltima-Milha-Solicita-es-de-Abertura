@@ -881,7 +881,7 @@ async function doAutoSync() {
 
 // ─── INIT ──────────────────────────────────────────────────────
 (function init() {
-    document.getElementById('data').valueAsDate = new Date();
+    document.getElementById('data').value = localDateStr(); // .value evita o bug de fuso de valueAsDate (que usa UTC)
     document.getElementById('headerDate').textContent =
         new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
     refreshHeader();
@@ -1006,7 +1006,7 @@ function handleSubmit(e) {
     // Reset dos campos do formulário (dado já foi capturado em req); a caixa de
     // confirmação permanece visível até o usuário clicar em "Nova solicitação"
     e.target.reset();
-    document.getElementById('data').valueAsDate = new Date();
+    document.getElementById('data').value = localDateStr(); // .value evita o bug de fuso de valueAsDate (que usa UTC)
     toggleInsucesso(); // volta o campo Link da Rota ao estado obrigatório padrão
 }
 
@@ -1031,7 +1031,7 @@ function copyMsg() { navigator.clipboard.writeText(currentMsg).then(() => toast(
 function sendWhatsApp() { window.open('https://wa.me/?text=' + encodeURIComponent(currentMsg), '_blank'); }
 function newRequest() {
     document.getElementById('mainForm').reset();
-    document.getElementById('data').valueAsDate = new Date();
+    document.getElementById('data').value = localDateStr(); // .value evita o bug de fuso de valueAsDate (que usa UTC)
     document.getElementById('outputBox').classList.remove('visible');
     toggleInsucesso(); // volta o campo Link da Rota ao estado obrigatório padrão
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1599,13 +1599,13 @@ function exportSummaryCSV() {
         return (a.data || '').localeCompare(b.data || '');
     });
 
-    const detailHeader = ['XPT/SVC', 'Região de Entrega', 'Transportadora', 'Veículo', 'Quantidade', 'Data', 'Rota', 'ORH', 'Status', 'Feito', 'Insucesso', 'Autorizado em', 'Motivo'];
+    const detailHeader = ['XPT/SVC', 'Região de Entrega', 'Transportadora', 'Veículo', 'Quantidade', 'Data de Entrega', 'Solicitado em', 'Rota', 'ORH', 'Status', 'Feito', 'Insucesso', 'Autorizado em', 'Motivo'];
     const toDetailRow = r => {
         const status = r.feito ? 'Feito' : r.status === 'authorized' ? 'Autorizado' : 'Aguardando';
-        const authAt = r.authorizedAt
-            ? new Date(r.authorizedAt).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+        const fmtDT = iso => iso
+            ? new Date(iso).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
             : '';
-        return [r.xpt, r.regiao, r.transportadora, r.veiculo, r.quantidade, r.dataFmt, r.rota, r.orh, status, r.feito ? 'Sim' : 'Não', r.insucesso ? 'Sim' : 'Não', authAt, r.motivo];
+        return [r.xpt, r.regiao, r.transportadora, r.veiculo, r.quantidade, r.dataFmt, fmtDT(r.ts), r.rota, r.orh, status, r.feito ? 'Sim' : 'Não', r.insucesso ? 'Sim' : 'Não', fmtDT(r.authorizedAt), r.motivo];
     };
 
     const insucessoList = sorted.filter(r => r.insucesso);
@@ -1631,6 +1631,12 @@ function exportSummaryCSV() {
     const xptKeysForKpi = [...new Set([...xptOrder.filter(x => byXpt[x]), ...Object.keys(byXpt).filter(x => !xptOrder.includes(x))])];
 
     const rows = [];
+
+    // Section 0: metadata — exported when, and with which date filter
+    rows.push(['Exportado em', new Date().toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })]);
+    rows.push(['Período filtrado', dateFilterLabel()]);
+    if (summaryFilter.regiao !== 'all') rows.push(['Região filtrada', summaryFilter.regiao]);
+    rows.push([]);
 
     // Section 1: KPIs at a glance
     rows.push(['RESUMO GERAL — Portal de Veículos']);
@@ -1718,9 +1724,32 @@ function kpiCard(label, value, color) {
 }
 
 // ─── DATE FILTER HELPERS ───────────────────────────────────────
+// Retorna YYYY-MM-DD a partir dos componentes LOCAIS da data (nunca usar
+// toISOString() aqui: ele converte para UTC e, no horário do Brasil (UTC-3),
+// isso faz a "data de hoje" virar amanhã a partir das ~21h — bug de fuso).
+function localDateStr(d = new Date()) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+}
+
 function isoYesterday() {
     const d = new Date(); d.setDate(d.getDate() - 1);
-    return d.toISOString().slice(0, 10);
+    return localDateStr(d);
+}
+
+function dateFilterLabel() {
+    if (globalDateFilter === 'today') return `Hoje (${new Date().toLocaleDateString('pt-BR')})`;
+    if (globalDateFilter === 'yesterday') {
+        const d = new Date(); d.setDate(d.getDate() - 1);
+        return `Ontem (${d.toLocaleDateString('pt-BR')})`;
+    }
+    if (globalDateFilter === 'custom' && globalDateCustom) {
+        const [y, m, d] = globalDateCustom.split('-');
+        return `${d}/${m}/${y}`;
+    }
+    return 'Todos os períodos';
 }
 
 function applyDateFilter(list) {
@@ -2144,7 +2173,7 @@ function save() {
         .finally(() => { isSaving = false; });
 }
 
-function isoToday() { return new Date().toISOString().split('T')[0]; }
+function isoToday() { return localDateStr(); }
 
 function toast(msg, type = 'success') {
     const t = document.getElementById('toast');
