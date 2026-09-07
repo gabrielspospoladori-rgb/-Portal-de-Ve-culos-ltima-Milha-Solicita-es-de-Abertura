@@ -1586,40 +1586,88 @@ function exportSummaryCSV() {
         ? activeDateFiltered
         : activeDateFiltered.filter(r => r.regiao === summaryFilter.regiao);
 
-    // Build rows: one per request (full detail)
-    const rows = [
-        ['XPT/SVC', 'Região de Entrega', 'Transportadora', 'Veículo', 'Quantidade', 'Data', 'Rota', 'ORH', 'Status', 'Feito', 'Insucesso', 'Autorizado em', 'Motivo']
-    ];
+    if (source.length === 0) { toast('Nenhum dado para exportar com o filtro atual.', 'danger'); return; }
 
-    source.forEach(r => {
+    // Organize detail rows by XPT → Região → Data so the exported file is already readable
+    const xptOrder = ['EES2', 'EES3', 'EBA32', 'EES6', 'SVC'];
+    const xptRank = x => { const i = xptOrder.indexOf(x); return i === -1 ? 999 : i; };
+    const sorted = [...source].sort((a, b) => {
+        const rx = xptRank(a.xpt) - xptRank(b.xpt);
+        if (rx !== 0) return rx;
+        const rr = (a.regiao || '').localeCompare(b.regiao || '');
+        if (rr !== 0) return rr;
+        return (a.data || '').localeCompare(b.data || '');
+    });
+
+    const detailHeader = ['XPT/SVC', 'Região de Entrega', 'Transportadora', 'Veículo', 'Quantidade', 'Data', 'Rota', 'ORH', 'Status', 'Feito', 'Insucesso', 'Autorizado em', 'Motivo'];
+    const toDetailRow = r => {
         const status = r.feito ? 'Feito' : r.status === 'authorized' ? 'Autorizado' : 'Aguardando';
         const authAt = r.authorizedAt
             ? new Date(r.authorizedAt).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
             : '';
-        rows.push([
-            r.xpt,
-            r.regiao,
-            r.transportadora,
-            r.veiculo,
-            r.quantidade,
-            r.dataFmt,
-            r.rota,
-            r.orh,
-            status,
-            r.feito ? 'Sim' : 'Não',
-            r.insucesso ? 'Sim' : 'Não',
-            authAt,
-            r.motivo
-        ]);
-    });
+        return [r.xpt, r.regiao, r.transportadora, r.veiculo, r.quantidade, r.dataFmt, r.rota, r.orh, status, r.feito ? 'Sim' : 'Não', r.insucesso ? 'Sim' : 'Não', authAt, r.motivo];
+    };
 
-    // Blank line then summary section
+    const insucessoList = sorted.filter(r => r.insucesso);
+    const totalPedidos = sorted.length;
+    const totalVeiculos = sorted.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
+    const feitos = sorted.filter(r => r.feito).length;
+    const autorizados = sorted.filter(r => r.status === 'authorized' && !r.feito).length;
+    const aguardando = sorted.filter(r => !r.feito && r.status !== 'authorized').length;
+
+    // Per-XPT breakdown for the KPI section (same model as "Resumo por XPT")
+    const byXpt = {};
+    sorted.forEach(r => {
+        const xpt = r.xpt || 'N/A';
+        if (!byXpt[xpt]) byXpt[xpt] = { pedidos: 0, veiculos: 0, aguardando: 0, autorizados: 0, feitos: 0, insucesso: 0 };
+        const b = byXpt[xpt];
+        b.pedidos += 1;
+        b.veiculos += parseInt(r.quantidade) || 0;
+        if (r.feito)                        b.feitos += 1;
+        else if (r.status === 'authorized') b.autorizados += 1;
+        else                                b.aguardando += 1;
+        if (r.insucesso) b.insucesso += 1;
+    });
+    const xptKeysForKpi = [...new Set([...xptOrder.filter(x => byXpt[x]), ...Object.keys(byXpt).filter(x => !xptOrder.includes(x))])];
+
+    const rows = [];
+
+    // Section 1: KPIs at a glance
+    rows.push(['RESUMO GERAL — Portal de Veículos']);
+    rows.push(['Total de Pedidos', 'Total de Veículos', 'Aguardando', 'Autorizados', 'Feitos', 'Insucesso']);
+    rows.push([totalPedidos, totalVeiculos, aguardando, autorizados, feitos, insucessoList.length]);
     rows.push([]);
-    rows.push(['=== RESUMO AGRUPADO ===']);
+    rows.push(['📊 Resumo por XPT']);
+    rows.push(['XPT', 'Pedidos', 'Veículos', 'Aguardando', 'Autorizados', 'Feitos', 'Insucesso']);
+    xptKeysForKpi.forEach(xpt => {
+        const b = byXpt[xpt];
+        rows.push([xpt, b.pedidos, b.veiculos, b.aguardando, b.autorizados, b.feitos, b.insucesso]);
+    });
+    rows.push(['Total', totalPedidos, totalVeiculos, aguardando, autorizados, feitos, insucessoList.length]);
+    rows.push([]);
+
+    // Section 2: full detail, organized
+    rows.push(['=== TODOS OS PEDIDOS ===']);
+    rows.push(detailHeader);
+    sorted.forEach(r => rows.push(toDetailRow(r)));
+    rows.push([]);
+
+    // Section 3: Insucesso, visualizado separado
+    rows.push(['=== VEÍCULOS EM INSUCESSO ===']);
+    rows.push(detailHeader);
+    if (insucessoList.length === 0) {
+        rows.push(['Nenhum veículo em insucesso no período/filtro selecionado.']);
+    } else {
+        insucessoList.forEach(r => rows.push(toDetailRow(r)));
+    }
+    rows.push([]);
+
+    // Section 4: grouped summary by XPT/Região
+    rows.push(['=== RESUMO AGRUPADO POR XPT/REGIÃO ===']);
     rows.push(['XPT/SVC', 'Região de Entrega', 'Total Veículos', 'Aguardando', 'Autorizados', 'Feitos', 'Insucesso']);
 
     const grouped = {};
-    source.forEach(r => {
+    sorted.forEach(r => {
         const xpt = r.xpt || 'N/A';
         const reg = r.regiao || 'N/A';
         const qty = parseInt(r.quantidade) || 0;
@@ -1632,7 +1680,6 @@ function exportSummaryCSV() {
         if (r.insucesso) grouped[xpt][reg].insucesso += qty;
     });
 
-    const xptOrder = ['EES2','EES3','EBA32','EES6','SVC'];
     const xptKeys = [...new Set([...xptOrder.filter(x => grouped[x]), ...Object.keys(grouped).filter(x => !xptOrder.includes(x))])];
     xptKeys.forEach(xpt => {
         Object.entries(grouped[xpt]).sort((a, b) => b[1].total - a[1].total).forEach(([reg, v]) => {
@@ -1640,10 +1687,11 @@ function exportSummaryCSV() {
         });
     });
 
-    // Convert to CSV string
+    // Convert to CSV string (neutralizes leading =/+/-/@ to prevent formula injection when opened in Excel/Sheets — CWE-1236)
     const csv = rows.map(row =>
         row.map(cell => {
-            const s = String(cell ?? '');
+            let s = String(cell ?? '');
+            if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
             return s.includes(',') || s.includes('"') || s.includes('\n')
                 ? `"${s.replace(/"/g, '""')}"` : s;
         }).join(',')
