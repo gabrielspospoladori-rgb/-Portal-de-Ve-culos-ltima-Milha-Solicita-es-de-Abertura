@@ -258,6 +258,7 @@
         .toast.info { background: var(--primary); color: #111; }
         .toast.danger { background: var(--danger); color: #fff; }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
 </head>
 <body>
 
@@ -468,7 +469,7 @@
             <div class="panel-header-title" style="color:#a5b4fc">Resumo por XPT e Região</div>
             <div class="panel-header-sub">Contagem de veículos solicitados por local</div>
         </div>
-        <button class="btn btn-secondary" style="margin-left:auto;font-size:0.78rem;padding:7px 14px" onclick="exportSummaryCSV()">⬇️ Exportar CSV</button>
+        <button class="btn btn-secondary" style="margin-left:auto;font-size:0.78rem;padding:7px 14px" onclick="exportSummaryXLSX()">⬇️ Exportar Excel</button>
     </div>
     <div id="summaryDateFilterBar"></div>
     <div id="summaryFilterBar" style="margin-bottom:4px"></div>
@@ -1575,12 +1576,15 @@ function renderSummary() {
     el.innerHTML = html;
 }
 
-// ─── EXPORT SUMMARY CSV ────────────────────────────────────────
-function exportSummaryCSV() {
+// ─── EXPORT SUMMARY XLSX (arquivo Excel real: abas, cores, cabeçalho fixo) ──
+// CSV é texto puro e não suporta abas/formatação — por isso a versão anterior
+// "achatava" tudo em uma única planilha ao abrir no Sheets. Esta gera um .xlsx
+// de verdade, com o mesmo modelo de 4 abas usado no relatório de referência.
+async function exportSummaryXLSX() {
     if (!checkManagerPassword()) return;
     if (requests.length === 0) { toast('Nenhum dado para exportar.', 'danger'); return; }
+    if (typeof ExcelJS === 'undefined') { toast('❌ Biblioteca de Excel não carregou. Verifique a conexão e recarregue a página.', 'danger'); return; }
 
-    // Respect active date filter and exclude cancelled (same as renderSummary)
     const activeDateFiltered = applyDateFilter(requests.filter(r => r.status !== 'cancelled'));
     const source = summaryFilter.regiao === 'all'
         ? activeDateFiltered
@@ -1588,7 +1592,6 @@ function exportSummaryCSV() {
 
     if (source.length === 0) { toast('Nenhum dado para exportar com o filtro atual.', 'danger'); return; }
 
-    // Organize detail rows by XPT → Região → Data so the exported file is already readable
     const xptOrder = ['EES2', 'EES3', 'EBA32', 'EES6', 'SVC'];
     const xptRank = x => { const i = xptOrder.indexOf(x); return i === -1 ? 999 : i; };
     const sorted = [...source].sort((a, b) => {
@@ -1599,14 +1602,13 @@ function exportSummaryCSV() {
         return (a.data || '').localeCompare(b.data || '');
     });
 
+    const fmtDT = iso => iso
+        ? new Date(iso).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+        : '';
+    const statusOf = r => r.feito ? 'Feito' : r.status === 'authorized' ? 'Autorizado' : 'Aguardando';
     const detailHeader = ['XPT/SVC', 'Região de Entrega', 'Transportadora', 'Veículo', 'Quantidade', 'Data de Entrega', 'Solicitado em', 'Rota', 'ORH', 'Status', 'Feito', 'Insucesso', 'Autorizado em', 'Motivo'];
-    const toDetailRow = r => {
-        const status = r.feito ? 'Feito' : r.status === 'authorized' ? 'Autorizado' : 'Aguardando';
-        const fmtDT = iso => iso
-            ? new Date(iso).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-            : '';
-        return [r.xpt, r.regiao, r.transportadora, r.veiculo, r.quantidade, r.dataFmt, fmtDT(r.ts), r.rota, r.orh, status, r.feito ? 'Sim' : 'Não', r.insucesso ? 'Sim' : 'Não', fmtDT(r.authorizedAt), r.motivo];
-    };
+    const toDetailVals = r => [r.xpt, r.regiao, r.transportadora, r.veiculo, parseInt(r.quantidade) || 0, r.dataFmt, fmtDT(r.ts), r.rota, r.orh, statusOf(r), r.feito ? 'Sim' : 'Não', r.insucesso ? 'Sim' : 'Não', fmtDT(r.authorizedAt), r.motivo];
+    const colWidths = [10, 24, 16, 24, 11, 13, 16, 40, 10, 12, 8, 10, 16, 55];
 
     const insucessoList = sorted.filter(r => r.insucesso);
     const totalPedidos = sorted.length;
@@ -1615,7 +1617,6 @@ function exportSummaryCSV() {
     const autorizados = sorted.filter(r => r.status === 'authorized' && !r.feito).length;
     const aguardando = sorted.filter(r => !r.feito && r.status !== 'authorized').length;
 
-    // Per-XPT breakdown for the KPI section (same model as "Resumo por XPT")
     const byXpt = {};
     sorted.forEach(r => {
         const xpt = r.xpt || 'N/A';
@@ -1628,49 +1629,7 @@ function exportSummaryCSV() {
         else                                b.aguardando += 1;
         if (r.insucesso) b.insucesso += 1;
     });
-    const xptKeysForKpi = [...new Set([...xptOrder.filter(x => byXpt[x]), ...Object.keys(byXpt).filter(x => !xptOrder.includes(x))])];
-
-    const rows = [];
-
-    // Section 0: metadata — exported when, and with which date filter
-    rows.push(['Exportado em', new Date().toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })]);
-    rows.push(['Período filtrado', dateFilterLabel()]);
-    if (summaryFilter.regiao !== 'all') rows.push(['Região filtrada', summaryFilter.regiao]);
-    rows.push([]);
-
-    // Section 1: KPIs at a glance
-    rows.push(['RESUMO GERAL — Portal de Veículos']);
-    rows.push(['Total de Pedidos', 'Total de Veículos', 'Aguardando', 'Autorizados', 'Feitos', 'Insucesso']);
-    rows.push([totalPedidos, totalVeiculos, aguardando, autorizados, feitos, insucessoList.length]);
-    rows.push([]);
-    rows.push(['📊 Resumo por XPT']);
-    rows.push(['XPT', 'Pedidos', 'Veículos', 'Aguardando', 'Autorizados', 'Feitos', 'Insucesso']);
-    xptKeysForKpi.forEach(xpt => {
-        const b = byXpt[xpt];
-        rows.push([xpt, b.pedidos, b.veiculos, b.aguardando, b.autorizados, b.feitos, b.insucesso]);
-    });
-    rows.push(['Total', totalPedidos, totalVeiculos, aguardando, autorizados, feitos, insucessoList.length]);
-    rows.push([]);
-
-    // Section 2: full detail, organized
-    rows.push(['=== TODOS OS PEDIDOS ===']);
-    rows.push(detailHeader);
-    sorted.forEach(r => rows.push(toDetailRow(r)));
-    rows.push([]);
-
-    // Section 3: Insucesso, visualizado separado
-    rows.push(['=== VEÍCULOS EM INSUCESSO ===']);
-    rows.push(detailHeader);
-    if (insucessoList.length === 0) {
-        rows.push(['Nenhum veículo em insucesso no período/filtro selecionado.']);
-    } else {
-        insucessoList.forEach(r => rows.push(toDetailRow(r)));
-    }
-    rows.push([]);
-
-    // Section 4: grouped summary by XPT/Região
-    rows.push(['=== RESUMO AGRUPADO POR XPT/REGIÃO ===']);
-    rows.push(['XPT/SVC', 'Região de Entrega', 'Total Veículos', 'Aguardando', 'Autorizados', 'Feitos', 'Insucesso']);
+    const xptKeys = [...new Set([...xptOrder.filter(x => byXpt[x]), ...Object.keys(byXpt).filter(x => !xptOrder.includes(x))])];
 
     const grouped = {};
     sorted.forEach(r => {
@@ -1686,34 +1645,139 @@ function exportSummaryCSV() {
         if (r.insucesso) grouped[xpt][reg].insucesso += qty;
     });
 
-    const xptKeys = [...new Set([...xptOrder.filter(x => grouped[x]), ...Object.keys(grouped).filter(x => !xptOrder.includes(x))])];
+    const HEADER_FILL = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1F2937' } };
+    const HEADER_FONT = { name: 'Arial', bold: true, color: { argb: 'FFFFFFFF' } };
+    const INSUCESSO_FILL = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFEF3C7' } };
+    const statusColors = {
+        'Aguardando': { fill: 'FFFEF3C7', font: 'FFB45309' },
+        'Autorizado': { fill: 'FFD1FAE5', font: 'FF047857' },
+        'Feito':      { fill: 'FFE0E7FF', font: 'FF4338CA' }
+    };
+
+    const styleHeaderRow = (row, fill) => {
+        row.eachCell(c => { c.font = HEADER_FONT; c.fill = fill || HEADER_FILL; c.alignment = { vertical: 'middle' }; });
+    };
+
+    const wb = new ExcelJS.Workbook();
+    wb.creator = 'Portal de Veículos';
+    wb.created = new Date();
+
+    // ── Aba 1: Resumo Geral ──
+    const wsResumo = wb.addWorksheet('Resumo Geral');
+    wsResumo.columns = [{ width: 18 }, { width: 16 }, { width: 14 }, { width: 14 }, { width: 12 }, { width: 12 }, { width: 12 }];
+    wsResumo.mergeCells('A1:G1');
+    wsResumo.getCell('A1').value = '📊 Resumo Geral — Portal de Veículos';
+    wsResumo.getCell('A1').font = { name: 'Arial', bold: true, size: 14 };
+    wsResumo.mergeCells('A2:G2');
+    wsResumo.getCell('A2').value = `Exportado em ${new Date().toLocaleString('pt-BR')} · Período: ${dateFilterLabel()}${summaryFilter.regiao !== 'all' ? ' · Região: ' + summaryFilter.regiao : ''}`;
+    wsResumo.getCell('A2').font = { name: 'Arial', italic: true, size: 9, color: { argb: 'FF6B7280' } };
+
+    styleHeaderRow(wsResumo.getRow(4));
+    ['Total de Pedidos', 'Total de Veículos', 'Aguardando', 'Autorizados', 'Feitos', 'Insucesso'].forEach((h, i) => { wsResumo.getRow(4).getCell(i + 1).value = h; });
+    const kpiRow = wsResumo.getRow(5);
+    [totalPedidos, totalVeiculos, aguardando, autorizados, feitos, insucessoList.length].forEach((v, i) => {
+        const c = kpiRow.getCell(i + 1);
+        c.value = v; c.font = { name: 'Arial', bold: true, size: 14 }; c.alignment = { horizontal: 'center' };
+    });
+
+    wsResumo.getCell('A7').value = '📍 Resumo por XPT';
+    wsResumo.getCell('A7').font = { name: 'Arial', bold: true, size: 11 };
+    styleHeaderRow(wsResumo.getRow(8));
+    ['XPT', 'Pedidos', 'Veículos', 'Aguardando', 'Autorizados', 'Feitos', 'Insucesso'].forEach((h, i) => { wsResumo.getRow(8).getCell(i + 1).value = h; });
+    let rIdx = 9;
+    xptKeys.forEach(xpt => {
+        const b = byXpt[xpt];
+        const row = wsResumo.getRow(rIdx++);
+        [xpt, b.pedidos, b.veiculos, b.aguardando, b.autorizados, b.feitos, b.insucesso].forEach((v, i) => {
+            const c = row.getCell(i + 1);
+            c.value = v; c.font = { name: 'Arial' }; c.alignment = { horizontal: i === 0 ? 'left' : 'center' };
+        });
+    });
+    const totalRow = wsResumo.getRow(rIdx);
+    ['Total', totalPedidos, totalVeiculos, aguardando, autorizados, feitos, insucessoList.length].forEach((v, i) => {
+        const c = totalRow.getCell(i + 1);
+        c.value = v; c.font = { name: 'Arial', bold: true }; c.alignment = { horizontal: i === 0 ? 'left' : 'center' };
+        c.border = { top: { style: 'thin' } };
+    });
+
+    // ── Aba 2: Todos os Pedidos ──
+    const wsAll = wb.addWorksheet('Todos os Pedidos');
+    wsAll.columns = colWidths.map(w => ({ width: w }));
+    styleHeaderRow(wsAll.getRow(1));
+    detailHeader.forEach((h, i) => { wsAll.getRow(1).getCell(i + 1).value = h; });
+    wsAll.views = [{ state: 'frozen', ySplit: 1 }];
+    wsAll.autoFilter = { from: 'A1', to: 'N1' };
+
+    sorted.forEach((r, idx) => {
+        const status = statusOf(r);
+        const row = wsAll.getRow(idx + 2);
+        toDetailVals(r).forEach((v, i) => { row.getCell(i + 1).value = v; row.getCell(i + 1).font = { name: 'Arial', size: 10 }; });
+        row.getCell(5).alignment = { horizontal: 'center' };
+        row.getCell(10).alignment = { horizontal: 'center' };
+        row.getCell(14).alignment = { wrapText: true, vertical: 'top' };
+        const sc = statusColors[status];
+        if (sc) {
+            row.getCell(10).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: sc.fill } };
+            row.getCell(10).font = { name: 'Arial', bold: true, color: { argb: sc.font } };
+        }
+        if (r.insucesso) {
+            for (let c = 1; c <= 14; c++) if (c !== 10) row.getCell(c).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFFBEB' } };
+            row.getCell(12).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFDE68A' } };
+            row.getCell(12).font = { name: 'Arial', bold: true, color: { argb: 'FF92400E' } };
+        }
+    });
+
+    // ── Aba 3: Insucesso (visualização separada) ──
+    const wsIns = wb.addWorksheet('Insucesso', { properties: { tabColor: { argb: 'FF92400E' } } });
+    wsIns.columns = colWidths.map(w => ({ width: w }));
+    styleHeaderRow(wsIns.getRow(1), { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF92400E' } });
+    detailHeader.forEach((h, i) => { wsIns.getRow(1).getCell(i + 1).value = h; });
+    wsIns.views = [{ state: 'frozen', ySplit: 1 }];
+    if (insucessoList.length === 0) {
+        wsIns.getCell('A2').value = 'Nenhum veículo em insucesso no período/filtro selecionado.';
+        wsIns.getCell('A2').font = { name: 'Arial', italic: true };
+    } else {
+        insucessoList.forEach((r, idx) => {
+            const row = wsIns.getRow(idx + 2);
+            toDetailVals(r).forEach((v, i) => {
+                const c = row.getCell(i + 1);
+                c.value = v; c.font = { name: 'Arial', size: 10 }; c.fill = INSUCESSO_FILL;
+            });
+            row.getCell(5).alignment = { horizontal: 'center' };
+            row.getCell(14).alignment = { wrapText: true, vertical: 'top' };
+        });
+    }
+
+    // ── Aba 4: Resumo por Região ──
+    const wsReg = wb.addWorksheet('Resumo por Região');
+    wsReg.columns = [{ width: 10 }, { width: 26 }, { width: 14 }, { width: 12 }, { width: 12 }, { width: 10 }, { width: 11 }];
+    styleHeaderRow(wsReg.getRow(1));
+    ['XPT/SVC', 'Região de Entrega', 'Total Veículos', 'Aguardando', 'Autorizados', 'Feitos', 'Insucesso'].forEach((h, i) => { wsReg.getRow(1).getCell(i + 1).value = h; });
+    wsReg.views = [{ state: 'frozen', ySplit: 1 }];
+    wsReg.autoFilter = { from: 'A1', to: 'G1' };
+    let regIdx = 2;
     xptKeys.forEach(xpt => {
         Object.entries(grouped[xpt]).sort((a, b) => b[1].total - a[1].total).forEach(([reg, v]) => {
-            rows.push([xpt, reg, v.total, v.pending, v.authorized, v.feito, v.insucesso]);
+            const row = wsReg.getRow(regIdx++);
+            [xpt, reg, v.total, v.pending, v.authorized, v.feito, v.insucesso].forEach((val, i) => {
+                const c = row.getCell(i + 1);
+                c.value = val; c.font = { name: 'Arial', size: 10 };
+                if (v.insucesso > 0) c.fill = INSUCESSO_FILL;
+            });
         });
     });
 
-    // Convert to CSV string (neutralizes leading =/+/-/@ to prevent formula injection when opened in Excel/Sheets — CWE-1236)
-    const csv = rows.map(row =>
-        row.map(cell => {
-            let s = String(cell ?? '');
-            if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
-            return s.includes(',') || s.includes('"') || s.includes('\n')
-                ? `"${s.replace(/"/g, '""')}"` : s;
-        }).join(',')
-    ).join('\r\n');
-
-    // BOM for Excel UTF-8 compatibility
-    const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+    const buffer = await wb.xlsx.writeBuffer();
+    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     const dateStr = new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
     const regiaoSuffix = summaryFilter.regiao !== 'all' ? `_${summaryFilter.regiao}` : '';
     a.href = url;
-    a.download = `resumo_veiculos${regiaoSuffix}_${dateStr}.csv`;
+    a.download = `resumo_veiculos${regiaoSuffix}_${dateStr}.xlsx`;
     a.click();
     URL.revokeObjectURL(url);
-    toast('✅ CSV exportado!', 'success');
+    toast('✅ Excel exportado!', 'success');
 }
 
 function kpiCard(label, value, color) {
