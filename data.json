@@ -62,7 +62,7 @@
   {
     "id": 1788864416213,
     "ts": "2026-09-08T10:46:56.213Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -77,7 +77,8 @@
     "veiculo": "VUC PP 10³",
     "regiao": "São Mateus",
     "quantidade": "01",
-    "motivo": "Solicito esta ambulância para entregas de insucessos em decorrência do feriado prolongado! Já vamos liberá-los agora cedo! Para limpar o piso e receber o carregamento de hoje!! Consegue nos ajudar?"
+    "motivo": "Solicito esta ambulância para entregas de insucessos em decorrência do feriado prolongado! Já vamos liberá-los agora cedo! Para limpar o piso e receber o carregamento de hoje!! Consegue nos ajudar?",
+    "cancelledAt": "2026-09-08T10:50:40.320Z"
   },
   {
     "id": 1788863157401,
