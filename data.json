@@ -7455,7 +7455,7 @@
   {
     "id": 1786746509786,
     "ts": "2026-08-14T22:28:29.786Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -7469,6 +7469,7 @@
     "veiculo": "UtilitÃ¡rio",
     "regiao": "SÃ£o Mateus",
     "quantidade": "2",
-    "motivo": "Volumetria alta"
+    "motivo": "Volumetria alta",
+    "cancelledAt": "2026-09-08T11:15:07.805Z"
   }
 ]
