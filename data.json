@@ -1,5 +1,25 @@
 [
   {
+    "id": 1788862761955,
+    "ts": "2026-09-08T10:19:21.955Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-09-08",
+    "dataFmt": "08/09/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "VUC",
+    "regiao": "Teixeira de Freitas",
+    "quantidade": "01",
+    "motivo": "Insucessos volumosos de sábado, domingo e feriado de segunda"
+  },
+  {
     "id": 1788785541343,
     "ts": "2026-09-07T12:52:21.343Z",
     "status": "authorized",
