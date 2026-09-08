@@ -42,7 +42,7 @@
   {
     "id": 1788871918372,
     "ts": "2026-09-08T12:51:58.372Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -57,7 +57,8 @@
     "veiculo": "HR 8hs",
     "regiao": "Linhares",
     "quantidade": "01",
-    "motivo": "VUC LM não coube todas as geladeiras, precisamos do apoio"
+    "motivo": "VUC LM não coube todas as geladeiras, precisamos do apoio",
+    "cancelledAt": "2026-09-08T13:21:22.404Z"
   },
   {
     "id": 1788871769705,
