@@ -504,6 +504,7 @@
     </div>
     <div id="insucessoDateFilterBar"></div>
     <div class="stats-grid" id="insucessoStats"></div>
+    <div id="insucessoStatusBar"></div>
     <div id="insucessoFilterBar"></div>
     <div id="insucessoList"></div>
 </div>
@@ -610,7 +611,7 @@ const tabFilters = {
     authorized: { xpt: 'all', transp: 'all' },
     done:       { xpt: 'all', transp: 'all' },
     cancelled:  { xpt: 'all', transp: 'all' },
-    insucesso:  { xpt: 'all', transp: 'all' },
+    insucesso:  { xpt: 'all', transp: 'all', status: 'all' },
     all:        { xpt: 'all', transp: 'all' },
 };
 
@@ -1345,15 +1346,24 @@ function renderInsucesso() {
     renderDateFilterBar('insucessoDateFilterBar');
     const base = applyDateFilter(requests.filter(r => r.insucesso === true));
     renderSecondaryFilters('insucessoFilterBar', base, 'insucesso');
-    const list   = applyTabFilters(base, 'insucesso');
-    const totalV = list.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
-    const pendingCount    = list.filter(r => r.status === 'pending').length;
-    const authorizedCount = list.filter(r => r.status === 'authorized' && !r.feito).length;
-    const cancelledCount  = list.filter(r => r.status === 'cancelled').length;
+    const afterXptTransp = applyTabFilters(base, 'insucesso');
+
+    const pendingCount    = afterXptTransp.filter(r => r.status === 'pending').length;
+    const authorizedCount = afterXptTransp.filter(r => r.status === 'authorized' && !r.feito).length;
+    const feitoCount      = afterXptTransp.filter(r => r.feito).length;
+    const cancelledCount  = afterXptTransp.filter(r => r.status === 'cancelled').length;
+
+    // Sub-abas por status: evita misturar Aguardando/Autorizado/Feito na mesma lista
+    const statusFilter = tabFilters.insucesso.status || 'all';
+    const list = statusFilter === 'pending'    ? afterXptTransp.filter(r => r.status === 'pending')
+               : statusFilter === 'authorized' ? afterXptTransp.filter(r => r.status === 'authorized' && !r.feito)
+               : statusFilter === 'feito'      ? afterXptTransp.filter(r => r.feito)
+               : statusFilter === 'cancelled'  ? afterXptTransp.filter(r => r.status === 'cancelled')
+               : afterXptTransp;
 
     document.getElementById('insucessoStats').innerHTML = `
         <div class="stat-card" style="border-color:#92400e">
-            <div class="stat-val" style="color:#92400e">${list.length}</div>
+            <div class="stat-val" style="color:#92400e">${afterXptTransp.length}</div>
             <div class="stat-lbl">Insucessos</div>
         </div>
         <div class="stat-card pending-card">
@@ -1364,15 +1374,34 @@ function renderInsucesso() {
             <div class="stat-val auth-val">${authorizedCount}</div>
             <div class="stat-lbl">Autorizados</div>
         </div>
+        <div class="stat-card" style="border-color:#6366f1">
+            <div class="stat-val" style="color:#818cf8">${feitoCount}</div>
+            <div class="stat-lbl">Feitos</div>
+        </div>
         <div class="stat-card" style="border-color:var(--danger)">
             <div class="stat-val" style="color:var(--danger)">${cancelledCount}</div>
             <div class="stat-lbl">Cancelados</div>
         </div>
     `;
 
+    document.getElementById('insucessoStatusBar').innerHTML = `
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;align-items:center">
+            <span style="font-size:0.7rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-right:4px">Status</span>
+            <button class="filter-chip ${statusFilter==='all'?'active':''}" onclick="setInsucessoStatusFilter('all')">Todos (${afterXptTransp.length})</button>
+            <button class="filter-chip ${statusFilter==='pending'?'active':''}" onclick="setInsucessoStatusFilter('pending')">⏳ Aguardando (${pendingCount})</button>
+            <button class="filter-chip ${statusFilter==='authorized'?'active':''}" onclick="setInsucessoStatusFilter('authorized')">✅ Autorizado (${authorizedCount})</button>
+            <button class="filter-chip ${statusFilter==='feito'?'active':''}" onclick="setInsucessoStatusFilter('feito')">🏁 Feito (${feitoCount})</button>
+            <button class="filter-chip ${statusFilter==='cancelled'?'active':''}" onclick="setInsucessoStatusFilter('cancelled')">❌ Cancelado (${cancelledCount})</button>
+        </div>`;
+
     document.getElementById('insucessoList').innerHTML = list.length === 0
-        ? emptyHTML('🚫', 'Nenhum insucesso registrado', 'Pedidos enviados sem link da rota aparecem aqui')
+        ? emptyHTML('🚫', 'Nenhum insucesso nesse filtro', 'Ajuste o status ou a data acima')
         : renderGrouped(list, true);
+}
+
+function setInsucessoStatusFilter(val) {
+    tabFilters.insucesso.status = val;
+    renderInsucesso();
 }
 
 // Remove a marcação de Insucesso dos pedidos listados (não exclui os pedidos —
