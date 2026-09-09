@@ -242,7 +242,7 @@
   {
     "id": 1788945822975,
     "ts": "2026-09-09T09:23:42.975Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -257,7 +257,8 @@
     "veiculo": "VUC",
     "regiao": "Teixeira de Freitas",
     "quantidade": "01",
-    "motivo": "Insucessos comerciais de sábado, domingo e feriado + insucessos Melli extra"
+    "motivo": "Insucessos comerciais de sábado, domingo e feriado + insucessos Melli extra",
+    "cancelledAt": "2026-09-09T13:01:41.607Z"
   },
   {
     "id": 1788945753031,
