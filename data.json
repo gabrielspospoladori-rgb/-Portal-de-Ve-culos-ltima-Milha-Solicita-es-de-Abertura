@@ -262,7 +262,7 @@
   {
     "id": 1788945753031,
     "ts": "2026-09-09T09:22:33.031Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -277,7 +277,8 @@
     "veiculo": "Utilitário",
     "regiao": "Alcobaça",
     "quantidade": "01",
-    "motivo": "Insucessos de sábado, domingo e feriado.\n(Rotas com alta quantidade de insucessos)"
+    "motivo": "Insucessos de sábado, domingo e feriado.\n(Rotas com alta quantidade de insucessos)",
+    "cancelledAt": "2026-09-09T13:01:04.351Z"
   },
   {
     "id": 1788945690795,
