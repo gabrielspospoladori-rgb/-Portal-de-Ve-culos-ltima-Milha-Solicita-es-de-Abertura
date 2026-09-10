@@ -40,6 +40,26 @@
     "motivo": "restante de saca no svc"
   },
   {
+    "id": 1788958966525,
+    "ts": "2026-09-09T13:02:46.525Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-09-09",
+    "dataFmt": "09/09/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Teixeira De Freitas",
+    "quantidade": "01",
+    "motivo": "Insucessos Melli extras"
+  },
+  {
     "id": 1788958939946,
     "ts": "2026-09-09T13:02:19.946Z",
     "status": "authorized",
