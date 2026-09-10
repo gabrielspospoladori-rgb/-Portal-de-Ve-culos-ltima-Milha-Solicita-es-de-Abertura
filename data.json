@@ -2,7 +2,7 @@
   {
     "id": 1789040923312,
     "ts": "2026-09-10T11:48:43.312Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -17,7 +17,8 @@
     "veiculo": "Passeio",
     "regiao": "Teixeira de Freitas",
     "quantidade": "01",
-    "motivo": "Insucessos Melli extra"
+    "motivo": "Insucessos Melli extra",
+    "cancelledAt": "2026-09-10T11:53:42.853Z"
   },
   {
     "id": 1789040742904,
