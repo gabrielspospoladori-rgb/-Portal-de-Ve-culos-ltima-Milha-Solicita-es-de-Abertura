@@ -20,6 +20,26 @@
     "motivo": "Insucessos Melli extra + volumosos"
   },
   {
+    "id": 1789040120141,
+    "ts": "2026-09-10T11:35:20.141Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES3",
+    "data": "2026-09-10",
+    "dataFmt": "10/09/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/437854173",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "São Mateus - Guriri",
+    "quantidade": "01",
+    "motivo": "Rota espaçada em toda a cidade de São Mateus, e no bairro Guriri!\nSolicito um apoio para melhora distribuição destas áreas, tendo em vista os pontos de atenção devido a obras de macrodrenagem e pontos de alagamento na região de guriri, devido as chuvas.\nIremos direcionar pacotes de outras rotas, para melhor atender esse bairro!!"
+  },
+  {
     "id": 1789039631220,
     "ts": "2026-09-10T11:27:11.220Z",
     "status": "pending",
