@@ -22,9 +22,9 @@
   {
     "id": 1789208318940,
     "ts": "2026-09-12T10:18:38.940Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-09-12T10:20:58.056Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "Deluna",
