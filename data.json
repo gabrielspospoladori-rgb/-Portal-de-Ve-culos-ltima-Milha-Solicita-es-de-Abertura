@@ -102,9 +102,9 @@
   {
     "id": 1789300751811,
     "ts": "2026-09-13T11:59:11.812Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-09-14T10:36:33.095Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "Parceiro Spot",
@@ -223,9 +223,9 @@
   {
     "id": 1789297618125,
     "ts": "2026-09-13T11:06:58.125Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-09-14T10:36:26.567Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "Hawk",
