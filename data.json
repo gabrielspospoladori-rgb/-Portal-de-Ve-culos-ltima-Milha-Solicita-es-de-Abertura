@@ -24,7 +24,7 @@
     "id": 1789483896756,
     "ts": "2026-09-15T14:51:36.756Z",
     "updatedAt": "2026-09-15T14:51:36.756Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -39,7 +39,8 @@
     "veiculo": "Passeio",
     "regiao": "barra de sao francisco",
     "quantidade": "01",
-    "motivo": "rota com volumetria alta e pacotes volumosos"
+    "motivo": "rota com volumetria alta e pacotes volumosos",
+    "cancelledAt": "2026-09-15T17:51:07.379Z"
   },
   {
     "id": 1789483676099,
