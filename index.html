@@ -641,6 +641,24 @@ function fromB64(b64) {
     return new TextDecoder().decode(bytes);
 }
 
+// Funde duas listas de pedidos por id. Para ids presentes nas duas, mantém o
+// registro com o `updatedAt` (fallback `ts`) mais recente — nunca "quem salvou
+// por último apaga o que o outro mudou". Sem isso, um merge que só olha "id
+// novo entra, id conhecido eu mantenho o meu" pode sobrescrever silenciosamente
+// uma autorização/cancelamento feito por outro usuário, fazendo o pedido
+// "passar e voltar" de status quando os dois dispositivos sincronizam.
+function mergeByUpdatedAt(listA, listB) {
+    const map = new Map();
+    const stamp = r => Date.parse(r.updatedAt || r.ts || 0) || 0;
+    listA.forEach(r => map.set(Number(r.id), r));
+    listB.forEach(r => {
+        const id = Number(r.id);
+        const existing = map.get(id);
+        if (!existing || stamp(r) > stamp(existing)) map.set(id, r);
+    });
+    return [...map.values()];
+}
+
 async function loadFromSheets() {
     setSyncStatus('syncing');
     try {
@@ -649,10 +667,10 @@ async function loadFromSheets() {
         const file = await res.json();
         const data = JSON.parse(fromB64(file.content));
         if (Array.isArray(data)) {
-            // Merge: preserva pedidos locais que ainda não foram ao GitHub
-            const ghIds = new Set(data.map(r => Number(r.id)));
-            const localOnly = requests.filter(r => !ghIds.has(Number(r.id)));
-            const merged = [...data, ...localOnly].map(r => ({
+            // Merge: preserva pedidos locais que ainda não foram ao GitHub E preserva
+            // mudanças mais recentes (por updatedAt) de qualquer um dos dois lados —
+            // nunca descarta silenciosamente uma edição feita por outro usuário.
+            const merged = mergeByUpdatedAt(data, requests).map(r => ({
                 ...r,
                 id: Number(r.id),
                 feito: r.feito === true || r.feito === 'true' || r.feito === 'TRUE',
@@ -661,12 +679,20 @@ async function loadFromSheets() {
                 ...(r.status === 'insucesso' ? { status: 'pending', insucesso: true } : {}),
             }));
             merged.sort((a, b) => b.id - a.id);
+
+            // Auto-recovery: dispara um novo save se o resultado do merge tem algo que
+            // o GitHub ainda não tem (pedido novo só local, ou uma versão local mais
+            // recente que "ganhou" de um registro que também existe no GitHub).
+            const needsPush = merged.some(r => {
+                const g = data.find(x => Number(x.id) === Number(r.id));
+                return !g || (g.updatedAt || g.ts) !== (r.updatedAt || r.ts);
+            });
+
             requests = merged;
             localStorage.setItem('vm_requests_v2', JSON.stringify(requests));
 
-            // Auto-recovery: se há pedidos locais não no GitHub, reenvia agora
-            if (localOnly.length > 0) {
-                console.log(`🔄 Recuperando ${localOnly.length} pedido(s) não sincronizado(s)...`);
+            if (needsPush) {
+                console.log('🔄 Recuperando pedido(s) não sincronizado(s)...');
                 setTimeout(() => {
                     setSyncStatus('syncing');
                     saveToSheets()
@@ -695,20 +721,18 @@ async function saveToSheets() {
             const existing = await readRes.json();
             const sha = existing.sha;
 
-            // If GitHub has newer data, merge before overwriting
+            // If GitHub has newer data, merge before overwriting. Usa mergeByUpdatedAt
+            // para não sobrescrever uma mudança mais recente feita por outro usuário
+            // (ex: alguém autorizou o pedido enquanto este dispositivo ainda tinha a
+            // versão antiga em memória) — antes isso "resetava" o status do pedido.
             let base = requests;
             try {
                 const ghData = JSON.parse(fromB64(existing.content));
                 if (Array.isArray(ghData) && ghData.length > 0) {
-                    const localIds = new Set(requests.map(r => Number(r.id)));
-                    // Add any GitHub entries that aren't in our local state
-                    const ghOnly = ghData.filter(r => !localIds.has(Number(r.id)));
-                    if (ghOnly.length > 0) {
-                        base = [...requests, ...ghOnly];
-                        base.sort((a, b) => Number(b.id) - Number(a.id));
-                        requests = base;
-                        localStorage.setItem('vm_requests_v2', JSON.stringify(requests));
-                    }
+                    base = mergeByUpdatedAt(requests, ghData);
+                    base.sort((a, b) => Number(b.id) - Number(a.id));
+                    requests = base;
+                    localStorage.setItem('vm_requests_v2', JSON.stringify(requests));
                 }
             } catch(_) { /* merge failed, save what we have */ }
 
@@ -975,6 +999,7 @@ function handleSubmit(e) {
     const req = {
         id: Date.now(),
         ts: new Date().toISOString(),
+        updatedAt: new Date().toISOString(), // usado para resolver conflitos de sincronização (last-write-wins por registro)
         status: 'pending',
         authorizedBy: null,
         authorizedAt: null,
@@ -1048,6 +1073,7 @@ function authorize(id) {
     if (!r) return;
     r.status = 'authorized';
     r.authorizedAt = new Date().toISOString();
+    r.updatedAt = r.authorizedAt;
     lastAuthorizedIds.add(id); // evita tocar o som de novo no próprio auto-sync
     save();
     refreshHeader();
@@ -1067,6 +1093,7 @@ function unauthorize(id) {
     if (!r) return;
     r.status = 'pending';
     r.authorizedAt = null;
+    r.updatedAt = new Date().toISOString();
     lastAuthorizedIds.delete(id);
     save();
     refreshHeader();
@@ -1084,6 +1111,7 @@ function cancelRequest(id) {
     if (!r) return;
     r.status = 'cancelled';
     r.cancelledAt = new Date().toISOString();
+    r.updatedAt = r.cancelledAt;
     save();
     refreshHeader();
     const active = document.querySelector('.tab-btn.active').id;
@@ -1330,6 +1358,7 @@ function restoreRequest(id) {
     if (!r) return;
     r.status = 'pending';
     r.cancelledAt = null;
+    r.updatedAt = new Date().toISOString();
     save(); refreshHeader();
     const active = document.querySelector('.tab-btn.active').id;
     if (active === 'tabBtnCancelled') renderCancelled();
@@ -1409,7 +1438,8 @@ function setInsucessoStatusFilter(val) {
 function clearInsucesso() {
     if (!checkManagerPassword()) return;
     if (!confirm('Remover a marcação de Insucesso de todos os pedidos listados?\n\nOs pedidos NÃO serão excluídos — apenas deixarão de aparecer nesta aba.')) return;
-    requests.forEach(r => { if (r.insucesso) r.insucesso = false; });
+    const nowIso = new Date().toISOString();
+    requests.forEach(r => { if (r.insucesso) { r.insucesso = false; r.updatedAt = nowIso; } });
     save(); refreshHeader(); renderInsucesso();
     toast('🏳️ Marcações de Insucesso removidas', 'info');
 }
@@ -2090,6 +2120,7 @@ function togglePedidoFeito(reqId) {
     if (!r) return;
     r.feito = !r.feito;
     r.feitoAt = r.feito ? new Date().toISOString() : null;
+    r.updatedAt = new Date().toISOString();
     save();
     refreshHeader();
     if (r.feito) {
@@ -2169,6 +2200,7 @@ function submitEdit() {
         return;
     }
 
+    r.updatedAt = nowIso;
     save();
     refreshHeader();
     closeEditModal();
@@ -2256,7 +2288,8 @@ function emptyHTML(icon, title, sub) {
 }
 
 function save() {
-    try { localStorage.setItem('vm_requests_v2', JSON.stringify(requests)); } catch(e) {}
+    try { localStorage.setItem('vm_requests_v2', JSON.stringify(requests)); }
+    catch(e) { console.warn('⚠️ localStorage.setItem falhou (possível limite de armazenamento do navegador):', e); }
     if (isSaving) return; // já tem um save em andamento — localStorage já foi atualizado, GitHub pega na próxima
     isSaving = true;
     setSyncStatus('syncing');
