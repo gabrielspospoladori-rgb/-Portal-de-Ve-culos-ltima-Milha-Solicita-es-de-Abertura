@@ -273,8 +273,8 @@
     "status": "authorized",
     "authorizedBy": null,
     "authorizedAt": "2026-09-15T15:00:36.952Z",
-    "feito": false,
-    "feitoAt": null,
+    "feito": true,
+    "feitoAt": "2026-09-15T15:04:19.529Z",
     "transportadora": "Parceiro Spot",
     "xpt": "SVC",
     "data": "2026-09-15",
@@ -285,7 +285,8 @@
     "veiculo": "HR 8hs",
     "regiao": "Valério/rio bananal",
     "quantidade": "01",
-    "motivo": "Rota espaçada e com mais de 130 pacotes e 103 paradas"
+    "motivo": "Rota espaçada e com mais de 130 pacotes e 103 paradas",
+    "updatedAt": "2026-09-15T15:04:19.529Z"
   },
   {
     "id": 1789474111254,
