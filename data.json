@@ -87,8 +87,8 @@
   {
     "id": 1789479202626,
     "ts": "2026-09-15T13:33:22.626Z",
-    "updatedAt": "2026-09-15T13:33:22.626Z",
-    "status": "cancelled",
+    "updatedAt": "2026-09-15T18:10:30.729Z",
+    "status": "pending",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -104,7 +104,7 @@
     "regiao": "Guaratiba",
     "quantidade": "01",
     "motivo": "Alta quantidade de insucessos e pacotes da Guaratiba atrelados as rotas do Prado e Alcobaça +55 pacotes",
-    "cancelledAt": "2026-09-15T17:51:02.731Z"
+    "cancelledAt": null
   },
   {
     "id": 1789478730979,
