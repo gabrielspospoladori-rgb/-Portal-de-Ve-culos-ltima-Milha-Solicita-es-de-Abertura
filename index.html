@@ -1125,7 +1125,11 @@ function cancelRequest(id) {
 function clearCancelled() {
     if (!checkManagerPassword()) return;
     if (!confirm('Limpar todos os cancelados?')) return;
-    requests = requests.filter(r => r.status !== 'cancelled');
+    // Soft-hide (nunca remove do array): se removêssemos de verdade, um merge de
+    // sincronização poderia "ressuscitar" o registro a partir da cópia de outro
+    // dispositivo/GitHub que ainda não sabe que ele foi limpo.
+    const nowIso = new Date().toISOString();
+    requests.forEach(r => { if (r.status === 'cancelled') { r.hiddenFromCancelled = true; r.updatedAt = nowIso; } });
     save(); refreshHeader(); renderCancelled();
     toast('🗑 Cancelados removidos', 'info');
 }
@@ -1282,7 +1286,7 @@ function applyCancelledDateFilter(list) {
 
 function renderCancelled() {
     renderDateFilterBar('cancelledDateFilterBar');
-    const base = applyCancelledDateFilter(requests.filter(r => r.status === 'cancelled'));
+    const base = applyCancelledDateFilter(requests.filter(r => r.status === 'cancelled' && !r.hiddenFromCancelled));
     renderSecondaryFilters('cancelledFilterBar', base, 'cancelled');
     const list   = applyTabFilters(base, 'cancelled');
     const totalV = list.reduce((s, r) => s + (parseInt(r.quantidade) || 0), 0);
