@@ -132,8 +132,8 @@
     "status": "authorized",
     "authorizedBy": null,
     "authorizedAt": "2026-09-15T14:04:42.234Z",
-    "feito": false,
-    "feitoAt": null,
+    "feito": true,
+    "feitoAt": "2026-09-15T15:02:47.043Z",
     "transportadora": "Parceiro Spot",
     "xpt": "EBA32",
     "data": "2026-09-15",
@@ -144,7 +144,8 @@
     "veiculo": "VUC",
     "regiao": "Teixeira de Freitas",
     "quantidade": "01",
-    "motivo": "Insucessos Melli extra + volumosos no galpão"
+    "motivo": "Insucessos Melli extra + volumosos no galpão",
+    "updatedAt": "2026-09-15T15:02:47.043Z"
   },
   {
     "id": 1789475010793,
