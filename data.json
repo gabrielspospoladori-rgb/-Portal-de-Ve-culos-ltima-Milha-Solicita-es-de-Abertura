@@ -231,7 +231,7 @@
     "id": 1789484687325,
     "ts": "2026-09-15T15:04:47.325Z",
     "updatedAt": "2026-09-15T15:04:47.325Z",
-    "status": "pending",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -246,7 +246,8 @@
     "veiculo": "VUC",
     "regiao": "Itanhem",
     "quantidade": "01",
-    "motivo": "Insucessos de alta cubagem de Itanhem, volumosos no galpão"
+    "motivo": "Insucessos de alta cubagem de Itanhem, volumosos no galpão",
+    "cancelledAt": "2026-09-16T12:59:19.707Z"
   },
   {
     "id": 1789483896756,
