@@ -47,8 +47,8 @@
     "status": "authorized",
     "authorizedBy": null,
     "authorizedAt": "2026-09-17T12:24:15.822Z",
-    "feito": false,
-    "feitoAt": null,
+    "feito": true,
+    "feitoAt": "2026-09-17T12:35:25.794Z",
     "transportadora": "Parceiro Spot",
     "xpt": "EBA32",
     "data": "2026-09-17",
@@ -59,7 +59,7 @@
     "regiao": "Teixeira de Freitas",
     "quantidade": "01",
     "motivo": "Insucessos MELI EXTRA",
-    "updatedAt": "2026-09-17T12:24:15.822Z"
+    "updatedAt": "2026-09-17T12:35:25.794Z"
   },
   {
     "id": 1789643562527,
