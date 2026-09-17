@@ -44,9 +44,9 @@
   {
     "id": 1789645553666,
     "ts": "2026-09-17T11:45:53.666Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-09-17T12:24:15.822Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "Parceiro Spot",
@@ -58,7 +58,8 @@
     "veiculo": "VUC",
     "regiao": "Teixeira de Freitas",
     "quantidade": "01",
-    "motivo": "Insucessos MELI EXTRA"
+    "motivo": "Insucessos MELI EXTRA",
+    "updatedAt": "2026-09-17T12:24:15.822Z"
   },
   {
     "id": 1789643562527,
