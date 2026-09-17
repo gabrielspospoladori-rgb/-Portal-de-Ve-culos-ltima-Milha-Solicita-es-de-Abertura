@@ -2,8 +2,8 @@
   {
     "id": 1789652872420,
     "ts": "2026-09-17T13:47:52.420Z",
-    "updatedAt": "2026-09-17T15:42:43.272Z",
-    "status": "pending",
+    "updatedAt": "2026-09-17T15:57:42.073Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -19,7 +19,7 @@
     "regiao": "Juerana",
     "quantidade": "01",
     "motivo": "Rota de Juerana não veio.\nPacotes de Juerana e Taquaria atrelados as rotas de Posto da Mata e Caravelas \nhttps://envios.adminml.com/logistics/monitoring-distribution/detail/441529810",
-    "cancelledAt": null
+    "cancelledAt": "2026-09-17T15:57:42.073Z"
   },
   {
     "id": 1789650429210,
