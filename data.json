@@ -44,8 +44,8 @@
   {
     "id": 1789738004439,
     "ts": "2026-09-18T13:26:44.439Z",
-    "updatedAt": "2026-09-18T13:26:44.439Z",
-    "status": "pending",
+    "updatedAt": "2026-09-18T14:20:15.930Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -60,7 +60,8 @@
     "veiculo": "VUC PP 10³",
     "regiao": "São Mateus",
     "quantidade": "01",
-    "motivo": "Rota de São Mateus, com 136 pacotes, e vários pontos comerciais. Contendo vários Volumosos nos quais não irão caber no veículo."
+    "motivo": "Rota de São Mateus, com 136 pacotes, e vários pontos comerciais. Contendo vários Volumosos nos quais não irão caber no veículo.",
+    "cancelledAt": "2026-09-18T14:20:15.930Z"
   },
   {
     "id": 1789737629546,
