@@ -65,7 +65,7 @@
   {
     "id": 1789726947096,
     "ts": "2026-09-18T10:22:27.096Z",
-    "updatedAt": "2026-09-18T10:22:27.096Z",
+    "updatedAt": "2026-09-18T11:22:52.548Z",
     "status": "pending",
     "authorizedBy": null,
     "authorizedAt": null,
@@ -81,7 +81,16 @@
     "veiculo": "Vuc LM 2026",
     "regiao": "novo brasil - governador - córrego são paulo",
     "quantidade": "01",
-    "motivo": "rota espaçada de interior com muita região rota D6"
+    "motivo": "rota espaçada de interior com muita região rota D6 https://envios.adminml.com/logistics/monitoring-distribution/detail/442405909",
+    "editHistory": [
+      {
+        "field": "motivo",
+        "fieldLabel": "Motivo",
+        "from": "rota espaçada de interior com muita região rota D6",
+        "to": "rota espaçada de interior com muita região rota D6 https://envios.adminml.com/logistics/monitoring-distribution/detail/442405909",
+        "at": "2026-09-18T11:22:52.548Z"
+      }
+    ]
   },
   {
     "id": 1789726775649,
