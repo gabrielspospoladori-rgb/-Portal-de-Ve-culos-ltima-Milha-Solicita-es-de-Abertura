@@ -6928,8 +6928,8 @@
     "status": "authorized",
     "authorizedBy": null,
     "authorizedAt": "2026-08-26T13:38:14.844Z",
-    "feito": true,
-    "feitoAt": "2026-08-26T13:48:17.563Z",
+    "feito": false,
+    "feitoAt": null,
     "transportadora": "Parceiro Spot",
     "xpt": "EBA32",
     "data": "2026-08-26",
@@ -6939,7 +6939,8 @@
     "veiculo": "Utilitário",
     "regiao": "Jucuruçu",
     "quantidade": "01",
-    "motivo": "Pacotes de alta cubagem de jucurucu atrelados em rota de Teixeira de Freitas, Prado e itamaraju\nhttps://envios.adminml.com/logistics/monitoring-distribution/detail/430063789\nhttps://envios.adminml.com/logistics/monitoring-distribution/detail/430063341"
+    "motivo": "Pacotes de alta cubagem de jucurucu atrelados em rota de Teixeira de Freitas, Prado e itamaraju\nhttps://envios.adminml.com/logistics/monitoring-distribution/detail/430063789\nhttps://envios.adminml.com/logistics/monitoring-distribution/detail/430063341",
+    "updatedAt": "2026-09-18T12:07:48.739Z"
   },
   {
     "id": 1787748234892,
