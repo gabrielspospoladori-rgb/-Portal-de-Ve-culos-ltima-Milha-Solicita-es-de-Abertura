@@ -68,8 +68,8 @@
     "status": "authorized",
     "authorizedBy": null,
     "authorizedAt": "2026-09-21T10:38:47.823Z",
-    "feito": false,
-    "feitoAt": null,
+    "feito": true,
+    "feitoAt": "2026-09-21T10:38:51.837Z",
     "transportadora": "Parceiro Spot",
     "xpt": "EBA32",
     "data": "2026-09-20",
@@ -80,7 +80,7 @@
     "regiao": "Posto da Mata",
     "quantidade": "01",
     "motivo": "Pacotes de Posto da Mata na rota de Caravelas",
-    "updatedAt": "2026-09-21T10:38:47.823Z"
+    "updatedAt": "2026-09-21T10:38:51.837Z"
   },
   {
     "id": 1789907023389,
