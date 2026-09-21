@@ -65,9 +65,9 @@
   {
     "id": 1789907617078,
     "ts": "2026-09-20T12:33:37.078Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-09-21T10:38:47.823Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "Parceiro Spot",
@@ -79,7 +79,8 @@
     "veiculo": "Utilitário",
     "regiao": "Posto da Mata",
     "quantidade": "01",
-    "motivo": "Pacotes de Posto da Mata na rota de Caravelas"
+    "motivo": "Pacotes de Posto da Mata na rota de Caravelas",
+    "updatedAt": "2026-09-21T10:38:47.823Z"
   },
   {
     "id": 1789907023389,
