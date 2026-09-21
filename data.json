@@ -213,8 +213,8 @@
     "status": "authorized",
     "authorizedBy": null,
     "authorizedAt": "2026-09-21T10:40:40.736Z",
-    "feito": false,
-    "feitoAt": null,
+    "feito": true,
+    "feitoAt": "2026-09-21T10:40:46.816Z",
     "transportadora": "Parceiro Spot",
     "xpt": "EBA32",
     "data": "2026-09-20",
@@ -225,7 +225,7 @@
     "regiao": "Itanhem",
     "quantidade": "01",
     "motivo": "Pacotes de Itanhem na rota de Medeiros Neto",
-    "updatedAt": "2026-09-21T10:40:40.736Z"
+    "updatedAt": "2026-09-21T10:40:46.816Z"
   },
   {
     "id": 1789834389541,
