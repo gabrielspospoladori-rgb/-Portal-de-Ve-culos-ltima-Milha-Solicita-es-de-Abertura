@@ -110,8 +110,8 @@
     "status": "authorized",
     "authorizedBy": null,
     "authorizedAt": "2026-09-21T11:58:25.332Z",
-    "feito": false,
-    "feitoAt": null,
+    "feito": true,
+    "feitoAt": "2026-09-21T13:08:43.243Z",
     "transportadora": "Parceiro Spot",
     "xpt": "EBA32",
     "data": "2026-09-21",
@@ -122,7 +122,7 @@
     "regiao": "Carlos Chagas",
     "quantidade": "01",
     "motivo": "Pacotes de Carlos Chagas na rota de Nanuque",
-    "updatedAt": "2026-09-21T11:58:25.332Z"
+    "updatedAt": "2026-09-21T13:08:43.243Z"
   },
   {
     "id": 1789934198091,
