@@ -23,9 +23,9 @@
   {
     "id": 1789987740104,
     "ts": "2026-09-21T10:49:00.104Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-09-21T11:58:25.332Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "Parceiro Spot",
@@ -37,7 +37,8 @@
     "veiculo": "Utilitário",
     "regiao": "Carlos Chagas",
     "quantidade": "01",
-    "motivo": "Pacotes de Carlos Chagas na rota de Nanuque"
+    "motivo": "Pacotes de Carlos Chagas na rota de Nanuque",
+    "updatedAt": "2026-09-21T11:58:25.332Z"
   },
   {
     "id": 1789934198091,
