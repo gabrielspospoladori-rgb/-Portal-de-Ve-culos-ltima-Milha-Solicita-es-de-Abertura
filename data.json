@@ -193,8 +193,8 @@
     "status": "authorized",
     "authorizedBy": null,
     "authorizedAt": "2026-09-21T10:39:04.197Z",
-    "feito": false,
-    "feitoAt": null,
+    "feito": true,
+    "feitoAt": "2026-09-21T10:39:07.702Z",
     "transportadora": "Parceiro Spot",
     "xpt": "EBA32",
     "data": "2026-09-20",
@@ -205,7 +205,7 @@
     "regiao": "Itabata",
     "quantidade": "01",
     "motivo": "Pacotes de Itabata na rota de Posto da Mata",
-    "updatedAt": "2026-09-21T10:39:04.197Z"
+    "updatedAt": "2026-09-21T10:39:07.702Z"
   },
   {
     "id": 1789901594510,
