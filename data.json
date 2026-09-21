@@ -190,9 +190,9 @@
   {
     "id": 1789903451893,
     "ts": "2026-09-20T11:24:11.893Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-09-21T10:39:04.197Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "Parceiro Spot",
@@ -204,7 +204,8 @@
     "veiculo": "Utilitário",
     "regiao": "Itabata",
     "quantidade": "01",
-    "motivo": "Pacotes de Itabata na rota de Posto da Mata"
+    "motivo": "Pacotes de Itabata na rota de Posto da Mata",
+    "updatedAt": "2026-09-21T10:39:04.197Z"
   },
   {
     "id": 1789901594510,
