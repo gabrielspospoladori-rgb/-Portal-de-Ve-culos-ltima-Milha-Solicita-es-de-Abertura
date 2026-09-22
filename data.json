@@ -1,5 +1,26 @@
 [
   {
+    "id": 1790073441499,
+    "ts": "2026-09-22T10:37:21.499Z",
+    "updatedAt": "2026-09-22T10:37:21.511Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-09-22",
+    "dataFmt": "22/09/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/444233847",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "São Felix de minas",
+    "quantidade": "01",
+    "motivo": "rota espaçada contendo 4 cidades afastadas\nsendo elas: São Felix de Minas, Mendes Pimentel, Divino Laranjeiras e Linópolis."
+  },
+  {
     "id": 1790073059028,
     "ts": "2026-09-22T10:30:59.028Z",
     "updatedAt": "2026-09-22T10:30:59.028Z",
