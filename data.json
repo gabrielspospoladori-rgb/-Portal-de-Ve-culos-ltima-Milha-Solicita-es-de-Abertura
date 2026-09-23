@@ -1,5 +1,26 @@
 [
   {
+    "id": 1790161618800,
+    "ts": "2026-09-23T11:06:58.800Z",
+    "updatedAt": "2026-09-23T11:06:58.800Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-09-23",
+    "dataFmt": "23/09/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "VUC",
+    "regiao": "Prado",
+    "quantidade": "01",
+    "motivo": "Alta quantidade de insucessos volumosos comerciais de sábado e domingo"
+  },
+  {
     "id": 1790161048532,
     "ts": "2026-09-23T10:57:28.532Z",
     "updatedAt": "2026-09-23T10:57:28.532Z",
