@@ -2,8 +2,8 @@
   {
     "id": 1790164001415,
     "ts": "2026-09-23T11:46:41.416Z",
-    "updatedAt": "2026-09-23T11:46:41.416Z",
-    "status": "pending",
+    "updatedAt": "2026-09-23T11:53:53.339Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -18,7 +18,8 @@
     "veiculo": "Utilitário",
     "regiao": "VINHATICO/ MONTANHA E ITABAIANA",
     "quantidade": "01",
-    "motivo": "Rota com pontos de entrega em Montanha, Vinhatico e interior de Mucurici. Solicitamos um apoio tendo em vista o deslocamento do driver entre as regiões, que chega a 1:20h, tendo em vista também a distância de cerca de 1:40h do XPT até a primeira entrega! Iremos direcionar mais pacotes para este apoio, saindo com cerca de 90 pacotes."
+    "motivo": "Rota com pontos de entrega em Montanha, Vinhatico e interior de Mucurici. Solicitamos um apoio tendo em vista o deslocamento do driver entre as regiões, que chega a 1:20h, tendo em vista também a distância de cerca de 1:40h do XPT até a primeira entrega! Iremos direcionar mais pacotes para este apoio, saindo com cerca de 90 pacotes.",
+    "cancelledAt": "2026-09-23T11:53:53.339Z"
   },
   {
     "id": 1790163915336,
