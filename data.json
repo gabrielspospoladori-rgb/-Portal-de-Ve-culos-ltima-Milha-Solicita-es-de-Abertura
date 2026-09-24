@@ -84,6 +84,27 @@
     "motivo": "Apoio para a rota de regência misturada com Bebedouro e rio quartel, e pacote da Hawk de regência"
   },
   {
+    "id": 1790250184683,
+    "ts": "2026-09-24T11:43:04.683Z",
+    "updatedAt": "2026-09-24T11:43:04.683Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-09-24",
+    "dataFmt": "24/09/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "VUC PP 10³",
+    "regiao": "Teixeira de Freitas",
+    "quantidade": "01",
+    "motivo": "Insucessos Melli extra + volumosos no galpão"
+  },
+  {
     "id": 1790250167647,
     "ts": "2026-09-24T11:42:47.647Z",
     "updatedAt": "2026-09-24T11:42:47.647Z",
