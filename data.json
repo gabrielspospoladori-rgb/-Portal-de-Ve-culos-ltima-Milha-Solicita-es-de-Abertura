@@ -45,8 +45,8 @@
   {
     "id": 1790341056340,
     "ts": "2026-09-25T12:57:36.340Z",
-    "updatedAt": "2026-09-25T12:57:36.340Z",
-    "status": "pending",
+    "updatedAt": "2026-09-25T14:20:44.252Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -61,7 +61,8 @@
     "veiculo": "VUC",
     "regiao": "Prado",
     "quantidade": "01",
-    "motivo": "Rota mista entre distritos, Alcobaça, Guaratiba Prado. \nRotas com pacotes de Prado e Guaratiba  de alta cubagem atrelados a Alcobaça\nRota P9 e N8"
+    "motivo": "Rota mista entre distritos, Alcobaça, Guaratiba Prado. \nRotas com pacotes de Prado e Guaratiba  de alta cubagem atrelados a Alcobaça\nRota P9 e N8",
+    "cancelledAt": "2026-09-25T14:20:44.252Z"
   },
   {
     "id": 1790340877021,
