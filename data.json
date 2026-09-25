@@ -254,8 +254,8 @@
   {
     "id": 1790330024518,
     "ts": "2026-09-25T09:53:44.518Z",
-    "updatedAt": "2026-09-25T09:53:44.518Z",
-    "status": "pending",
+    "updatedAt": "2026-09-25T12:15:40.726Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -270,7 +270,8 @@
     "veiculo": "Utilitário",
     "regiao": "Colatina / São Roque",
     "quantidade": "01",
-    "motivo": "Colatina / São Roque"
+    "motivo": "Colatina / São Roque",
+    "cancelledAt": "2026-09-25T12:15:40.726Z"
   },
   {
     "id": 1790274116358,
