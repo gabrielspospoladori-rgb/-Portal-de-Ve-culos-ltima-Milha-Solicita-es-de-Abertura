@@ -172,8 +172,8 @@
   {
     "id": 1790337060364,
     "ts": "2026-09-25T11:51:00.364Z",
-    "updatedAt": "2026-09-25T11:51:00.364Z",
-    "status": "pending",
+    "updatedAt": "2026-09-25T14:04:45.290Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -188,7 +188,8 @@
     "veiculo": "Utilitário",
     "regiao": "Montanha/interior de Pinheiros",
     "quantidade": "01",
-    "motivo": "Rota espaçada entre Montanha e interior de Pinheiros!! Solicitamos um apoio para melhor atendimento das áreas, tendo em vista o tempo de deslocamento entre as São Mateus e a primeira área de entrega e o deslocamento entre os dois pontos de cerca de 50min. Iremos redistribuir e o apoio sairá com cerca de 100 pacotes da região."
+    "motivo": "Rota espaçada entre Montanha e interior de Pinheiros!! Solicitamos um apoio para melhor atendimento das áreas, tendo em vista o tempo de deslocamento entre as São Mateus e a primeira área de entrega e o deslocamento entre os dois pontos de cerca de 50min. Iremos redistribuir e o apoio sairá com cerca de 100 pacotes da região.",
+    "cancelledAt": "2026-09-25T14:04:45.290Z"
   },
   {
     "id": 1790336939651,
