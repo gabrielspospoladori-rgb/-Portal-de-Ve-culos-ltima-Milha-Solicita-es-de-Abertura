@@ -2,8 +2,8 @@
   {
     "id": 1790764073883,
     "ts": "2026-09-30T10:27:53.883Z",
-    "updatedAt": "2026-09-30T10:27:53.883Z",
-    "status": "pending",
+    "updatedAt": "2026-09-30T10:28:17.618Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -18,7 +18,8 @@
     "veiculo": "Utilitário",
     "regiao": "Itamaraju",
     "quantidade": "01",
-    "motivo": "Insucessos volumosos de sábado e domingo"
+    "motivo": "Insucessos volumosos de sábado e domingo",
+    "cancelledAt": "2026-09-30T10:28:17.618Z"
   },
   {
     "id": 1790763809359,
