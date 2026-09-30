@@ -1,5 +1,26 @@
 [
   {
+    "id": 1790768284174,
+    "ts": "2026-09-30T11:38:04.174Z",
+    "updatedAt": "2026-09-30T11:38:04.174Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES3",
+    "data": "2026-09-30",
+    "dataFmt": "30/09/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/448436297",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Pedro Canário/ cobraice /cristal do norte",
+    "quantidade": "01",
+    "motivo": "ROTA COM DISTRIBUIÇÃO MISTURADA ENTRE DIFERENTES REGIÕES, ENVOLVENDO PEDRO CANÁRIO, BRAÇO DO RIO, COBRAICE, CRISTAL DO NORTE, LAGOA SECA E OUTRAS LOCALIDADES. SOLICITAMOS APOIO PARA MELHOR DISTRIBUIÇÃO DA ROTA, TENDO EM VISTA QUE EM ALGUNS PONTOS O DRIVER PRECISA PERCORRER ATÉ 3 KM DA PISTA ATÉ O CLIENTE, ALÉM DOS DESLOCAMENTOS ENTRE AS DIFERENTES REGIÕES DE ENTREGA E DO XPT ATÉ A PRIMEIRA ÁREA DE ENTREGA. ESSES DESLOCAMENTOS AUMENTAM O TEMPO DE OPERAÇÃO E PODEM COMPROMETER A FINALIZAÇÃO DA ROTA DENTRO DO ORH."
+  },
+  {
     "id": 1790768088684,
     "ts": "2026-09-30T11:34:48.684Z",
     "updatedAt": "2026-09-30T11:34:48.684Z",
