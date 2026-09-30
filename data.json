@@ -222,8 +222,8 @@
   {
     "id": 1790764686237,
     "ts": "2026-09-30T10:38:06.237Z",
-    "updatedAt": "2026-09-30T10:38:06.237Z",
-    "status": "pending",
+    "updatedAt": "2026-09-30T13:54:29.507Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -238,7 +238,8 @@
     "veiculo": "Utilitário",
     "regiao": "São Felix",
     "quantidade": "01",
-    "motivo": "rota espaçada contendo 2 cidades distantes uma da outra\nsendo elas:são Felix e mendes Pimentel."
+    "motivo": "rota espaçada contendo 2 cidades distantes uma da outra\nsendo elas:são Felix e mendes Pimentel.",
+    "cancelledAt": "2026-09-30T13:54:29.507Z"
   },
   {
     "id": 1790764511391,
