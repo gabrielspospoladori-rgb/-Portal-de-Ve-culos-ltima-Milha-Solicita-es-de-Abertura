@@ -1,5 +1,26 @@
 [
   {
+    "id": 1790764135894,
+    "ts": "2026-09-30T10:28:55.894Z",
+    "updatedAt": "2026-09-30T10:28:55.894Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-09-30",
+    "dataFmt": "30/09/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "VUC",
+    "regiao": "Itamaraju",
+    "quantidade": "01",
+    "motivo": "Insucessos volumosos + comerciais de sábado e domingo"
+  },
+  {
     "id": 1790764073883,
     "ts": "2026-09-30T10:27:53.883Z",
     "updatedAt": "2026-09-30T10:28:17.618Z",
