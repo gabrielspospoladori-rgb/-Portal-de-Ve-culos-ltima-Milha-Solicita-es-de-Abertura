@@ -107,8 +107,8 @@
   {
     "id": 1790943237324,
     "ts": "2026-10-02T12:13:57.324Z",
-    "updatedAt": "2026-10-02T12:13:57.324Z",
-    "status": "pending",
+    "updatedAt": "2026-10-02T13:38:58.582Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -123,7 +123,8 @@
     "veiculo": "Utilitário",
     "regiao": "linhares",
     "quantidade": "01",
-    "motivo": "rotas espaçada caí da apoio as elétricas que vinharam com spr alto"
+    "motivo": "rotas espaçada caí da apoio as elétricas que vinharam com spr alto",
+    "cancelledAt": "2026-10-02T13:38:58.582Z"
   },
   {
     "id": 1790942387466,
