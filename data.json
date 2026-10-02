@@ -1,5 +1,26 @@
 [
   {
+    "id": 1790951355237,
+    "ts": "2026-10-02T14:29:15.237Z",
+    "updatedAt": "2026-10-02T14:29:15.237Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-10-02",
+    "dataFmt": "02/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/449428575",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Guaratiba",
+    "quantidade": "01",
+    "motivo": "Rota de Guaratiba não veio.\nPacotes atrelados a rota de Alcobaca e Prado https://envios.adminml.com/logistics/monitoring-distribution/detail/449451367"
+  },
+  {
     "id": 1790949133536,
     "ts": "2026-10-02T13:52:13.536Z",
     "updatedAt": "2026-10-02T14:21:21.912Z",
