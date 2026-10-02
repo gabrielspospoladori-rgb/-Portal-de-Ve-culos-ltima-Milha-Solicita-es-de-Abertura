@@ -65,8 +65,8 @@
   {
     "id": 1790861292774,
     "ts": "2026-10-01T13:28:12.774Z",
-    "updatedAt": "2026-10-01T13:28:12.774Z",
-    "status": "pending",
+    "updatedAt": "2026-10-02T11:04:52.993Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -81,7 +81,8 @@
     "veiculo": "HR 8hs",
     "regiao": "Vila valerio",
     "quantidade": "01",
-    "motivo": "Rota está paralisada a mais de uma hora com o carro no posto aguardando o sistema da ticket voltar, solicito apoio devido a esse atraso e a rota conter alta quantidade de pacotes que podem ser comprometida a DS devido ao atraso"
+    "motivo": "Rota está paralisada a mais de uma hora com o carro no posto aguardando o sistema da ticket voltar, solicito apoio devido a esse atraso e a rota conter alta quantidade de pacotes que podem ser comprometida a DS devido ao atraso",
+    "cancelledAt": "2026-10-02T11:04:52.993Z"
   },
   {
     "id": 1790859867239,
