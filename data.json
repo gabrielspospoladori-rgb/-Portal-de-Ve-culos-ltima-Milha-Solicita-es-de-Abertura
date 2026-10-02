@@ -1,5 +1,26 @@
 [
   {
+    "id": 1790941644686,
+    "ts": "2026-10-02T11:47:24.686Z",
+    "updatedAt": "2026-10-02T11:47:24.687Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-02",
+    "dataFmt": "02/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/449629832",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Mantena",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos 81 paradas entre Mantena e Barra de São Francisco, além de vários comércios na região que possuem horário para recebimento. O apoio é necessário para conseguirmos atender as duas cidades dentro do horário e evitar impacto nas entregas comerciais."
+  },
+  {
     "id": 1790941219915,
     "ts": "2026-10-02T11:40:19.915Z",
     "updatedAt": "2026-10-02T11:40:19.915Z",
