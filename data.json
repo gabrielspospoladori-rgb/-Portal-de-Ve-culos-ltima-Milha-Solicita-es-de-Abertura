@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791027774361,
+    "ts": "2026-10-03T11:42:54.361Z",
+    "updatedAt": "2026-10-03T11:42:54.361Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-03",
+    "dataFmt": "03/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/450182468",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Governador Lacerda /Água Doce do Norte",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos 58 paradas entre Barra de São Francisco, Vila Luciene, Governador Lacerda e Água Doce do Norte. Somente o deslocamento de Barra até Água Doce do Norte é de aproximadamente 34 km, além dos demais trechos da rota. Devido à quantidade de regiões e paradas, o apoio é necessário para dividir melhor a demanda."
+  },
+  {
     "id": 1791027422408,
     "ts": "2026-10-03T11:37:02.408Z",
     "updatedAt": "2026-10-03T11:42:04.698Z",
