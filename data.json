@@ -21,6 +21,27 @@
     "motivo": "ROTAS ESPAÇADAS COM MONTANHA E INTERIOR DE PINHEIROS, TEMPO MÉDIO DA VIAGEM ENTRE OS PONTOS DE ENTREGA CHEGAM A 1:10H, SEM EVIDENCIAR A O TEMPO GASTO NA ESTRADA ATÉ A PRIMEIRA ÁREA DE ENTREGA! SOLICITAMOS UM APOIO PARA MELHOR ATENDIMENTO DAS REGIÕES."
   },
   {
+    "id": 1791028353267,
+    "ts": "2026-10-03T11:52:33.267Z",
+    "updatedAt": "2026-10-03T11:52:33.267Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-10-03",
+    "dataFmt": "03/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "VUC",
+    "regiao": "Itamaraju",
+    "quantidade": "01",
+    "motivo": "Insucessos de pacotes de alta cugabem, volumosos no galpão"
+  },
+  {
     "id": 1791028315513,
     "ts": "2026-10-03T11:51:55.513Z",
     "updatedAt": "2026-10-03T11:57:38.328Z",
