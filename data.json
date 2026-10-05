@@ -44,8 +44,8 @@
   {
     "id": 1791203276927,
     "ts": "2026-10-05T12:27:56.927Z",
-    "updatedAt": "2026-10-05T13:26:04.930Z",
-    "status": "authorized",
+    "updatedAt": "2026-10-05T13:41:44.043Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": "2026-10-05T13:26:04.930Z",
     "feito": false,
@@ -60,7 +60,8 @@
     "veiculo": "Utilitário",
     "regiao": "Teixeira de Freitas",
     "quantidade": "01",
-    "motivo": "Insucessos comerciais volumosos e insucessos Melli extra"
+    "motivo": "Insucessos comerciais volumosos e insucessos Melli extra",
+    "cancelledAt": "2026-10-05T13:41:44.043Z"
   },
   {
     "id": 1791203249804,
