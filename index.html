@@ -337,6 +337,7 @@
                         <option value="EES3">EES3</option>
                         <option value="EBA32">EBA32</option>
                         <option value="EES6">EES6</option>
+                        <option value="EES9">EES9</option>
                         <option value="SVC">SVC</option>
                     </select>
                 </div>
@@ -379,7 +380,6 @@
                         <option value="UTILITARIO SDD">🚐 UTILITARIO SDD</option>
                         <option value="VUC SDD">🚚 VUC SDD</option>
                         <option value="VAN SDD">🚐 VAN SDD</option>
-                
                         <option value="VUC">🚚 VUC</option>
                         <option value="VUC PP 10³">🚛 VUC PP 10³</option>
                         <option value="Frota Fixa Large Van Ford">🚐 Frota Fixa Large Van Ford</option>
@@ -519,6 +519,9 @@
 <!-- ═══ TAB: TODOS ═══ -->
 <div id="tabAll" class="container" style="display:none">
     <div id="allDateFilterBar"></div>
+    <div style="display:flex;justify-content:flex-end;margin:8px 0">
+        <button class="btn btn-secondary" style="font-size:0.78rem;padding:7px 14px" onclick="exportSummaryXLSX()">⬇️ Exportar Excel</button>
+    </div>
     <div class="stats-grid" id="allStats"></div>
     <div class="status-bar" id="allFilterBar"></div>
     <div id="allSecondaryFilterBar"></div>
@@ -575,6 +578,7 @@
                 <option value="EES3">EES3</option>
                 <option value="EBA32">EBA32</option>
                 <option value="EES6">EES6</option>
+                <option value="EES9">EES9</option>
                 <option value="SVC">SVC</option>
             </select>
         </div>
@@ -1557,7 +1561,7 @@ function renderSummary() {
     }
 
     // ── Mini tabela resumida por XPT ──────────────────────────────
-    const xptOrder = ['EES2','EES3','EBA32','EES6','SVC'];
+    const xptOrder = ['EES2','EES3','EBA32','EES6','EES9','SVC'];
     const xptKeys = [...new Set([...xptOrder.filter(x => grouped[x]), ...Object.keys(grouped).filter(x => !xptOrder.includes(x))])];
 
     html += `<div style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px 20px;margin-bottom:20px">
@@ -1668,7 +1672,7 @@ async function exportSummaryXLSX() {
 
     if (source.length === 0) { toast('Nenhum dado para exportar com o filtro atual.', 'danger'); return; }
 
-    const xptOrder = ['EES2', 'EES3', 'EBA32', 'EES6', 'SVC'];
+    const xptOrder = ['EES2', 'EES3', 'EBA32', 'EES6', 'EES9', 'SVC'];
     const xptRank = x => { const i = xptOrder.indexOf(x); return i === -1 ? 999 : i; };
     const sorted = [...source].sort((a, b) => {
         const rx = xptRank(a.xpt) - xptRank(b.xpt);
