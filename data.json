@@ -17130,9 +17130,9 @@
   {
     "id": 1786975052468,
     "ts": "2026-08-17T13:57:32.468Z",
-    "status": "pending",
+    "status": "authorized",
     "authorizedBy": null,
-    "authorizedAt": null,
+    "authorizedAt": "2026-10-05T13:26:31.130Z",
     "feito": false,
     "feitoAt": null,
     "transportadora": "Parceiro Spot",
@@ -17144,7 +17144,8 @@
     "veiculo": "VUC",
     "regiao": "Teixeira de Freitas",
     "quantidade": "01",
-    "motivo": "Insucessos volumosos comerciais de sábado e domingo"
+    "motivo": "Insucessos volumosos comerciais de sábado e domingo",
+    "updatedAt": "2026-10-05T13:26:31.130Z"
   },
   {
     "id": 1786972887270,
