@@ -17134,8 +17134,8 @@
     "status": "authorized",
     "authorizedBy": null,
     "authorizedAt": "2026-10-05T13:26:31.130Z",
-    "feito": false,
-    "feitoAt": null,
+    "feito": true,
+    "feitoAt": "2026-10-05T13:56:11.943Z",
     "transportadora": "Parceiro Spot",
     "xpt": "EBA32",
     "data": "2026-08-17",
@@ -17146,7 +17146,7 @@
     "regiao": "Teixeira de Freitas",
     "quantidade": "01",
     "motivo": "Insucessos volumosos comerciais de sábado e domingo",
-    "updatedAt": "2026-10-05T13:26:31.130Z"
+    "updatedAt": "2026-10-05T13:56:11.943Z"
   },
   {
     "id": 1786972887270,
