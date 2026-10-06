@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791283670025,
+    "ts": "2026-10-06T10:47:50.025Z",
+    "updatedAt": "2026-10-06T10:47:50.025Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-06",
+    "dataFmt": "06/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/451517410",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Alto rio Novo",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos Barra de São Francisco, Mantena e Alto Rio Novo. São três regiões diferentes, e somente de Mantena até Alto Rio Novo são aproximadamente 45 km e cerca de 1 hora de deslocamento. Devido à distância entre as regiões, o apoio é necessário para dividir melhor a rota e evitar um percurso muito extenso para o motorista."
+  },
+  {
     "id": 1791283455829,
     "ts": "2026-10-06T10:44:15.829Z",
     "updatedAt": "2026-10-06T10:44:15.829Z",
