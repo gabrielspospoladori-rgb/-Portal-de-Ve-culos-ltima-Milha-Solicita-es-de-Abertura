@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791296104036,
+    "ts": "2026-10-06T14:15:04.036Z",
+    "updatedAt": "2026-10-06T14:15:04.036Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES9",
+    "data": "2026-10-06",
+    "dataFmt": "06/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/451526258",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "São Gabriel da Palha e São domingos do Norte",
+    "quantidade": "01",
+    "motivo": "rota com 2 cidades afastadas: São Gabriel da Palha e São domingos do Norte"
+  },
+  {
     "id": 1791294023420,
     "ts": "2026-10-06T13:40:23.420Z",
     "updatedAt": "2026-10-06T14:14:10.760Z",
