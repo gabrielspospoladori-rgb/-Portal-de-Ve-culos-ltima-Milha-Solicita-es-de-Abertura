@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791300073786,
+    "ts": "2026-10-06T15:21:13.786Z",
+    "updatedAt": "2026-10-06T15:21:13.786Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-10-06",
+    "dataFmt": "06/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "VUC",
+    "regiao": "Teixeira de Freitas",
+    "quantidade": "01",
+    "motivo": "Insucessos volumosos comerciais de sábado e domingo + insucessos Melli extra"
+  },
+  {
     "id": 1791298339862,
     "ts": "2026-10-06T14:52:19.862Z",
     "updatedAt": "2026-10-06T15:14:07.426Z",
