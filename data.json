@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791289305582,
+    "ts": "2026-10-06T12:21:45.582Z",
+    "updatedAt": "2026-10-06T12:21:45.582Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-10-06",
+    "dataFmt": "06/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "VUC",
+    "regiao": "Itamaraju",
+    "quantidade": "01",
+    "motivo": "Insucessos de pacotes de alta cubagem de sábado, domingo e segunda feriado.\nVolumosos no galpão"
+  },
+  {
     "id": 1791289257320,
     "ts": "2026-10-06T12:20:57.320Z",
     "updatedAt": "2026-10-06T12:20:57.320Z",
