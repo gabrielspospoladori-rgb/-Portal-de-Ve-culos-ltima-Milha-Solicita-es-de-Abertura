@@ -108,8 +108,8 @@
   {
     "id": 1791286289142,
     "ts": "2026-10-06T11:31:29.142Z",
-    "updatedAt": "2026-10-06T11:31:29.146Z",
-    "status": "pending",
+    "updatedAt": "2026-10-06T13:39:10.512Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -124,7 +124,8 @@
     "veiculo": "Utilitário",
     "regiao": "São Mateus",
     "quantidade": "01",
-    "motivo": "ROTA TOTALMENTE ESPALHADA POR SÃO MATEUS, INCLUINDO ÁREAS MAIS AFASTADAS COMO LITORÂNEO, GURIRI E NOVA ERA. SOLICITAMOS UM APAOI PARA MELHOR DISTRIVUIÇÃO DA ROTA E ATENDIMENTO DAS ÁREAS DENTRO DO ORH PLANEJADO."
+    "motivo": "ROTA TOTALMENTE ESPALHADA POR SÃO MATEUS, INCLUINDO ÁREAS MAIS AFASTADAS COMO LITORÂNEO, GURIRI E NOVA ERA. SOLICITAMOS UM APAOI PARA MELHOR DISTRIVUIÇÃO DA ROTA E ATENDIMENTO DAS ÁREAS DENTRO DO ORH PLANEJADO.",
+    "cancelledAt": "2026-10-06T13:39:10.512Z"
   },
   {
     "id": 1791285997609,
