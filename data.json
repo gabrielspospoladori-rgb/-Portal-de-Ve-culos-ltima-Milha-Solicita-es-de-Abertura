@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791285997609,
+    "ts": "2026-10-06T11:26:37.609Z",
+    "updatedAt": "2026-10-06T11:26:37.611Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES3",
+    "data": "2026-10-05",
+    "dataFmt": "05/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "VUC PP 10³",
+    "regiao": "São Mateus",
+    "quantidade": "01",
+    "motivo": "Em decorrência do atraso das carretas e na expedição, tivemos muitos insucessos, principalmente da região central de São Mateus! Solicitamos um apoio para liberação desses insucessos e limpeza de piso."
+  },
+  {
     "id": 1791283952919,
     "ts": "2026-10-06T10:52:32.919Z",
     "updatedAt": "2026-10-06T10:52:32.919Z",
