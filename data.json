@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791371740260,
+    "ts": "2026-10-07T11:15:40.260Z",
+    "updatedAt": "2026-10-07T11:15:40.260Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-07",
+    "dataFmt": "07/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/452070130",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "Central de Minas",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos 42 paradas entre Central de Minas, São José de Mantenópolis e Santa Luzia de Mantenópolis. São três regiões diferentes e o deslocamento entre elas deixa o percurso mais extenso. O apoio é necessário para dividir melhor a rota e garantir o andamento das entregas."
+  },
+  {
     "id": 1791371495996,
     "ts": "2026-10-07T11:11:35.996Z",
     "updatedAt": "2026-10-07T11:11:35.996Z",
