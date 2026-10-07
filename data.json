@@ -42,6 +42,27 @@
     "motivo": "Insucessos Melli extra"
   },
   {
+    "id": 1791375107849,
+    "ts": "2026-10-07T12:11:47.849Z",
+    "updatedAt": "2026-10-07T12:11:47.851Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "SVC",
+    "data": "2026-10-07",
+    "dataFmt": "07/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "8",
+    "veiculo": "HR 8hs",
+    "regiao": "São Rafael/interior",
+    "quantidade": "01",
+    "motivo": "Pacotes sem roteirização do piso para são Rafael e região"
+  },
+  {
     "id": 1791374771941,
     "ts": "2026-10-07T12:06:11.941Z",
     "updatedAt": "2026-10-07T12:21:35.126Z",
