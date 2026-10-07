@@ -21,6 +21,27 @@
     "motivo": "Solicito apoio para essa rota, pois temos 42 paradas entre Central de Minas, São José de Mantenópolis e Santa Luzia de Mantenópolis. São três regiões diferentes e o deslocamento entre elas deixa o percurso mais extenso. O apoio é necessário para dividir melhor a rota e garantir o andamento das entregas."
   },
   {
+    "id": 1791371498177,
+    "ts": "2026-10-07T11:11:38.177Z",
+    "updatedAt": "2026-10-07T11:11:38.177Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES3",
+    "data": "2026-10-07",
+    "dataFmt": "07/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/452110037",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "São Mateus",
+    "quantidade": "01",
+    "motivo": "ROTA ESPAÇADA ENTRE VÁRIAS REGIÕES DE SÃO MATEUS INCLUINDO GURIRI, TEMOS OUTRA ROTA COM A DISTRIBUIÇÃO PARECIDA A G1 IREMOS REORGANIZAR AS ROTAS, SAINDO COM CERCA DE 90 PACOTES."
+  },
+  {
     "id": 1791371495996,
     "ts": "2026-10-07T11:11:35.996Z",
     "updatedAt": "2026-10-07T11:11:35.996Z",
