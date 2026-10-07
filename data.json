@@ -107,8 +107,8 @@
   {
     "id": 1791371498177,
     "ts": "2026-10-07T11:11:38.177Z",
-    "updatedAt": "2026-10-07T11:11:38.177Z",
-    "status": "pending",
+    "updatedAt": "2026-10-07T13:17:59.289Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -123,7 +123,8 @@
     "veiculo": "Utilitário",
     "regiao": "São Mateus",
     "quantidade": "01",
-    "motivo": "ROTA ESPAÇADA ENTRE VÁRIAS REGIÕES DE SÃO MATEUS INCLUINDO GURIRI, TEMOS OUTRA ROTA COM A DISTRIBUIÇÃO PARECIDA A G1 IREMOS REORGANIZAR AS ROTAS, SAINDO COM CERCA DE 90 PACOTES."
+    "motivo": "ROTA ESPAÇADA ENTRE VÁRIAS REGIÕES DE SÃO MATEUS INCLUINDO GURIRI, TEMOS OUTRA ROTA COM A DISTRIBUIÇÃO PARECIDA A G1 IREMOS REORGANIZAR AS ROTAS, SAINDO COM CERCA DE 90 PACOTES.",
+    "cancelledAt": "2026-10-07T13:17:59.289Z"
   },
   {
     "id": 1791371495996,
