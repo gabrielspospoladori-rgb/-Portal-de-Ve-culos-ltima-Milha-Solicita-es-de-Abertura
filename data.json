@@ -359,8 +359,8 @@
   {
     "id": 1791296755446,
     "ts": "2026-10-06T14:25:55.446Z",
-    "updatedAt": "2026-10-06T15:16:48.087Z",
-    "status": "pending",
+    "updatedAt": "2026-10-07T12:06:25.723Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -375,7 +375,8 @@
     "veiculo": "Van",
     "regiao": "Aguia Branca, Vila Verde e Lajinha",
     "quantidade": "01",
-    "motivo": "rota com 3 cidades afastadas: Aguia Branca, Vila Verde e Lajinha"
+    "motivo": "rota com 3 cidades afastadas: Aguia Branca, Vila Verde e Lajinha",
+    "cancelledAt": "2026-10-07T12:06:25.723Z"
   },
   {
     "id": 1791296104036,
