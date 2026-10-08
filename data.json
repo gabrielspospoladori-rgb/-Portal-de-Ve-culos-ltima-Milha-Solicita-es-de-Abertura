@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791460490804,
+    "ts": "2026-10-08T11:54:50.804Z",
+    "updatedAt": "2026-10-08T11:54:50.804Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES9",
+    "data": "2026-10-08",
+    "dataFmt": "08/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/452778124",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Pancas",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos **46 paradas distribuídas entre Alto Rio Novo, Monte Carmelo e Pancas**, com a maior concentração de entregas em Alto Rio Novo. Somente até Pancas são aproximadamente **35 km e 37 minutos de deslocamento**, além do atendimento em Monte Carmelo. O apoio é necessário para dividir melhor as regiões e evitar que esse deslocamento comprometa as entregas concentradas em Alto Rio Novo."
+  },
+  {
     "id": 1791460462508,
     "ts": "2026-10-08T11:54:22.508Z",
     "updatedAt": "2026-10-08T11:54:22.508Z",
