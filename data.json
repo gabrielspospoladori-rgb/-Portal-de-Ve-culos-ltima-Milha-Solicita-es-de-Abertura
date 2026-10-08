@@ -2,8 +2,8 @@
   {
     "id": 1791459783223,
     "ts": "2026-10-08T11:43:03.223Z",
-    "updatedAt": "2026-10-08T11:43:03.223Z",
-    "status": "pending",
+    "updatedAt": "2026-10-08T11:46:35.748Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -18,7 +18,8 @@
     "veiculo": "Passeio",
     "regiao": "Pancas",
     "quantidade": "01",
-    "motivo": "Solicito apoio para essa rota, pois temos **46 paradas distribuídas entre Alto Rio Novo, Monte Carmelo e Pancas**, com a maior concentração de entregas em Alto Rio Novo. Somente até Pancas são aproximadamente **35 km e 37 minutos de deslocamento**, além do atendimento em Monte Carmelo. O apoio é necessário para dividir melhor as regiões e evitar que esse deslocamento comprometa as entregas concentradas em Alto Rio Novo."
+    "motivo": "Solicito apoio para essa rota, pois temos **46 paradas distribuídas entre Alto Rio Novo, Monte Carmelo e Pancas**, com a maior concentração de entregas em Alto Rio Novo. Somente até Pancas são aproximadamente **35 km e 37 minutos de deslocamento**, além do atendimento em Monte Carmelo. O apoio é necessário para dividir melhor as regiões e evitar que esse deslocamento comprometa as entregas concentradas em Alto Rio Novo.",
+    "cancelledAt": "2026-10-08T11:46:35.748Z"
   },
   {
     "id": 1791459557447,
