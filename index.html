@@ -617,7 +617,7 @@ const GITHUB_API   = `https://api.github.com/repos/${GITHUB_REPO}/contents/${DAT
 // ─── STATE ─────────────────────────────────────────────────────
 let requests = [];
 let allFilter = 'all';
-let globalDateFilter = 'all';   // 'all' | 'today' | 'yesterday' | 'custom'
+let globalDateFilter = 'all';   // 'all' | 'today' | 'yesterday' | 'week' | 'lastweek' | 'custom'
 let globalDateCustom  = '';     // YYYY-MM-DD when custom
 let currentMsg = '';
 let isSaving  = false;          // concurrent save guard
@@ -1294,6 +1294,8 @@ function renderDone() {
 // Filtra pela data em que o pedido foi CANCELADO (cancelledAt), não pela data de entrega
 function applyCancelledDateFilter(list) {
     if (globalDateFilter === 'all') return list;
+    const wk = weekRange(globalDateFilter);
+    if (wk) return list.filter(r => { const d = (r.cancelledAt || '').slice(0, 10); return d >= wk[0] && d <= wk[1]; });
     const target = globalDateFilter === 'today'    ? isoToday()
                  : globalDateFilter === 'yesterday' ? isoYesterday()
                  : globalDateCustom;
@@ -1883,7 +1885,23 @@ function isoYesterday() {
     return localDateStr(d);
 }
 
+// Semana de segunda a domingo. 'week' = atual, 'lastweek' = anterior. Retorna [inicio, fim] ISO ou null.
+function weekRange(filter) {
+    if (filter !== 'week' && filter !== 'lastweek') return null;
+    const d = new Date();
+    const dow = (d.getDay() + 6) % 7; // segunda = 0
+    d.setDate(d.getDate() - dow - (filter === 'lastweek' ? 7 : 0));
+    const start = localDateStr(d);
+    d.setDate(d.getDate() + 6);
+    return [start, localDateStr(d)];
+}
+
 function dateFilterLabel() {
+    const wk = weekRange(globalDateFilter);
+    if (wk) {
+        const f = s => s.slice(8) + '/' + s.slice(5, 7);
+        return `${globalDateFilter === 'week' ? 'Semana atual' : 'Semana passada'} (${f(wk[0])} a ${f(wk[1])})`;
+    }
     if (globalDateFilter === 'today') return `Hoje (${new Date().toLocaleDateString('pt-BR')})`;
     if (globalDateFilter === 'yesterday') {
         const d = new Date(); d.setDate(d.getDate() - 1);
@@ -1898,6 +1916,8 @@ function dateFilterLabel() {
 
 function applyDateFilter(list) {
     if (globalDateFilter === 'all') return list;
+    const wk = weekRange(globalDateFilter);
+    if (wk) return list.filter(r => { const d = (r.data || '').slice(0, 10); return d >= wk[0] && d <= wk[1]; });
     const target = globalDateFilter === 'today'     ? isoToday()
                  : globalDateFilter === 'yesterday'  ? isoYesterday()
                  : globalDateCustom;
@@ -1941,6 +1961,8 @@ function renderDateFilterBar(containerId) {
             <button class="filter-chip ${isAll?'active':''}" onclick="setGlobalDateFilter('all')">Todos</button>
             <button class="filter-chip ${isToday?'active':''}" onclick="setGlobalDateFilter('today')">Hoje (${today.slice(8)+'/'+ today.slice(5,7)})</button>
             <button class="filter-chip ${isYest?'active':''}" onclick="setGlobalDateFilter('yesterday')">Ontem (${yesterday.slice(8)+'/'+yesterday.slice(5,7)})</button>
+            <button class="filter-chip ${globalDateFilter==='week'?'active':''}" onclick="setGlobalDateFilter('week')">Semana atual</button>
+            <button class="filter-chip ${globalDateFilter==='lastweek'?'active':''}" onclick="setGlobalDateFilter('lastweek')">Semana passada</button>
             <input type="date" value="${globalDateCustom}" max="${today}"
                 style="background:var(--bg-card);color:var(--text);border:1px solid ${isCust?'var(--accent)':'rgba(255,255,255,0.15)'};border-radius:8px;padding:5px 10px;font-size:0.8rem;cursor:pointer;outline:none"
                 onchange="setCustomDate(this.value)"
