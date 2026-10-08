@@ -23,7 +23,7 @@
   {
     "id": 1791464968814,
     "ts": "2026-10-08T13:09:28.814Z",
-    "updatedAt": "2026-10-08T13:24:29.555Z",
+    "updatedAt": "2026-10-08T13:51:46.262Z",
     "status": "authorized",
     "authorizedBy": null,
     "authorizedAt": "2026-10-08T13:24:29.555Z",
@@ -36,10 +36,19 @@
     "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/452804514",
     "insucesso": false,
     "orh": "8",
-    "veiculo": "HR 8hs",
+    "veiculo": "Utilitário",
     "regiao": "São Rafael/interior",
     "quantidade": "01",
-    "motivo": "Pacotes da rota de São Rafael"
+    "motivo": "Pacotes da rota de São Rafael",
+    "editHistory": [
+      {
+        "field": "veiculo",
+        "fieldLabel": "Veículo",
+        "from": "HR 8hs",
+        "to": "Utilitário",
+        "at": "2026-10-08T13:51:46.262Z"
+      }
+    ]
   },
   {
     "id": 1791464506395,
