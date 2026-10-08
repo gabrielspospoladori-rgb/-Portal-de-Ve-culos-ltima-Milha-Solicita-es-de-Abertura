@@ -676,11 +676,24 @@ function mergeByUpdatedAt(listA, listB) {
     return [...map.values()];
 }
 
+let ghEtag = null;
 async function loadFromSheets() {
     setSyncStatus('syncing');
     try {
-        const res = await fetch(GITHUB_API, { headers: GH_HEADERS });
+        // cache:'no-store' — a API do GitHub devolve Cache-Control max-age=60, e o navegador
+        // reaproveitava a resposta antiga por até 1 min (causa de "pedido demora a aparecer").
+        // If-None-Match com ETag: se nada mudou o GitHub responde 304 (rápido e sem gastar limite de requisições).
+        const hdrs = { ...GH_HEADERS };
+        if (ghEtag) hdrs['If-None-Match'] = ghEtag;
+        const res = await fetch(GITHUB_API, { headers: hdrs, cache: 'no-store' });
+        if (res.status === 304) {
+            setSyncStatus('ok');
+            if (dirty && !isSaving) save(); // alteração local pendente: tenta enviar de novo
+            refreshHeader();
+            return;
+        }
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        ghEtag = res.headers.get('ETag');
         const file = await res.json();
         const data = JSON.parse(fromB64(file.content));
         if (Array.isArray(data)) {
@@ -856,7 +869,7 @@ function playAuthorizedSound() {
 }
 
 // ─── AUTO-SYNC ─────────────────────────────────────────────────
-const AUTO_SYNC_INTERVAL = 60; // segundos
+const AUTO_SYNC_INTERVAL = 15; // segundos (antes 60 — era o principal atraso para o autorizador ver pedidos novos)
 let autoSyncCountdown = AUTO_SYNC_INTERVAL;
 let autoSyncTimer = null;
 let countdownTimer = null;
@@ -888,6 +901,7 @@ function updateCountdownDisplay() {
 
 async function doAutoSync() {
     if (isSaving) return; // aguarda o save terminar antes de recarregar
+    if (document.hidden) return; // aba em segundo plano: sincroniza ao voltar (visibilitychange)
     const el = document.getElementById('syncStatus');
     if (el) { el.textContent = '🔄 Sincronizando...'; el.style.color = 'var(--text-muted)'; }
     const prevIds = new Set(lastKnownIds);
@@ -2330,16 +2344,24 @@ function emptyHTML(icon, title, sub) {
     return `<div class="empty"><div class="empty-icon">${icon}</div><div class="empty-title">${title}</div><div class="empty-sub">${sub}</div></div>`;
 }
 
+let saveQueued = false;   // houve save() enquanto outro estava em andamento
+let dirty = false;        // existe alteração local ainda não confirmada no GitHub
 function save() {
     try { localStorage.setItem('vm_requests_v2', JSON.stringify(requests)); }
     catch(e) { console.warn('⚠️ localStorage.setItem falhou (possível limite de armazenamento do navegador):', e); }
-    if (isSaving) return; // já tem um save em andamento — localStorage já foi atualizado, GitHub pega na próxima
+    dirty = true;
+    // Já tem um save em andamento: antes o pedido ficava esperando o próximo auto-sync (até ~1 min).
+    // Agora enfileira e dispara outro save assim que o atual terminar.
+    if (isSaving) { saveQueued = true; return; }
     isSaving = true;
     setSyncStatus('syncing');
     saveToSheets()
-        .then(() => { setSyncStatus('ok'); })
+        .then(() => { if (!saveQueued) dirty = false; setSyncStatus('ok'); })
         .catch(() => { setSyncStatus('offline'); })
-        .finally(() => { isSaving = false; });
+        .finally(() => {
+            isSaving = false;
+            if (saveQueued) { saveQueued = false; save(); }
+        });
 }
 
 function isoToday() { return localDateStr(); }
