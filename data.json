@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791458605967,
+    "ts": "2026-10-08T11:23:25.967Z",
+    "updatedAt": "2026-10-08T11:23:25.967Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-08",
+    "dataFmt": "08/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/452753057",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Santo Agostinho/ Vila nelita",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos **51 paradas entre Água Doce do Norte, Vila Nelita e Santo Agostinho**. Como as entregas estão distribuídas entre três localidades, o motorista precisa percorrer diferentes trechos para atender toda a demanda. O apoio é necessário para evitar que esse deslocamento comprometa o restante das entregas."
+  },
+  {
     "id": 1791458225534,
     "ts": "2026-10-08T11:17:05.534Z",
     "updatedAt": "2026-10-08T11:17:05.534Z",
