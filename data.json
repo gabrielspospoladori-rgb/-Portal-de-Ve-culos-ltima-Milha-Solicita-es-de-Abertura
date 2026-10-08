@@ -2,8 +2,8 @@
   {
     "id": 1791478144333,
     "ts": "2026-10-08T16:49:04.333Z",
-    "updatedAt": "2026-10-08T16:49:04.333Z",
-    "status": "pending",
+    "updatedAt": "2026-10-08T17:51:21.074Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -18,7 +18,8 @@
     "veiculo": "Vuc LM 2026",
     "regiao": "rio bananal primavera",
     "quantidade": "01",
-    "motivo": "* Motivo: motorista se envolveu em um acidente e não vai conseguir seguir rota pois vai acompanhar o terceiro devido não está conseguindo falar com nenhum familiar@"
+    "motivo": "* Motivo: motorista se envolveu em um acidente e não vai conseguir seguir rota pois vai acompanhar o terceiro devido não está conseguindo falar com nenhum familiar@",
+    "cancelledAt": "2026-10-08T17:51:21.074Z"
   },
   {
     "id": 1791469112936,
