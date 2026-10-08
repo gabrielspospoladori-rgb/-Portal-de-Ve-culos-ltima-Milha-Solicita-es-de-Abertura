@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791457799543,
+    "ts": "2026-10-08T11:09:59.543Z",
+    "updatedAt": "2026-10-08T11:09:59.544Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-08",
+    "dataFmt": "08/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/452752609",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "água doce do note",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos **38 paradas distribuídas entre Água Doce do Norte, Governador Lacerda, Monte Sinai e Poranga**. São quatro regiões diferentes, com deslocamentos entre os trechos, o que acaba deixando a rota bastante extensa. O apoio é necessário para dividir melhor as regiões e evitar um percurso muito longo para o motorista."
+  },
+  {
     "id": 1791457554519,
     "ts": "2026-10-08T11:05:54.519Z",
     "updatedAt": "2026-10-08T11:05:54.519Z",
