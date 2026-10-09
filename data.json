@@ -2,8 +2,8 @@
   {
     "id": 1791550820498,
     "ts": "2026-10-09T13:00:20.498Z",
-    "updatedAt": "2026-10-09T13:00:20.498Z",
-    "status": "pending",
+    "updatedAt": "2026-10-09T13:46:19.071Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -18,7 +18,8 @@
     "veiculo": "Passeio",
     "regiao": "águia branca",
     "quantidade": "01",
-    "motivo": "Solicito apoio para essa rota, pois temos **69 paradas distribuídas entre Águia Branca, Boa Vista e Cedrolândia**. Além do volume elevado de paradas, temos deslocamentos entre as três regiões, o que aumenta o percurso do motorista. O apoio é necessário para dividir melhor a demanda e evitar que esses deslocamentos comprometam o andamento das entregas."
+    "motivo": "Solicito apoio para essa rota, pois temos **69 paradas distribuídas entre Águia Branca, Boa Vista e Cedrolândia**. Além do volume elevado de paradas, temos deslocamentos entre as três regiões, o que aumenta o percurso do motorista. O apoio é necessário para dividir melhor a demanda e evitar que esses deslocamentos comprometam o andamento das entregas.",
+    "cancelledAt": "2026-10-09T13:46:19.071Z"
   },
   {
     "id": 1791550578597,
