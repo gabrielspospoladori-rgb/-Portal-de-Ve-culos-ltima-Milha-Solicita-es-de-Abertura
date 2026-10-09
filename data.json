@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791545640036,
+    "ts": "2026-10-09T11:34:00.036Z",
+    "updatedAt": "2026-10-09T11:34:00.070Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-09",
+    "dataFmt": "09/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/453406010",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "Vila Verde/ águia branca",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos entregas em **Barra de São Francisco, Vila Verde e Águia Branca**. Vila Verde e Águia Branca já não fazem parte da região atendida pela rota de Barra de São Francisco, sendo necessário o apoio para retirar esses pacotes e direcioná-los às regiões corretas, evitando deslocamentos fora da área de atendimento do motorista."
+  },
+  {
     "id": 1791539888317,
     "ts": "2026-10-09T09:58:08.317Z",
     "updatedAt": "2026-10-09T09:58:08.317Z",
