@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791545937860,
+    "ts": "2026-10-09T11:38:57.860Z",
+    "updatedAt": "2026-10-09T11:38:57.860Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-09",
+    "dataFmt": "09/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/453406227",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "Mantenópolis",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos **35 paradas distribuídas entre Mantenópolis, Cuparaque, Goiabeira, Central de Minas e São Geraldo**. Somente entre Mantenópolis, Cuparaque, Goiabeira e Central de Minas são aproximadamente **82 km e 1h43 de deslocamento**, sem contar o trecho de São Geraldo e o tempo das entregas. O apoio é necessário para dividir melhor as regiões e evitar que esse percurso extenso comprometa o andamento da rota."
+  },
+  {
     "id": 1791545640036,
     "ts": "2026-10-09T11:34:00.036Z",
     "updatedAt": "2026-10-09T11:34:00.070Z",
