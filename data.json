@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791546153854,
+    "ts": "2026-10-09T11:42:33.854Z",
+    "updatedAt": "2026-10-09T11:42:33.854Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-09",
+    "dataFmt": "09/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/453406255",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Itabirinha",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos **42 paradas distribuídas entre Itabirinha, Santo Agostinho, Vila Nelita e Santa Luzia do Azul**. São quatro localidades com acessos diferentes, principalmente Itabirinha, que não segue o mesmo trajeto das demais regiões. O apoio é necessário para dividir melhor as entregas e evitar que os deslocamentos comprometam o andamento da rota."
+  },
+  {
     "id": 1791545937860,
     "ts": "2026-10-09T11:38:57.860Z",
     "updatedAt": "2026-10-09T11:38:57.860Z",
