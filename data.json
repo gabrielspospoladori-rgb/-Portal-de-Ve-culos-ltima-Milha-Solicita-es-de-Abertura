@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791546345383,
+    "ts": "2026-10-09T11:45:45.383Z",
+    "updatedAt": "2026-10-09T11:45:45.383Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-09",
+    "dataFmt": "09/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/453405982",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Mantena",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos **31 paradas distribuídas entre Água Doce do Norte, Vila Pavão, Itabirinha, Barra de São Francisco e Mantena**. São cinco regiões diferentes, com deslocamentos consideráveis entre elas. Somente de Água Doce até Vila Pavão são aproximadamente 67 km e mais de 1 hora de percurso, além dos demais trechos da rota. O apoio é necessário para dividir melhor as regiões e evitar que o deslocamento comprometa o andamento das entregas."
+  },
+  {
     "id": 1791546202859,
     "ts": "2026-10-09T11:43:22.859Z",
     "updatedAt": "2026-10-09T11:43:22.881Z",
