@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791635558404,
+    "ts": "2026-10-10T12:32:38.404Z",
+    "updatedAt": "2026-10-10T12:32:38.404Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES9",
+    "data": "2026-10-10",
+    "dataFmt": "10/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/454082035",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Pancas",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos **67 paradas distribuídas entre Pancas e Lajinha**. O deslocamento entre as localidades é de aproximadamente 24 km, incluindo trecho de estrada não pavimentada, o que aumenta o tempo de percurso. Além da quantidade elevada de paradas, o motorista precisa atender as duas regiões, tornando o apoio necessário para dividir melhor a demanda e evitar atrasos na conclusão das entregas."
+  },
+  {
     "id": 1791635109795,
     "ts": "2026-10-10T12:25:09.795Z",
     "updatedAt": "2026-10-10T12:27:52.381Z",
