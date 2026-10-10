@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791635824893,
+    "ts": "2026-10-10T12:37:04.893Z",
+    "updatedAt": "2026-10-10T12:37:04.893Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES9",
+    "data": "2026-10-10",
+    "dataFmt": "10/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/454034547",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "São Gabriel da Palha,",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos **58 paradas distribuídas entre São Gabriel da Palha, Nova Venécia e Cristalina**. O deslocamento entre as três localidades representa aproximadamente **69 km**, sem contar os percursos internos e o tempo necessário para realizar as entregas. Além da quantidade elevada de paradas, o motorista precisa atender regiões distintas, tornando o apoio necessário para dividir melhor a demanda e evitar atrasos na conclusão da rota."
+  },
+  {
     "id": 1791635558404,
     "ts": "2026-10-10T12:32:38.404Z",
     "updatedAt": "2026-10-10T12:36:16.203Z",
