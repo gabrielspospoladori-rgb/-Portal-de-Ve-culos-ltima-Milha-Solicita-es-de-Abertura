@@ -86,8 +86,8 @@
   {
     "id": 1791554391070,
     "ts": "2026-10-09T13:59:51.070Z",
-    "updatedAt": "2026-10-09T13:59:51.074Z",
-    "status": "pending",
+    "updatedAt": "2026-10-10T10:37:38.186Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -102,7 +102,8 @@
     "veiculo": "Utilitário",
     "regiao": "Jaguaré",
     "quantidade": "01",
-    "motivo": "Rotas de Jaguaré inchada, N4 102 paradas e D14 96 paradas, ainda temos paradas do interior nas rotas"
+    "motivo": "Rotas de Jaguaré inchada, N4 102 paradas e D14 96 paradas, ainda temos paradas do interior nas rotas",
+    "cancelledAt": "2026-10-10T10:37:38.186Z"
   },
   {
     "id": 1791553676436,
