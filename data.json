@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791631907330,
+    "ts": "2026-10-10T11:31:47.330Z",
+    "updatedAt": "2026-10-10T11:31:47.331Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-10",
+    "dataFmt": "10/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/454013624",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "mendes pimentel",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos **59 paradas distribuídas entre Mendes Pimentel, Divino das Laranjeiras, Macedônia das Laranjeiras, Linópolis e Central de Santa Helena**. São cinco localidades diferentes, com deslocamentos entre os trechos, o que deixa o percurso bastante extenso. O apoio é necessário para dividir melhor as regiões e evitar que esses deslocamentos comprometam o andamento das entregas."
+  },
+  {
     "id": 1791628139583,
     "ts": "2026-10-10T10:28:59.583Z",
     "updatedAt": "2026-10-10T10:28:59.583Z",
