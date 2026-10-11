@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791724829784,
+    "ts": "2026-10-11T13:20:29.784Z",
+    "updatedAt": "2026-10-11T13:20:29.784Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-10-11",
+    "dataFmt": "11/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "VUC",
+    "regiao": "Teixeira de Freitas",
+    "quantidade": "01",
+    "motivo": "Rotas com pacotes de alta cubagem, volumosos no galpão + insucessos"
+  },
+  {
     "id": 1791721829157,
     "ts": "2026-10-11T12:30:29.157Z",
     "updatedAt": "2026-10-11T12:30:29.158Z",
