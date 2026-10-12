@@ -213,8 +213,8 @@
   {
     "id": 1791710269266,
     "ts": "2026-10-11T09:17:49.266Z",
-    "updatedAt": "2026-10-11T09:17:49.266Z",
-    "status": "pending",
+    "updatedAt": "2026-10-12T10:12:46.727Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -229,7 +229,8 @@
     "veiculo": "VUC PP SDD",
     "regiao": "Linhares",
     "quantidade": "01",
-    "motivo": "Apoio para rota de linhares, sdd em casa."
+    "motivo": "Apoio para rota de linhares, sdd em casa.",
+    "cancelledAt": "2026-10-12T10:12:46.727Z"
   },
   {
     "id": 1791659024213,
@@ -276,8 +277,8 @@
   {
     "id": 1791651824360,
     "ts": "2026-10-10T17:03:44.360Z",
-    "updatedAt": "2026-10-10T17:03:44.363Z",
-    "status": "pending",
+    "updatedAt": "2026-10-12T10:12:48.871Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -292,7 +293,8 @@
     "veiculo": "HR 8hs",
     "regiao": "Linhares",
     "quantidade": "01",
-    "motivo": "Rota SPR alto e devido a atraso no carregamento driver saiu às 13:00"
+    "motivo": "Rota SPR alto e devido a atraso no carregamento driver saiu às 13:00",
+    "cancelledAt": "2026-10-12T10:12:48.871Z"
   },
   {
     "id": 1791645889368,
