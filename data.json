@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791807259886,
+    "ts": "2026-10-12T12:14:19.886Z",
+    "updatedAt": "2026-10-12T12:14:19.886Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES3",
+    "data": "2026-10-12",
+    "dataFmt": "12/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/454871173",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "VUC PP 10³",
+    "regiao": "São Mateus",
+    "quantidade": "01",
+    "motivo": "A rota G8 possui 115 pacotes e 79 paradas, com entregas distribuídas entre Guriri Norte, Guriri Sul, Bom Jesus, Ranchinho e Barra Nova. Devido ao grande fluxo de turistas em Guriri hoje, a tendência é de aumento no trânsito e maior dificuldade de circulação, o que acarretará atrasos nos deslocamentos dos drivers entre os pontos de entrega. Essa situação pode comprometer o cumprimento do ORH planejado e a finalização da rota dentro do horário previsto. Solicitamos apoio para avaliar a operação e considerar os impactos das condições de tráfego na execução das entregas."
+  },
+  {
     "id": 1791807077209,
     "ts": "2026-10-12T12:11:17.209Z",
     "updatedAt": "2026-10-12T12:11:17.214Z",
