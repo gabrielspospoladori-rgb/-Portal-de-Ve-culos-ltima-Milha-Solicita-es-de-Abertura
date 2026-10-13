@@ -215,8 +215,8 @@
   {
     "id": 1791805613274,
     "ts": "2026-10-12T11:46:53.274Z",
-    "updatedAt": "2026-10-12T11:54:30.173Z",
-    "status": "pending",
+    "updatedAt": "2026-10-13T10:19:19.530Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -231,7 +231,8 @@
     "veiculo": "Passeio",
     "regiao": "Barra de São Francisco",
     "quantidade": "01",
-    "motivo": "Solicito apoio para essa rota, pois temos entregas distribuídas entre Barra de São Francisco, Vila Verde, Águia Branca, Nova Belém, Santo Agostinho e Vila Nelita. Além da distância e dos deslocamentos entre essas localidades, **Vila Verde e Águia Branca não fazem mais parte do nosso XPT**, o que dificulta ainda mais a execução da rota. Vale ressaltar que esse apoio também receberá pacotes de outras rotas, aumentando a demanda e a necessidade de deslocamento. Por isso, o apoio é fundamental para organizar melhor a distribuição e evitar atrasos nas entregas."
+    "motivo": "Solicito apoio para essa rota, pois temos entregas distribuídas entre Barra de São Francisco, Vila Verde, Águia Branca, Nova Belém, Santo Agostinho e Vila Nelita. Além da distância e dos deslocamentos entre essas localidades, **Vila Verde e Águia Branca não fazem mais parte do nosso XPT**, o que dificulta ainda mais a execução da rota. Vale ressaltar que esse apoio também receberá pacotes de outras rotas, aumentando a demanda e a necessidade de deslocamento. Por isso, o apoio é fundamental para organizar melhor a distribuição e evitar atrasos nas entregas.",
+    "cancelledAt": "2026-10-13T10:19:19.530Z"
   },
   {
     "id": 1791799504140,
