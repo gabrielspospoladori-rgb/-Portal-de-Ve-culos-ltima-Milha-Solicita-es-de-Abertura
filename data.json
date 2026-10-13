@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791910004763,
+    "ts": "2026-10-13T16:46:44.763Z",
+    "updatedAt": "2026-10-13T16:46:44.763Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES9",
+    "data": "2026-10-13",
+    "dataFmt": "13/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/455208104",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "São gabriel, São domingos do norte e Novo Brasil",
+    "quantidade": "01",
+    "motivo": "Rota com paradas distantes entre si e com necessidade de adicionar insucessos do domingo e feriado"
+  },
+  {
     "id": 1791893667813,
     "ts": "2026-10-13T12:14:27.813Z",
     "updatedAt": "2026-10-13T12:43:00.247Z",
