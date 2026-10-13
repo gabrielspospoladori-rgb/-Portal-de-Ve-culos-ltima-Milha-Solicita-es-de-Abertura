@@ -23,8 +23,8 @@
   {
     "id": 1791814680255,
     "ts": "2026-10-12T14:18:00.255Z",
-    "updatedAt": "2026-10-12T14:18:00.255Z",
-    "status": "pending",
+    "updatedAt": "2026-10-13T10:18:17.063Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -39,7 +39,8 @@
     "veiculo": "VUC PP 10³",
     "regiao": "Teixeira de Freitas",
     "quantidade": "01",
-    "motivo": "Rotas com pacotes de alta cubagem, volumosos no galpão + insucessos"
+    "motivo": "Rotas com pacotes de alta cubagem, volumosos no galpão + insucessos",
+    "cancelledAt": "2026-10-13T10:18:17.063Z"
   },
   {
     "id": 1791808444623,
