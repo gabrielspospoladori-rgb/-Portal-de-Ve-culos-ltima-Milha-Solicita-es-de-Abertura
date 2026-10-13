@@ -66,8 +66,8 @@
   {
     "id": 1791808171432,
     "ts": "2026-10-12T12:29:31.432Z",
-    "updatedAt": "2026-10-12T12:29:31.432Z",
-    "status": "pending",
+    "updatedAt": "2026-10-13T10:19:28.506Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -82,7 +82,8 @@
     "veiculo": "Van",
     "regiao": "Pancas",
     "quantidade": "01",
-    "motivo": "Solicito apoio para essa rota, pois estamos com **74 paradas entre Pancas e Lajinha**. Além da quantidade muito alta de paradas, o motorista ainda precisa se deslocar cerca de 24 km entre as localidades, passando por trecho de estrada não pavimentada, o que acaba tomando mais tempo. Esse apoio vai ajudar a dividir melhor as entregas e evitar que o motorista fique sobrecarregado e não consiga finalizar a rota."
+    "motivo": "Solicito apoio para essa rota, pois estamos com **74 paradas entre Pancas e Lajinha**. Além da quantidade muito alta de paradas, o motorista ainda precisa se deslocar cerca de 24 km entre as localidades, passando por trecho de estrada não pavimentada, o que acaba tomando mais tempo. Esse apoio vai ajudar a dividir melhor as entregas e evitar que o motorista fique sobrecarregado e não consiga finalizar a rota.",
+    "cancelledAt": "2026-10-13T10:19:28.506Z"
   },
   {
     "id": 1791807881968,
