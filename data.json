@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791892844598,
+    "ts": "2026-10-13T12:00:44.598Z",
+    "updatedAt": "2026-10-13T12:00:44.598Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES9",
+    "data": "2026-10-13",
+    "dataFmt": "13/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/455208041",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "alto rio novo e Vila Verde",
+    "quantidade": "01",
+    "motivo": "rota distante do xpt e com regiões afastadas: Alto rio novo e Vila Verde"
+  },
+  {
     "id": 1791892269017,
     "ts": "2026-10-13T11:51:09.017Z",
     "updatedAt": "2026-10-13T11:51:09.017Z",
