@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791976105779,
+    "ts": "2026-10-14T11:08:25.779Z",
+    "updatedAt": "2026-10-14T11:08:25.779Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-10-14",
+    "dataFmt": "14/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "VUC",
+    "regiao": "Prado",
+    "quantidade": "01",
+    "motivo": "Insucesso do prado em decorrência do final de semana e feriado"
+  },
+  {
     "id": 1791976061446,
     "ts": "2026-10-14T11:07:41.446Z",
     "updatedAt": "2026-10-14T11:07:41.446Z",
