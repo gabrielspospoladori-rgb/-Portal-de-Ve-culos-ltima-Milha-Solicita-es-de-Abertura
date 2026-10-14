@@ -44,8 +44,8 @@
   {
     "id": 1791975658177,
     "ts": "2026-10-14T11:00:58.177Z",
-    "updatedAt": "2026-10-14T11:00:58.177Z",
-    "status": "pending",
+    "updatedAt": "2026-10-14T11:35:31.537Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -60,7 +60,8 @@
     "veiculo": "Passeio",
     "regiao": "São Felix",
     "quantidade": "01",
-    "motivo": "Solicito apoio para essa rota, pois estamos com *38 paradas entre Mendes Pimentel e São Félix de Minas*. Além das paradas, o motorista ainda precisa se deslocar aproximadamente 18 km entre as duas cidades, fora os percursos dentro de cada região. Esse apoio vai ajudar a dividir melhor as entregas e evitar que o tempo gasto nos deslocamentos atrapalhe a conclusão da rota."
+    "motivo": "Solicito apoio para essa rota, pois estamos com *38 paradas entre Mendes Pimentel e São Félix de Minas*. Além das paradas, o motorista ainda precisa se deslocar aproximadamente 18 km entre as duas cidades, fora os percursos dentro de cada região. Esse apoio vai ajudar a dividir melhor as entregas e evitar que o tempo gasto nos deslocamentos atrapalhe a conclusão da rota.",
+    "cancelledAt": "2026-10-14T11:35:31.537Z"
   },
   {
     "id": 1791975612112,
