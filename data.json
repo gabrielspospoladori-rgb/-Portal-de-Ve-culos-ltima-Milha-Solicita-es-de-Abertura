@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791975658177,
+    "ts": "2026-10-14T11:00:58.177Z",
+    "updatedAt": "2026-10-14T11:00:58.177Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-14",
+    "dataFmt": "14/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/455807535",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "São Felix",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com *38 paradas entre Mendes Pimentel e São Félix de Minas*. Além das paradas, o motorista ainda precisa se deslocar aproximadamente 18 km entre as duas cidades, fora os percursos dentro de cada região. Esse apoio vai ajudar a dividir melhor as entregas e evitar que o tempo gasto nos deslocamentos atrapalhe a conclusão da rota."
+  },
+  {
     "id": 1791975612112,
     "ts": "2026-10-14T11:00:12.112Z",
     "updatedAt": "2026-10-14T11:00:12.112Z",
