@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791967190815,
+    "ts": "2026-10-14T08:39:50.815Z",
+    "updatedAt": "2026-10-14T08:39:50.815Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-10-14",
+    "dataFmt": "14/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Teiceira de Freitas",
+    "quantidade": "01",
+    "motivo": "Insucessos de alta cubagem + insucessos Melli extra"
+  },
+  {
     "id": 1791914625132,
     "ts": "2026-10-13T18:03:45.132Z",
     "updatedAt": "2026-10-13T18:21:52.809Z",
