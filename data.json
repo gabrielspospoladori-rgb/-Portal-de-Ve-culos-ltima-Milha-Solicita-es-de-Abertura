@@ -383,8 +383,8 @@
   {
     "id": 1791967284271,
     "ts": "2026-10-14T08:41:24.271Z",
-    "updatedAt": "2026-10-14T08:41:24.271Z",
-    "status": "pending",
+    "updatedAt": "2026-10-14T14:25:14.705Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -399,13 +399,14 @@
     "veiculo": "VUC",
     "regiao": "Teixeira de Freitas",
     "quantidade": "01",
-    "motivo": "Insucessos volumosos comerciais volumosos no galpão."
+    "motivo": "Insucessos volumosos comerciais volumosos no galpão.",
+    "cancelledAt": "2026-10-14T14:25:14.705Z"
   },
   {
     "id": 1791967190815,
     "ts": "2026-10-14T08:39:50.815Z",
-    "updatedAt": "2026-10-14T08:39:50.815Z",
-    "status": "pending",
+    "updatedAt": "2026-10-14T14:25:17.281Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -420,7 +421,8 @@
     "veiculo": "Utilitário",
     "regiao": "Teiceira de Freitas",
     "quantidade": "01",
-    "motivo": "Insucessos de alta cubagem + insucessos Melli extra"
+    "motivo": "Insucessos de alta cubagem + insucessos Melli extra",
+    "cancelledAt": "2026-10-14T14:25:17.281Z"
   },
   {
     "id": 1791914625132,
