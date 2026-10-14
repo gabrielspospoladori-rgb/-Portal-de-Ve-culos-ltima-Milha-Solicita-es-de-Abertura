@@ -1,5 +1,26 @@
 [
   {
+    "id": 1791968162686,
+    "ts": "2026-10-14T08:56:02.686Z",
+    "updatedAt": "2026-10-14T08:56:02.686Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-10-14",
+    "dataFmt": "14/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "VUC PP 10³",
+    "regiao": "Teixeira de Freitas",
+    "quantidade": "01",
+    "motivo": "Insucessos volumosos comerciais volumosos no galpão."
+  },
+  {
     "id": 1791967984977,
     "ts": "2026-10-14T08:53:04.977Z",
     "updatedAt": "2026-10-14T08:53:04.977Z",
