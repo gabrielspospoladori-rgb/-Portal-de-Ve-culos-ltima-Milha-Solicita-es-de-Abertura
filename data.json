@@ -44,8 +44,8 @@
   {
     "id": 1791976061446,
     "ts": "2026-10-14T11:07:41.446Z",
-    "updatedAt": "2026-10-14T11:07:41.446Z",
-    "status": "pending",
+    "updatedAt": "2026-10-14T14:25:24.145Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -60,7 +60,8 @@
     "veiculo": "VUC",
     "regiao": "Prado",
     "quantidade": "01",
-    "motivo": "Insucesso de prado em decorrência do final de semana e feriado."
+    "motivo": "Insucesso de prado em decorrência do final de semana e feriado.",
+    "cancelledAt": "2026-10-14T14:25:24.145Z"
   },
   {
     "id": 1791975658177,
