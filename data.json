@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792064997384,
+    "ts": "2026-10-15T11:49:57.384Z",
+    "updatedAt": "2026-10-15T11:49:57.384Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-15",
+    "dataFmt": "15/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/456471268",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "água doce do norte",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com **39 paradas entre Água Doce do Norte, Barra de São Francisco, Mantena e Águia Branca**. São quatro cidades diferentes, com bastante deslocamento de uma região para outra. Só de Barra de São Francisco até Água Doce do Norte são aproximadamente **34 km**, fora os percursos das entregas nas outras localidades. Além disso, Águia Branca não faz mais parte do nosso XPT. Esse apoio vai ajudar a dividir melhor as regiões e facilitar o andamento das entregas."
+  },
+  {
     "id": 1792064754328,
     "ts": "2026-10-15T11:45:54.328Z",
     "updatedAt": "2026-10-15T11:45:54.328Z",
