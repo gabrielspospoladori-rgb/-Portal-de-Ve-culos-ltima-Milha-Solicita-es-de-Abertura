@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792066280029,
+    "ts": "2026-10-15T12:11:20.029Z",
+    "updatedAt": "2026-10-15T12:11:20.029Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES9",
+    "data": "2026-10-15",
+    "dataFmt": "15/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/456460376",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Novo Brasil",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com **82 paradas entre Novo Brasil e São Domingos do Norte**. É uma quantidade muito alta de paradas, e o motorista ainda precisa se deslocar entre as duas regiões, fora os percursos dentro de cada localidade para realizar as entregas. Com essa demanda e o deslocamento necessário, o apoio vai ajudar bastante a dividir melhor a rota e facilitar o andamento das entregas."
+  },
+  {
     "id": 1792065816556,
     "ts": "2026-10-15T12:03:36.556Z",
     "updatedAt": "2026-10-15T12:09:26.949Z",
