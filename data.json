@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792064457661,
+    "ts": "2026-10-15T11:40:57.661Z",
+    "updatedAt": "2026-10-15T11:40:57.661Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-15",
+    "dataFmt": "15/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/456472493",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "Vila Pavão",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com **48 paradas entre Água Doce do Norte, Governador Lacerda, Vila Pavão e Vila Luciene**. São regiões diferentes e o motorista acaba gastando bastante tempo se deslocando de uma para outra, fora o tempo das entregas. Com essa quantidade de paradas e as distâncias entre as localidades, fica difícil conseguir atender tudo dentro do prazo. Esse apoio vai ajudar a dividir melhor a rota e evitar que as entregas fiquem para trás."
+  },
+  {
     "id": 1792064226803,
     "ts": "2026-10-15T11:37:06.803Z",
     "updatedAt": "2026-10-15T11:37:06.803Z",
