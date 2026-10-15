@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792064226803,
+    "ts": "2026-10-15T11:37:06.803Z",
+    "updatedAt": "2026-10-15T11:37:06.803Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-15",
+    "dataFmt": "15/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/456429905",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Itabirinha",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com **56 paradas distribuídas entre Itabirinha, Nova Belém, Vila Nelita e Bom Destino**. São quatro localidades diferentes, e o acesso a Itabirinha não segue o mesmo caminho das demais regiões, fazendo o motorista perder bastante tempo com os deslocamentos. Fora isso, ainda temos uma quantidade alta de paradas para realizar. Esse apoio vai ajudar a dividir melhor as entregas e evitar que a distância entre as localidades comprometa a conclusão da rota."
+  },
+  {
     "id": 1792061837292,
     "ts": "2026-10-15T10:57:17.292Z",
     "updatedAt": "2026-10-15T10:57:17.292Z",
