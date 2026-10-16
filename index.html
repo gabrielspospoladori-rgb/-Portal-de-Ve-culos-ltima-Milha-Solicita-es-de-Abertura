@@ -1489,6 +1489,22 @@ function setSummaryFilter(regiao) {
     renderSummary();
 }
 
+let _summaryRegioes = [];
+function renderRegiaoOptions() {
+    const sel = document.getElementById('regSelect');
+    if (!sel) return;
+    const q = ((document.getElementById('regSearch') || {}).value || '').trim().toLowerCase();
+    const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+    let list = _summaryRegioes.filter(o => !q || o.reg.toLowerCase().includes(q));
+    // mantém a região selecionada visível mesmo que não bata com a busca
+    if (summaryFilter.regiao !== 'all' && !list.some(o => o.reg === summaryFilter.regiao)) {
+        list = [{ reg: summaryFilter.regiao, n: (_summaryRegioes.find(o => o.reg === summaryFilter.regiao) || {}).n || 0 }, ...list];
+    }
+    sel.innerHTML = `<option value="all">Todas as regiões</option>` +
+        list.map(o => `<option value="${esc(o.reg)}" ${o.reg === summaryFilter.regiao ? 'selected' : ''}>${esc(o.reg)} (${o.n})</option>`).join('');
+    if (summaryFilter.regiao === 'all') sel.value = 'all';
+}
+
 // ─── RENDER SUMMARY ────────────────────────────────────────────
 function renderSummary() {
     const el = document.getElementById('summaryContent');
@@ -1513,17 +1529,29 @@ function renderSummary() {
     // Build dynamic region list from actual requests
     const allRegioes = [...new Set(activeReqs.map(r => r.regiao).filter(Boolean))].sort();
 
-    // Render dynamic region filter chips
+    // Filtro de região compacto: busca + lista suspensa ordenada por volume
+    // (antes eram dezenas de botões ocupando a tela inteira)
     if (fb) {
-        let chips = `<div class="status-bar" style="margin-bottom:16px">
-            <span style="font-size:0.72rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-right:6px;align-self:center">Região:</span>`;
-        chips += `<button class="filter-chip ${summaryFilter.regiao === 'all' ? 'active' : ''}" onclick="setSummaryFilter('all')">Todas</button>`;
-        allRegioes.forEach(reg => {
-            const active = summaryFilter.regiao === reg ? 'active' : '';
-            chips += `<button class="filter-chip ${active}" onclick="setSummaryFilter('${reg.replace(/'/g,"\\'")}')">📍 ${reg}</button>`;
-        });
-        chips += `</div>`;
-        fb.innerHTML = chips;
+        const counts = {};
+        activeReqs.forEach(r => { if (r.regiao) counts[r.regiao] = (counts[r.regiao] || 0) + (parseInt(r.quantidade) || 0); });
+        _summaryRegioes = allRegioes.map(reg => ({ reg, n: counts[reg] || 0 })).sort((a, b) => b.n - a.n || a.reg.localeCompare(b.reg));
+        const sel = summaryFilter.regiao !== 'all';
+        // o auto-sync re-renderiza a aba: preserva o que o usuário estava digitando na busca
+        const prevSearchEl = document.getElementById('regSearch');
+        const prevQ = prevSearchEl ? prevSearchEl.value : '';
+        const hadFocus = prevSearchEl && document.activeElement === prevSearchEl;
+        fb.innerHTML = `<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px">
+            <span style="font-size:0.72rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px">📍 Região:</span>
+            <input id="regSearch" type="search" placeholder="Buscar região..." autocomplete="off" oninput="renderRegiaoOptions()"
+                style="flex:1;min-width:150px;max-width:240px;padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-size:0.8rem;font-family:inherit;outline:none">
+            <select id="regSelect" onchange="setSummaryFilter(this.value)"
+                style="flex:2;min-width:220px;max-width:460px;padding:7px 10px;border:1px solid ${sel ? 'var(--accent)' : 'var(--border)'};border-radius:8px;font-size:0.8rem;font-family:inherit;outline:none;background:#fff"></select>
+            ${sel ? `<button class="filter-chip active" onclick="setSummaryFilter('all')">✕ Limpar filtro</button>` : ''}
+            <span style="font-size:0.72rem;color:var(--text-muted)">${allRegioes.length} regiões</span>
+        </div>`;
+        const newSearchEl = document.getElementById('regSearch');
+        if (newSearchEl && prevQ) { newSearchEl.value = prevQ; if (hadFocus) newSearchEl.focus(); }
+        renderRegiaoOptions();
     }
 
     // Filter requests by selected region (excluding cancelled)
