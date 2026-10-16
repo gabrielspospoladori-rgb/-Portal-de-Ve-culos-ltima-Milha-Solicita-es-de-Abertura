@@ -44,8 +44,8 @@
   {
     "id": 1792067625902,
     "ts": "2026-10-15T12:33:45.902Z",
-    "updatedAt": "2026-10-15T13:19:37.456Z",
-    "status": "pending",
+    "updatedAt": "2026-10-16T10:43:08.918Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -60,7 +60,8 @@
     "veiculo": "Utilitário",
     "regiao": "Montanha, São João do sobrado (interior de Pinheiros)",
     "quantidade": "01",
-    "motivo": "ROTAS ESPAÇADAS COM MONTANHA E INTERIOR DE PINHEIROS, TEMPO MÉDIO DA VIAGEM ENTRE OS PONTOS DE ENTREGA CHEGAM A 1:10H, SEM EVIDENCIAR A O TEMPO GASTO NA ESTRADA ATÉ A PRIMEIRA ÁREA DE ENTREGA! SOLICITAMOS UM APOIO PARA MELHOR ATENDIMENTO DAS REGIÕES. Iremos direcionar mais pacotes para a rota e para o apoio."
+    "motivo": "ROTAS ESPAÇADAS COM MONTANHA E INTERIOR DE PINHEIROS, TEMPO MÉDIO DA VIAGEM ENTRE OS PONTOS DE ENTREGA CHEGAM A 1:10H, SEM EVIDENCIAR A O TEMPO GASTO NA ESTRADA ATÉ A PRIMEIRA ÁREA DE ENTREGA! SOLICITAMOS UM APOIO PARA MELHOR ATENDIMENTO DAS REGIÕES. Iremos direcionar mais pacotes para a rota e para o apoio.",
+    "cancelledAt": "2026-10-16T10:43:08.918Z"
   },
   {
     "id": 1792066759885,
