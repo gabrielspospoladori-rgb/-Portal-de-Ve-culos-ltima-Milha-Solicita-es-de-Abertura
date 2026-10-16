@@ -172,8 +172,8 @@
   {
     "id": 1792064997384,
     "ts": "2026-10-15T11:49:57.384Z",
-    "updatedAt": "2026-10-15T11:49:57.384Z",
-    "status": "pending",
+    "updatedAt": "2026-10-16T10:44:21.326Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -188,7 +188,8 @@
     "veiculo": "Passeio",
     "regiao": "água doce do norte",
     "quantidade": "01",
-    "motivo": "Solicito apoio para essa rota, pois estamos com **39 paradas entre Água Doce do Norte, Barra de São Francisco, Mantena e Águia Branca**. São quatro cidades diferentes, com bastante deslocamento de uma região para outra. Só de Barra de São Francisco até Água Doce do Norte são aproximadamente **34 km**, fora os percursos das entregas nas outras localidades. Além disso, Águia Branca não faz mais parte do nosso XPT. Esse apoio vai ajudar a dividir melhor as regiões e facilitar o andamento das entregas."
+    "motivo": "Solicito apoio para essa rota, pois estamos com **39 paradas entre Água Doce do Norte, Barra de São Francisco, Mantena e Águia Branca**. São quatro cidades diferentes, com bastante deslocamento de uma região para outra. Só de Barra de São Francisco até Água Doce do Norte são aproximadamente **34 km**, fora os percursos das entregas nas outras localidades. Além disso, Águia Branca não faz mais parte do nosso XPT. Esse apoio vai ajudar a dividir melhor as regiões e facilitar o andamento das entregas.",
+    "cancelledAt": "2026-10-16T10:44:21.326Z"
   },
   {
     "id": 1792064754328,
