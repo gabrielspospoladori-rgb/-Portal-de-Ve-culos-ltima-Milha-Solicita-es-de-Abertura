@@ -194,8 +194,8 @@
   {
     "id": 1792064754328,
     "ts": "2026-10-15T11:45:54.328Z",
-    "updatedAt": "2026-10-15T11:45:54.328Z",
-    "status": "pending",
+    "updatedAt": "2026-10-16T10:44:26.199Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -210,7 +210,8 @@
     "veiculo": "Utilitário",
     "regiao": "Divino Das Laranjeira",
     "quantidade": "01",
-    "motivo": "Solicito apoio para essa rota, pois estamos com **60 paradas entre Divino das Laranjeiras, Linópolis e Mendes Pimentel**. Só de Divino das Laranjeiras até Mendes Pimentel são aproximadamente **22 km de deslocamento**, sem contar o trajeto até Linópolis e os percursos dentro de cada região. Com essa quantidade de paradas e a distância entre as localidades, o apoio vai ajudar a dividir melhor as entregas e facilitar o andamento da rota."
+    "motivo": "Solicito apoio para essa rota, pois estamos com **60 paradas entre Divino das Laranjeiras, Linópolis e Mendes Pimentel**. Só de Divino das Laranjeiras até Mendes Pimentel são aproximadamente **22 km de deslocamento**, sem contar o trajeto até Linópolis e os percursos dentro de cada região. Com essa quantidade de paradas e a distância entre as localidades, o apoio vai ajudar a dividir melhor as entregas e facilitar o andamento da rota.",
+    "cancelledAt": "2026-10-16T10:44:26.199Z"
   },
   {
     "id": 1792064457661,
