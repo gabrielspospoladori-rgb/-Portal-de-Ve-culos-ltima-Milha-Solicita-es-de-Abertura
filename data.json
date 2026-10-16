@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792152248162,
+    "ts": "2026-10-16T12:04:08.162Z",
+    "updatedAt": "2026-10-16T12:04:08.162Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-16",
+    "dataFmt": "16/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/457083404",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Itabirinha",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com **36 paradas entre Itabirinha, Nova Belém e Santa Luzia**, sendo a maior parte das entregas concentrada em Nova Belém. Só de Nova Belém até Itabirinha são aproximadamente 29 km de deslocamento, fora o acesso a Santa Luzia e os percursos das entregas. Como o motorista precisa sair da região onde está a maior parte das paradas para atender as outras localidades, esse apoio vai ajudar a dividir melhor a rota e facilitar as entregas."
+  },
+  {
     "id": 1792152005761,
     "ts": "2026-10-16T12:00:05.761Z",
     "updatedAt": "2026-10-16T12:00:05.761Z",
