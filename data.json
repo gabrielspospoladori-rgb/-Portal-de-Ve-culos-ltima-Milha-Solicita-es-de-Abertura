@@ -213,8 +213,8 @@
   {
     "id": 1792151753712,
     "ts": "2026-10-16T11:55:53.712Z",
-    "updatedAt": "2026-10-16T11:55:53.713Z",
-    "status": "pending",
+    "updatedAt": "2026-10-17T10:16:03.045Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -229,7 +229,8 @@
     "veiculo": "Passeio",
     "regiao": "Vila Pavão",
     "quantidade": "01",
-    "motivo": "Solicito apoio para essa rota, pois estamos com **53 paradas entre Paulista, Todos os Santos e Vila Pavão**. Só o deslocamento entre essas localidades representa aproximadamente **32 km**, fora os percursos dentro de cada região para realizar as entregas. Como temos bastante parada e o motorista precisa atender três localidades diferentes, esse apoio vai ajudar a dividir melhor as entregas e facilitar o andamento da rota."
+    "motivo": "Solicito apoio para essa rota, pois estamos com **53 paradas entre Paulista, Todos os Santos e Vila Pavão**. Só o deslocamento entre essas localidades representa aproximadamente **32 km**, fora os percursos dentro de cada região para realizar as entregas. Como temos bastante parada e o motorista precisa atender três localidades diferentes, esse apoio vai ajudar a dividir melhor as entregas e facilitar o andamento da rota.",
+    "cancelledAt": "2026-10-17T10:16:03.045Z"
   },
   {
     "id": 1792150271387,
