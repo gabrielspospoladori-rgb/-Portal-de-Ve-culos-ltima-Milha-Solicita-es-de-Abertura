@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792237362208,
+    "ts": "2026-10-17T11:42:42.208Z",
+    "updatedAt": "2026-10-17T11:42:42.208Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES3",
+    "data": "2026-10-17",
+    "dataFmt": "17/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/457751274",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Boa esperança/Nova venecia",
+    "quantidade": "01",
+    "motivo": "A rota possui uma distância muito elevada, de aproximadamente 264 km, passando por várias localidades, como Nestor Gomes, Nova Verona, Pinheiros e outras regiões. Todo esse deslocamento aumenta o tempo gasto na viagem e pode dificultar a realização de todas as entregas dentro do ORH planejado. Por isso, solicitamos apoio para rever a distribuição das localidades e melhorar a organização da rota."
+  },
+  {
     "id": 1792237168407,
     "ts": "2026-10-17T11:39:28.407Z",
     "updatedAt": "2026-10-17T11:39:28.407Z",
