@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792332855316,
+    "ts": "2026-10-18T14:14:15.316Z",
+    "updatedAt": "2026-10-18T14:14:15.316Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES9",
+    "data": "2026-10-18",
+    "dataFmt": "18/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/458170658",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "água branca",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com *54 paradas entre Águia Branca, Boa Vista, Guararema e Cedrolândia*. As entregas estão espalhadas por quatro localidades, e o motorista acaba gastando bastante tempo se deslocando de uma região para outra, fora o tempo necessário para realizar todas as paradas. Com essa quantidade de entregas e os deslocamentos entre as regiões, o apoio vai ajudar a dividir melhor a rota e dar mais agilidade à operação."
+  },
+  {
     "id": 1792332305417,
     "ts": "2026-10-18T14:05:05.417Z",
     "updatedAt": "2026-10-18T14:05:29.554Z",
