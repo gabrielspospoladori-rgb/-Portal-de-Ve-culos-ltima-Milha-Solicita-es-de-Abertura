@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792321045143,
+    "ts": "2026-10-18T10:57:25.143Z",
+    "updatedAt": "2026-10-18T10:57:25.147Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-16",
+    "dataFmt": "16/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/458152402",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "São Félix/ Mendes Pimentel/ linopolis",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com *46 paradas entre Divino das Laranjeiras, Linópolis, Mendes Pimentel, São Félix de Minas e Macedônia das Laranjeiras*. Só passando por Divino, Mendes Pimentel e São Félix já são aproximadamente *40 km de deslocamento*, fora Linópolis, Macedônia e os percursos das entregas. São cinco localidades diferentes, e o motorista acaba gastando bastante tempo se deslocando de uma região para outra. Esse apoio vai ajudar a dividir melhor as entregas e facilitar o andamento da rota."
+  },
+  {
     "id": 1792314163286,
     "ts": "2026-10-18T09:02:43.286Z",
     "updatedAt": "2026-10-18T09:02:43.286Z",
