@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792321540192,
+    "ts": "2026-10-18T11:05:40.192Z",
+    "updatedAt": "2026-10-18T11:05:40.193Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-18",
+    "dataFmt": "18/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/458153571",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "Mantenopolis",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com *27 paradas entre Mantenópolis, Santa Luzia, São José e Cuparaque*. Só de Mantenópolis até Cuparaque são aproximadamente 25 km, fora os deslocamentos para Santa Luzia e São José e os percursos das entregas. Mesmo com uma quantidade menor de paradas, são quatro localidades para atender, e o motorista acaba gastando bastante tempo se deslocando entre elas. Esse apoio vai ajudar a dividir melhor as regiões e facilitar o andamento da rota."
+  },
+  {
     "id": 1792321045143,
     "ts": "2026-10-18T10:57:25.143Z",
     "updatedAt": "2026-10-18T10:59:50.994Z",
