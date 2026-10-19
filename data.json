@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792406109680,
+    "ts": "2026-10-19T10:35:09.680Z",
+    "updatedAt": "2026-10-19T10:35:09.680Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-19",
+    "dataFmt": "19/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/458485553",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "água doce do norte",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com *29 paradas entre Água Doce do Norte, Barra de São Francisco e Vila Pavão*\n*. Apesar da quantidade de paradas não ser tão alta, só o deslocamento entre essas três cidades representa aproximadamente *81 km*, fora os percursos dentro de cada região para realizar as entregas. O motorista acaba gastando bastante tempo na estrada, e esse apoio vai ajudar a dividir melhor as regiões e facilitar o andamento da rota."
+  },
+  {
     "id": 1792405919999,
     "ts": "2026-10-19T10:31:59.999Z",
     "updatedAt": "2026-10-19T10:31:59.999Z",
