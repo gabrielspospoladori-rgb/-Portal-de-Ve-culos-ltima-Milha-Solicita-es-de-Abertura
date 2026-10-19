@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792411268767,
+    "ts": "2026-10-19T12:01:08.767Z",
+    "updatedAt": "2026-10-19T12:01:08.767Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES3",
+    "data": "2026-10-19",
+    "dataFmt": "19/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/458590406",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Pinheiros, Cristal do Norte e interior de Boa Esperança (São José do Sobradinho)",
+    "quantidade": "01",
+    "motivo": "A rota H12 atende diferentes localidades da região de Pinheiros, como Cristal do Norte, Nova Canaã, Pinheirinho, Taquaras e Zona Rural. Essa distribuição exige mais tempo para a realização das entregas e organização do roteiro, podendo comprometer a finalização dentro do ORH planejado. Solicitamos apoio para reorganizar a divisão das localidades e buscar uma melhor distribuição da rota e atendimento dos insucesso do final de semana na região."
+  },
+  {
     "id": 1792410729446,
     "ts": "2026-10-19T11:52:09.446Z",
     "updatedAt": "2026-10-19T11:52:09.446Z",
