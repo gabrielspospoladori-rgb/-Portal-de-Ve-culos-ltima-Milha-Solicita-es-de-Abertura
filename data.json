@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792424399266,
+    "ts": "2026-10-19T15:39:59.266Z",
+    "updatedAt": "2026-10-19T15:39:59.266Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-10-19",
+    "dataFmt": "19/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Vereda",
+    "quantidade": "01",
+    "motivo": "60 pacotes de insucessos pacotes de outra área, de sábado e domingo"
+  },
+  {
     "id": 1792424344513,
     "ts": "2026-10-19T15:39:04.513Z",
     "updatedAt": "2026-10-19T15:39:04.513Z",
