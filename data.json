@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792510126340,
+    "ts": "2026-10-20T15:28:46.340Z",
+    "updatedAt": "2026-10-20T15:28:46.341Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-10-20",
+    "dataFmt": "20/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/458874375",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Itamaraju",
+    "quantidade": "01",
+    "motivo": "Apoio para Itamaraju, um dos veículos quebrou em rota, um driver irá pra ajudar."
+  },
+  {
     "id": 1792504843670,
     "ts": "2026-10-20T14:00:43.670Z",
     "updatedAt": "2026-10-20T14:38:20.631Z",
