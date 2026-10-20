@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792490981311,
+    "ts": "2026-10-20T10:09:41.311Z",
+    "updatedAt": "2026-10-20T10:09:41.311Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-10-20",
+    "dataFmt": "20/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "VUC",
+    "regiao": "Iramaraju",
+    "quantidade": "01",
+    "motivo": "Insucessos volumosos comerciais"
+  },
+  {
     "id": 1792425772726,
     "ts": "2026-10-19T16:02:52.726Z",
     "updatedAt": "2026-10-19T16:04:46.736Z",
