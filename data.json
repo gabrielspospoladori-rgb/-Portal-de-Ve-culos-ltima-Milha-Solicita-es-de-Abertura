@@ -320,8 +320,8 @@
   {
     "id": 1792498740871,
     "ts": "2026-10-20T12:19:00.871Z",
-    "updatedAt": "2026-10-20T12:19:00.872Z",
-    "status": "pending",
+    "updatedAt": "2026-10-20T16:30:46.331Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -336,7 +336,8 @@
     "veiculo": "Utilitário",
     "regiao": "São Mateus",
     "quantidade": "01",
-    "motivo": "Rota para veículo de passeio no qual não irão caber todos os pacotes da rota. Solicitamos um apoio para melhor distribuição, temos entregas dos dois lados da Br. Iremos direcionar pacotes de outras rotas para ficar com uma média de 90 pacotes, no apoio e rota."
+    "motivo": "Rota para veículo de passeio no qual não irão caber todos os pacotes da rota. Solicitamos um apoio para melhor distribuição, temos entregas dos dois lados da Br. Iremos direcionar pacotes de outras rotas para ficar com uma média de 90 pacotes, no apoio e rota.",
+    "cancelledAt": "2026-10-20T16:30:46.331Z"
   },
   {
     "id": 1792498493714,
