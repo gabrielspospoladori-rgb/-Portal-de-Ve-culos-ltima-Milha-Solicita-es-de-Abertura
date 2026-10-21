@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792581088906,
+    "ts": "2026-10-21T11:11:28.906Z",
+    "updatedAt": "2026-10-21T11:11:28.907Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-21",
+    "dataFmt": "21/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/459690701",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "Paulista",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com *40 paradas entre Barra do Rio Preto, Paulista e Todos os Santos*. São três localidades diferentes, e o motorista precisa percorrer uma distância considerável de uma região para outra, fora os deslocamentos para realizar as entregas. Esse apoio vai ajudar a dividir melhor as regiões e facilitar o andamento da rota."
+  },
+  {
     "id": 1792580971330,
     "ts": "2026-10-21T11:09:31.330Z",
     "updatedAt": "2026-10-21T11:09:31.330Z",
