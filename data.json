@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792675584254,
+    "ts": "2026-10-22T13:26:24.254Z",
+    "updatedAt": "2026-10-22T13:26:24.255Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES3",
+    "data": "2026-10-22",
+    "dataFmt": "22/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/460521979",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "PEDRO CANÁRIO, BRAÇO DO RIO, COBRAICE, SAYONARA E OUTRAS LOCALIDADES DO INTERIOR.",
+    "quantidade": "01",
+    "motivo": "ROTA COM DISTRIBUIÇÃO MISTURADA ENTRE DIFERENTES REGIÕES, ENVOLVENDO PEDRO CANÁRIO, BRAÇO DO RIO, COBRAICE, SAYONARA E OUTRAS LOCALIDADES DO INTERIOR. SOLICITAMOS APOIO PARA MELHOR DISTRIBUIÇÃO DA ROTA, TENDO EM VISTA QUE EM ALGUNS PONTOS O DRIVER PRECISA PERCORRER ATÉ 3 KM DA PISTA ATÉ O CLIENTE, ALÉM DOS DESLOCAMENTOS ENTRE AS DIFERENTES REGIÕES DE ENTREGA E DO XPT ATÉ A PRIMEIRA ÁREA DE ENTREGA. ESSES DESLOCAMENTOS AUMENTAM O TEMPO DE OPERAÇÃO E PODEM COMPROMETER A FINALIZAÇÃO DA ROTA DENTRO DO ORH."
+  },
+  {
     "id": 1792670466755,
     "ts": "2026-10-22T12:01:06.755Z",
     "updatedAt": "2026-10-22T13:04:24.306Z",
