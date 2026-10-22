@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792667864528,
+    "ts": "2026-10-22T11:17:44.528Z",
+    "updatedAt": "2026-10-22T11:17:44.528Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-22",
+    "dataFmt": "22/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/460409335",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "mendes pimentel/ são felix",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com *49 paradas entre Mendes Pimentel, São Félix de Minas, Central de Minas e Divino das Laranjeiras*. Só o deslocamento entre essas quatro cidades pode chegar a aproximadamente *64 km*, fora os percursos para realizar as entregas. Além disso, esse apoio também vai receber pacotes de outra rota, aumentando ainda mais a demanda. Por isso, precisamos desse apoio para dividir melhor as regiões."
+  },
+  {
     "id": 1792667632216,
     "ts": "2026-10-22T11:13:52.216Z",
     "updatedAt": "2026-10-22T11:13:52.216Z",
