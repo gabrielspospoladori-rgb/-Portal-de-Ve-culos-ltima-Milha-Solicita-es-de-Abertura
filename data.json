@@ -21,6 +21,27 @@
     "motivo": "Solicito apoio para essa rota, pois estamos com **47 paradas entre São Gabriel da Palha e Nova Venécia**. Só o deslocamento entre as duas cidades é de aproximadamente *44 km*, levando cerca de 40 minutos, fora o tempo gasto nas entregas e nos deslocamentos dentro de cada região. Com as paradas distribuídas entre as duas cidades, esse apoio será importante para dividir melhor a demanda."
   },
   {
+    "id": 1792669974313,
+    "ts": "2026-10-22T11:52:54.313Z",
+    "updatedAt": "2026-10-22T11:52:54.320Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "SVC",
+    "data": "2026-10-22",
+    "dataFmt": "22/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "8",
+    "veiculo": "VAN TKS 2025 H2",
+    "regiao": "Sooretama",
+    "quantidade": "01",
+    "motivo": "Rota D22 espaçada, com sooretama centro e interior, guaxe, farias, canivete e nova Betânia\nVamos absorver pacotes do interior de sooretama da hawk que saiu roteirizados em jaguare"
+  },
+  {
     "id": 1792668053162,
     "ts": "2026-10-22T11:20:53.162Z",
     "updatedAt": "2026-10-22T11:20:53.162Z",
