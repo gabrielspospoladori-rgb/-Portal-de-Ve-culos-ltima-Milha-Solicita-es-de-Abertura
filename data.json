@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792670012491,
+    "ts": "2026-10-22T11:53:32.491Z",
+    "updatedAt": "2026-10-22T11:53:32.491Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES9",
+    "data": "2026-10-22",
+    "dataFmt": "22/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/460461506",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "VUC",
+    "regiao": "São Gabriel da Palha",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com **47 paradas entre São Gabriel da Palha e Nova Venécia**. Só o deslocamento entre as duas cidades é de aproximadamente *44 km*, levando cerca de 40 minutos, fora o tempo gasto nas entregas e nos deslocamentos dentro de cada região. Com as paradas distribuídas entre as duas cidades, esse apoio será importante para dividir melhor a demanda."
+  },
+  {
     "id": 1792668053162,
     "ts": "2026-10-22T11:20:53.162Z",
     "updatedAt": "2026-10-22T11:20:53.162Z",
