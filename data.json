@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792667632216,
+    "ts": "2026-10-22T11:13:52.216Z",
+    "updatedAt": "2026-10-22T11:13:52.216Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-22",
+    "dataFmt": "22/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/460412282",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "Vila Pavão",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com *49 paradas entre Vila Pavão, Vila Luciene e Paulista*. Só de Vila Pavão até Barra de São Francisco são aproximadamente *47 km de deslocamento*, fora o acesso a Paulista, Vila Luciene e os percursos para realizar as entregas. Como as paradas estão distribuídas entre regiões diferentes, o motorista acaba gastando bastante tempo se deslocando. Esse apoio vai ajudar a dividir melhor as entregas e facilitar o andamento da rota."
+  },
+  {
     "id": 1792667466619,
     "ts": "2026-10-22T11:11:06.619Z",
     "updatedAt": "2026-10-22T11:11:06.620Z",
