@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792668053162,
+    "ts": "2026-10-22T11:20:53.162Z",
+    "updatedAt": "2026-10-22T11:20:53.162Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-22",
+    "dataFmt": "22/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/460361105",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "monte senir",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois estamos com *55 paradas distribuídas entre Barra de São Francisco, Monte Senir, Vila Luciene e Paulista*. São regiões diferentes, com deslocamentos que acabam consumindo bastante tempo, principalmente para atender Monte Senir e Paulista. Além das distâncias, ainda temos todas as paradas para realizar. Esse apoio vai ajudar a dividir melhor as regiões e garantir uma evolução melhor nas entregas."
+  },
+  {
     "id": 1792667864528,
     "ts": "2026-10-22T11:17:44.528Z",
     "updatedAt": "2026-10-22T11:17:44.528Z",
