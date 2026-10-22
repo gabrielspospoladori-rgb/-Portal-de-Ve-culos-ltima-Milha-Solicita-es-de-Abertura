@@ -63,6 +63,27 @@
     "motivo": "Solicito apoio para essa rota, que conta com *58 paradas entre Águia Branca, Boa Vista e Cedrolândia*. As entregas estão distribuídas em três localidades, com distâncias consideráveis entre elas. O apoio é necessário para dividir melhor as regiões."
   },
   {
+    "id": 1792670181272,
+    "ts": "2026-10-22T11:56:21.272Z",
+    "updatedAt": "2026-10-22T11:56:21.272Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-10-22",
+    "dataFmt": "22/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "VUC",
+    "regiao": "Teixeira de Freitas",
+    "quantidade": "01",
+    "motivo": "Insucessos volumosos + insucessos Melli extra"
+  },
+  {
     "id": 1792670012491,
     "ts": "2026-10-22T11:53:32.491Z",
     "updatedAt": "2026-10-22T13:18:10.474Z",
