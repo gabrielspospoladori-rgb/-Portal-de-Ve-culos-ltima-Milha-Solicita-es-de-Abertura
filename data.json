@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792759635191,
+    "ts": "2026-10-23T12:47:15.191Z",
+    "updatedAt": "2026-10-23T12:47:15.191Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-10-23",
+    "dataFmt": "23/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Teixeira de freitas",
+    "quantidade": "01",
+    "motivo": "Rotas com pacotes de alta cubagem, volumosos no galpão + insucessos Melli extra"
+  },
+  {
     "id": 1792759252846,
     "ts": "2026-10-23T12:40:52.846Z",
     "updatedAt": "2026-10-23T12:40:52.846Z",
