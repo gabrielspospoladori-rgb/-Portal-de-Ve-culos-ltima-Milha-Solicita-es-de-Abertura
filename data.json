@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792760702666,
+    "ts": "2026-10-23T13:05:02.666Z",
+    "updatedAt": "2026-10-23T13:05:02.666Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES9",
+    "data": "2026-10-23",
+    "dataFmt": "23/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/461087964",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Novo Brasil e São Domingos do Norte",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos *76 paradas distribuídas entre São Gabriel da Palha, Novo Brasil e São Domingos do Norte*. A quantidade elevada de paradas, somada aos deslocamentos entre as três localidades, exige uma melhor divisão das regiões. O apoio é necessário para otimizar a operação e garantir o cumprimento das entregas."
+  },
+  {
     "id": 1792760525013,
     "ts": "2026-10-23T13:02:05.013Z",
     "updatedAt": "2026-10-23T13:02:05.015Z",
