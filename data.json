@@ -930,8 +930,8 @@
   {
     "id": 1792511530242,
     "ts": "2026-10-20T15:52:10.242Z",
-    "updatedAt": "2026-10-20T16:14:23.336Z",
-    "status": "cancelled",
+    "updatedAt": "2026-10-23T16:09:03.961Z",
+    "status": "pending",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -947,7 +947,7 @@
     "regiao": "Teixeira de Freitas",
     "quantidade": "01",
     "motivo": "Insucessos Melli extra",
-    "cancelledAt": "2026-10-20T16:14:23.336Z"
+    "cancelledAt": null
   },
   {
     "id": 1792511480246,
