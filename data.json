@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792758612956,
+    "ts": "2026-10-23T12:30:12.956Z",
+    "updatedAt": "2026-10-23T12:30:12.956Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-23",
+    "dataFmt": "23/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/461023004",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "Itabirinha",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos *45 paradas distribuídas entre Nova Belém, Itabirinha e Limeira de Mantena*. São três localidades com acessos diferentes, exigindo deslocamentos entre as regiões. O apoio é necessário para dividir melhor a operação, otimizar o percurso e garantir uma boa evolução das entregas."
+  },
+  {
     "id": 1792678606487,
     "ts": "2026-10-22T14:16:46.487Z",
     "updatedAt": "2026-10-22T17:27:33.964Z",
