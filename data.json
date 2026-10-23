@@ -44,8 +44,8 @@
   {
     "id": 1792760525013,
     "ts": "2026-10-23T13:02:05.013Z",
-    "updatedAt": "2026-10-23T13:02:05.015Z",
-    "status": "pending",
+    "updatedAt": "2026-10-23T13:05:47.835Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -60,7 +60,8 @@
     "veiculo": "Utilitário",
     "regiao": "Boa esperança/Nova venecia",
     "quantidade": "01",
-    "motivo": "Rota misturada entre Boa esperança e Nova Venecia. .. Solicitamos um apoio para melhor distribuição das áreas, tendo em vista a distância entre as localidades, com viagem de cerca de 40 minutos, e do XPt até o primeiro ponto de entrega, de cerca de 1h."
+    "motivo": "Rota misturada entre Boa esperança e Nova Venecia. .. Solicitamos um apoio para melhor distribuição das áreas, tendo em vista a distância entre as localidades, com viagem de cerca de 40 minutos, e do XPt até o primeiro ponto de entrega, de cerca de 1h.",
+    "cancelledAt": "2026-10-23T13:05:47.835Z"
   },
   {
     "id": 1792760491585,
