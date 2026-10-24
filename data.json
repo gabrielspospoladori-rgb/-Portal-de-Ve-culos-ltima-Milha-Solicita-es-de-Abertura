@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792843110829,
+    "ts": "2026-10-24T11:58:30.829Z",
+    "updatedAt": "2026-10-24T11:58:30.829Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-24",
+    "dataFmt": "24/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/461632606",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "cuparaque",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos *56 paradas distribuídas entre Cuparaque, Mantenópolis, São José e Santa Luzia*. São quatro localidades com diferentes acessos e distâncias consideráveis entre as regiões. O apoio é necessário para dividir melhor as entregas."
+  },
+  {
     "id": 1792842934725,
     "ts": "2026-10-24T11:55:34.725Z",
     "updatedAt": "2026-10-24T11:55:34.725Z",
