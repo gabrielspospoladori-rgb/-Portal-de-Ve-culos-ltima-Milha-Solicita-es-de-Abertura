@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792843763301,
+    "ts": "2026-10-24T12:09:23.301Z",
+    "updatedAt": "2026-10-24T12:09:23.301Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-24",
+    "dataFmt": "24/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/461634601",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Passeio",
+    "regiao": "mendes pimentel",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos *38 paradas distribuídas entre Mendes Pimentel, Central de Minas, Divino das Laranjeiras, Linópolis e São Félix de Minas*. Além de dividir melhor as entregas entre as cinco localidades, esse apoio será fundamental para retirar do galpão os pacotes com insucesso de ontem."
+  },
+  {
     "id": 1792843400720,
     "ts": "2026-10-24T12:03:20.720Z",
     "updatedAt": "2026-10-24T12:06:13.228Z",
