@@ -153,8 +153,8 @@
   {
     "id": 1792834636212,
     "ts": "2026-10-24T09:37:16.212Z",
-    "updatedAt": "2026-10-24T09:37:16.212Z",
-    "status": "pending",
+    "updatedAt": "2026-10-24T10:51:43.604Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -169,7 +169,8 @@
     "veiculo": "Rental Utilitário sem Ajudante",
     "regiao": "jaguaré",
     "quantidade": "01",
-    "motivo": "ajudar o comércio de jaguare"
+    "motivo": "ajudar o comércio de jaguare",
+    "cancelledAt": "2026-10-24T10:51:43.604Z"
   },
   {
     "id": 1792771991153,
