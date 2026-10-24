@@ -87,8 +87,8 @@
   {
     "id": 1792842934725,
     "ts": "2026-10-24T11:55:34.725Z",
-    "updatedAt": "2026-10-24T11:55:34.725Z",
-    "status": "pending",
+    "updatedAt": "2026-10-24T12:10:54.339Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -103,7 +103,8 @@
     "veiculo": "Passeio",
     "regiao": "Itabirinha",
     "quantidade": "01",
-    "motivo": "Solicito apoio para essa rota, pois temos *28 paradas distribuídas entre Itabirinha, Nova Belém e Santo Agostinho*, localidades com acessos diferentes. Além de ajudar na evolução das entregas de hoje, esse apoio será importante para retirar do galpão os pacotes com insucesso de ontem."
+    "motivo": "Solicito apoio para essa rota, pois temos *28 paradas distribuídas entre Itabirinha, Nova Belém e Santo Agostinho*, localidades com acessos diferentes. Além de ajudar na evolução das entregas de hoje, esse apoio será importante para retirar do galpão os pacotes com insucesso de ontem.",
+    "cancelledAt": "2026-10-24T12:10:54.339Z"
   },
   {
     "id": 1792842716006,
