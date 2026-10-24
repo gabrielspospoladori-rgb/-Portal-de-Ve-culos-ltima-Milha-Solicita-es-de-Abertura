@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792841455740,
+    "ts": "2026-10-24T11:30:55.740Z",
+    "updatedAt": "2026-10-24T11:30:55.740Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EBA32",
+    "data": "2026-10-24",
+    "dataFmt": "24/10/2026",
+    "rota": "—",
+    "insucesso": true,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Teixeira de Freitas",
+    "quantidade": "01",
+    "motivo": "Volumosos no galpão+ insucessos Melli extra"
+  },
+  {
     "id": 1792838120146,
     "ts": "2026-10-24T10:35:20.147Z",
     "updatedAt": "2026-10-24T10:51:32.913Z",
