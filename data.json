@@ -1,5 +1,26 @@
 [
   {
+    "id": 1792842716006,
+    "ts": "2026-10-24T11:51:56.006Z",
+    "updatedAt": "2026-10-24T11:51:56.006Z",
+    "status": "pending",
+    "authorizedBy": null,
+    "authorizedAt": null,
+    "feito": false,
+    "feitoAt": null,
+    "transportadora": "Parceiro Spot",
+    "xpt": "EES6",
+    "data": "2026-10-24",
+    "dataFmt": "24/10/2026",
+    "rota": "https://envios.adminml.com/logistics/monitoring-distribution/detail/461633481",
+    "insucesso": false,
+    "orh": "—",
+    "veiculo": "Utilitário",
+    "regiao": "Vila Pavão",
+    "quantidade": "01",
+    "motivo": "Solicito apoio para essa rota, pois temos *44 paradas distribuídas entre Vila Pavão e Paulista*. Considerando o deslocamento via Barra de São Francisco, são aproximadamente *67 km entre as regiões*, sem contar os percursos das entregas. O apoio é necessário para dividir melhor as localidades."
+  },
+  {
     "id": 1792841455740,
     "ts": "2026-10-24T11:30:55.740Z",
     "updatedAt": "2026-10-24T11:38:31.441Z",
