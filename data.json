@@ -2,8 +2,8 @@
   {
     "id": 1792838120146,
     "ts": "2026-10-24T10:35:20.147Z",
-    "updatedAt": "2026-10-24T10:35:20.148Z",
-    "status": "pending",
+    "updatedAt": "2026-10-24T10:51:32.913Z",
+    "status": "cancelled",
     "authorizedBy": null,
     "authorizedAt": null,
     "feito": false,
@@ -18,7 +18,8 @@
     "veiculo": "Utilitário",
     "regiao": "Linhares",
     "quantidade": "01",
-    "motivo": "Apoio para o Comércio de Linhares"
+    "motivo": "Apoio para o Comércio de Linhares",
+    "cancelledAt": "2026-10-24T10:51:32.913Z"
   },
   {
     "id": 1792837249849,
